@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +52,7 @@ public class Animale {
     private String colore;
 
     @Column
-    private java.util.Date annoDiNascita;
+    private LocalDateTime annoDiNascita;
 
     // Sterilizzato: solo 'S' o 'N'
     @Column
@@ -72,7 +73,7 @@ public class Animale {
     @OneToMany(
             mappedBy = "animale",
             cascade = CascadeType.REMOVE,
-            fetch = FetchType.EAGER,  //determina il momento che una select prende anche le info da libri
+            fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     private List<Storico> storico = new ArrayList<>();;
