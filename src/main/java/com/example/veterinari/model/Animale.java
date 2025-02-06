@@ -150,11 +150,11 @@ public class Animale {
         this.colore = colore;
     }
 
-    public Date getAnnoDiNascita() {
+    public LocalDateTime getAnnoDiNascita() {
         return annoDiNascita;
     }
 
-    public void setAnnoDiNascita(Date annoDiNascita) {
+    public void setAnnoDiNascita(LocalDateTime annoDiNascita) {
         this.annoDiNascita = annoDiNascita;
     }
 
