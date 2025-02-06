@@ -1,0 +1,24 @@
+.container {
+    margin-top: 50px;
+}
+
+.navbar {
+    background-color: #e6e1e1;
+}
+
+.home-container {
+    min-height: 100vh;
+    /* Altezza intera della viewport */
+    display: flex;
+    align-items: center;
+}
+
+.home-text {
+    padding: 20px;
+}
+
+.home-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
