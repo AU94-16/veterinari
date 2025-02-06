@@ -1,0 +1,70 @@
+body{
+    background-color: #beceda;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 934px;
+    margin: 0;
+    font-family: Playfair Display, serif;
+}
+.container{
+    display: flex;
+    width: 80%;
+    max-width: 1800px;
+    align-items: center;
+}
+.image{
+    flex: 1;
+    height: 100%;
+}
+.image img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px 0 0 10px;
+}
+.form{
+    flex: 1;
+    padding: 80px;
+    border-radius: 0 10px 10px 0;
+}
+.form-control {
+    height: 60px;
+    width: 568px;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 17px;
+    background-color: #eeeeee;
+}
+.form h2 {
+    margin-bottom: 5px;
+    font-size: 37px;
+}
+.primo p{
+    margin-top: 0px;
+    margin-bottom: 80px;
+    font-size: 15px;
+}
+.btn{
+    height: 60px;
+    width: 568px;
+    background-color: #2d3f4e;
+    color: #eeeeee;
+    font-size: 17px;
+}
+.secondo p{
+    width: 568px;
+    font-size: 15px;
+    margin-bottom: 52px;
+    text-align: center;
+}
+.password-container {
+    display: flex;
+    align-items: center;
+}
+.toggle-password {
+    position: relative;
+    right: 40px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+}

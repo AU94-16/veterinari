@@ -4,9 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -52,7 +51,7 @@ public class Animale {
     private String colore;
 
     @Column
-    private LocalDateTime annoDiNascita;
+    private LocalDate annoDiNascita;
 
     // Sterilizzato: solo 'S' o 'N'
     @Column
@@ -150,11 +149,11 @@ public class Animale {
         this.colore = colore;
     }
 
-    public LocalDateTime getAnnoDiNascita() {
+    public LocalDate getAnnoDiNascita() {
         return annoDiNascita;
     }
 
-    public void setAnnoDiNascita(LocalDateTime annoDiNascita) {
+    public void setAnnoDiNascita(LocalDate annoDiNascita) {
         this.annoDiNascita = annoDiNascita;
     }
 
