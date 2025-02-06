@@ -1,5 +1,19 @@
-.container {
-    margin-top: 50px;
+
+body{
+    background-color: #beceda;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 934px;
+    margin: 0;
+    font-family: Playfair Display, serif;
+}
+
+.container{
+    display: flex;
+    width: 80%;
+    max-width: 1800px;
+    align-items: center;
 }
 
 .navbar {
@@ -20,5 +34,17 @@
 .home-image img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
+}
+
+p, a {
+    font-family: 'Codec Pro', sans-serif;
+}
+
+.btn{
+    height: 60px;
+    width: 568px;
+    background-color: #2d3f4e;
+    color: #eeeeee;
+    font-size: 17px;
 }
