@@ -11,6 +11,7 @@ body{
     width: 80%;
     max-width: 1800px;
     align-items: center;
+    justify-content: center;
 }
 .container-fluid img{
     margin-left: 35px;
@@ -37,9 +38,9 @@ body{
     text-align: center;
 }
 .form{
+
     flex: 1;
     padding: 80px;
-    border-radius: 0 10px 10px 0;
 }
 .form h2 {
     margin-bottom: 5px;
@@ -95,4 +96,11 @@ body{
     cursor: pointer;
     font-size: 20px;
     color: #666;
+}
+.name-container {
+    display: flex;
+    gap: 18px;
+}
+.name-container input {
+    width: 275px;
 }
