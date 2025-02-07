@@ -4,8 +4,7 @@ import com.example.veterinari.model.Proprietario;
 import java.util.List;
 
 public interface ProprietarioService {
-    Proprietario inserisciProprietario(Proprietario proprietario);
+    void inserisciProprietario(Proprietario proprietario);
     List<Proprietario> elencoProprietario();
     Proprietario datiProprietario(int id);
-    void stampaProprietario();
 }
