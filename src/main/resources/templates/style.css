@@ -109,6 +109,10 @@ body {
     color: #eeeeee;
 }
 
+.navbar-brand img{
+    width: 50%;
+}
+
 .password-container {
     display: flex;
     align-items: center;
@@ -129,7 +133,4 @@ body {
 
 .name-container input {
     width: 275px;
-}
-.navbar-brand img{
-    width: 50%;
 }
