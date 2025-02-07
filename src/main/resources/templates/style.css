@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #beceda;
     display: flex;
     justify-content: center;
@@ -6,46 +6,55 @@ body{
     height: 934px;
     margin: 0;
 }
-.container{
+
+.container {
     display: flex;
     width: 80%;
     max-width: 1800px;
     align-items: center;
     justify-content: center;
 }
-.container-fluid img{
+
+.container-fluid img {
     margin-left: 35px;
     height: 53px;
 }
-.image{
+
+.image {
     flex: 1;
     height: 100%;
 }
-.image img{
+
+.image img {
     width: 100%;
     height: auto;
     border-radius: 10px 10px 10px 10px;
 }
-.primo p{
+
+.primo p {
     margin-top: 0px;
     margin-bottom: 80px;
     font-size: 15px;
 }
-.secondo p{
+
+.secondo p {
     width: 568px;
     font-size: 15px;
     margin-bottom: 52px;
     text-align: center;
 }
-.form{
+
+.form {
 
     flex: 1;
     padding: 80px;
 }
+
 .form h2 {
     margin-bottom: 5px;
     font-size: 37px;
 }
+
 .form-control {
     height: 60px;
     width: 568px;
@@ -54,42 +63,51 @@ body{
     background-color: #eeeeee;
     font-size: 17px;
 }
+
 .logo {
     position: absolute;
     top: 49px;
     right: 195px;
 }
+
 .logo img {
     width: 130px;
     height: auto;
     border-radius: 50%;
     object-fit: cover;
 }
+
 @media (max-width: 768px) {
     .separator {
         display: none;
     }
 }
-.separator{
+
+.separator {
     margin-top: 7px;
     font-size: 20px;
     color: #c98040;
     font-weight: bold;
 }
-.navbar{
+
+.navbar {
     background-color: #435f75;
 }
-#navbarNav{
+
+#navbarNav {
     margin-right: 35px;
 }
-#navbarNav a{
+
+#navbarNav a {
     font-size: 20px;
     color: #eeeeee;
 }
+
 .password-container {
     display: flex;
     align-items: center;
 }
+
 .toggle-password {
     position: relative;
     right: 40px;
@@ -97,10 +115,12 @@ body{
     font-size: 20px;
     color: #666;
 }
+
 .name-container {
     display: flex;
     gap: 18px;
 }
+
 .name-container input {
     width: 275px;
 }
