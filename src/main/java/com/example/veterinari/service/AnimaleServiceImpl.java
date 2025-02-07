@@ -44,7 +44,7 @@ public class AnimaleServiceImpl implements AnimaleService {
     }
 
     @Override
-    public void registrazioneAnimale(Animale animale, String nome, String specie, String razza, char sesso, String fotografia, LocalDate annoDiNascita, char sterilizzato, String allergie, int idProprietario) {
+    public void registrazioneAnimale(Animale animale, String nome, String specie, String razza, char sesso, MultipartFile fotografia, LocalDate annoDiNascita, char sterilizzato, String allergie, int idProprietario) {
         animale.setNome(nome);
         animale.setSpecie(specie);
         animale.setRazza(razza);
