@@ -130,3 +130,6 @@ body {
 .name-container input {
     width: 275px;
 }
+.navbar-brand img{
+    width: 50%;
+}
