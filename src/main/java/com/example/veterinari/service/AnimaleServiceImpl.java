@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.SQLOutput;
-import java.time.LocalDate;
+
+import java.time.Year;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -25,8 +25,7 @@ public class AnimaleServiceImpl implements AnimaleService {
     @Autowired
     private ProprietarioDao proprietarioDao;
 
-   // @Autowired
-   // private ProprietarioService proprietarioService;
+
 
 
     @Override
@@ -37,14 +36,14 @@ public class AnimaleServiceImpl implements AnimaleService {
     @Override
     public Animale datiAnimale(int id) {
         Optional<Animale> animaleOptional = animaleDao.findById(id);
-        if(animaleOptional.isPresent())
+        if (animaleOptional.isPresent())
             return animaleOptional.get();
         return null;
         // OPTIONAL = se nella scatola, che abbiamo chiamato con Optional, animale isPresenti allora lo tiriamo fuori e lo ritorniamo con return animaleOptional.get(), altrimenti se non c'è nulla return null
     }
 
     @Override
-    public void registrazioneAnimale(Animale animale, String nome, String specie, String razza, char sesso, MultipartFile fotografia, LocalDate annoDiNascita, char sterilizzato, String allergie, int idProprietario) {
+    public void registrazioneAnimale(Animale animale, String nome, String specie, String razza, char sesso, MultipartFile fotografia, Year annoDiNascita, char sterilizzato, String allergie, int idProprietario) {
         animale.setNome(nome);
         animale.setSpecie(specie);
         animale.setRazza(razza);
@@ -60,12 +59,13 @@ public class AnimaleServiceImpl implements AnimaleService {
         animale.setAnnoDiNascita(annoDiNascita);
         animale.setSterilizzato(sterilizzato);
         animale.setAllergie(allergie);
-       // animale.setProprietario(proprietarioService.datiProprietario(idProprietario));
+        // animale.setProprietario(proprietarioService.datiProprietario(idProprietario));
     }
 
     @Override
     public void eliminazioneAnimale(int idAnimale) {
-    Animale animale = datiAnimale(idAnimale);
-    animaleDao.delete(animale);
+        Animale animale = datiAnimale(idAnimale);
+        animaleDao.delete(animale);
     }
+
 }
