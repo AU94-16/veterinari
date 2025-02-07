@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Il tuo profilo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="../static/css/style.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
@@ -16,44 +15,54 @@
         body {
             font-family: "Codec Pro", serif;
         }
-        .card {
-          display: flex;
-          width: 80%;
-          height: 579px;
-          border: 1px solid #ddd;
-          border-radius: 36px;
-          overflow: hidden;
-          background-color: #eceaea;
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            width: 60%;
+            max-width: 1200px;
+            border-radius: 36px;
+            margin: 30px auto;
+            background-color: #eceaea;
         }
 
-        .card:hover {
-          transform: translateY(-5px); /* Alza la card quando passa sopra */
-          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta l'ombra al passaggio del mouse */
+        .profile-img {
+            width: 50%;
+            height: auto;
+            border-radius: 36px 0 0 36px;
+            object-fit: cover;
         }
 
-        .card-img {
-          width: 100%; /* Imposta l'immagine per occupare tutta la larghezza della card */
-          height: auto; /* Mantiene la proporzione dell'immagine */
+        .profile-info {
+            flex: 1;
+            padding: 20px;
+            margin-top: -200px;
         }
 
-        .card-body {
-          padding: 15px;
+        .profile-info h2 {
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
-        .card-title {
-          font-size: 1.25rem;
-          font-weight: bold;
-          margin-bottom: 10px;
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        .card-text {
-          font-size: 1rem;
-          color: #555;
-          margin-bottom: 15px;
+        .info-group {
+            flex: 1;
         }
 
-        .navbar-brand img{
-          width: 50%;
+        .info-group p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .info-group span {
+            font-size: 18px;
+            font-weight: normal;
         }
 
     </style>
@@ -61,41 +70,78 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
-        <!-- Logo a sinistra -->
         <a class="navbar-brand" href="index.html">
-            <img src="../static/scritta_logo.png" alt="vet_clinic">
+            <img src="../static/immagini/scritta_logo.png" alt="vet_clinic">
         </a>
 
-        <!-- Bottone per il menu mobile-->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Contenuto della navbar -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="accedi.html">LOG IN</a>
-                </li>
-                <li class="separator">
-                    |
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="registrati.html">SIGN IN</a>
+                    <a class="nav-link" href="index.html">LOG OUT</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="card">
-  <img src="#" alt="Immagine profilo" class="card-img">
-  <div class="card-body">
-    <h5 class="card-title">Titolo della Card</h5>
-    <p class="card-text">Questa è una descrizione di esempio per la card. Può contenere qualsiasi testo
-      desiderato.</p>
-  </div>
+
+<div class="profile-container">
+    <img src="../static/immagini/user.jpg" alt="Immagine Profilo" class="profile-img">
+    <div class="profile-info">
+        <h2>IL TUO PROFILO</h2>
+        <div class="info-row">
+            <div class="info-group">
+                <p>Nome Cognome</p>
+                <span id="nomeCognome"></span>
+            </div>
+            <div class="info-group">
+                <p>Numero iscrizione all’albo</p>
+                <span id="numeroAlbo"></span>
+            </div>
+        </div>
+        <div class="info-row">
+            <div class="info-group">
+                <p>Sesso</p>
+                <span id="sesso"></span>
+            </div>
+            <div class="info-group">
+                <p>Email</p>
+                <span id="email"></span>
+            </div>
+        </div>
+        <div class="info-row">
+            <div class="info-group">
+                <p>Città</p>
+                <span id="citta"></span>
+            </div>
+            <div class="info-group">
+                <p>Telefono</p>
+                <span id="telefono"></span>
+            </div>
+        </div>
+    </div>
 </div>
+<script>
+    //data = database
+    // inserire link database
+
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch(" ")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("nomeCognome").innerText = data.nome + " " + data.cognome;
+                document.getElementById("numeroAlbo").innerText = data.numero_iscrizione_albo;
+                document.getElementById("sesso").innerText = data.sesso;
+                document.getElementById("email").innerText = data.email;
+                document.getElementById("citta").innerText = data.citta;
+                document.getElementById("telefono").innerText = data.telefono;
+
+                // Usa l'immagine dal database o quella predefinita
+                // document.querySelector(".profile-img").src = data.immagineProfilo || '../static/immagini/user.jpg';
+            })
+            .catch(error => console.error("Errore nel recupero dati:", error));
+    });
+
+</script>
 
 </body>
 </html>
