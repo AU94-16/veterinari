@@ -83,6 +83,12 @@ body {
     }
 }
 
+@media (max-width: 576px) {
+    .navbar {
+        padding: 5px 10px; /* Riduce il padding interno della navbar su mobile */
+    }
+}
+
 .separator {
     margin-top: 7px;
     font-size: 20px;
