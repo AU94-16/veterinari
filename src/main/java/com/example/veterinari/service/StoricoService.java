@@ -10,7 +10,7 @@ public interface StoricoService {
 
     List<Storico> elencoStorico();
     Storico datiStorico(int id);
-    boolean aggiuntaStorico(Storico storico, int idAnimale, String tipo, String nome, String dosaggio_dettaglio, LocalDateTime data_ora_prestazione, LocalDateTime data_ora_richiamo, String note);
+    boolean aggiuntaStorico(Storico storico, int idAnimale, String tipo, String nome, String dosaggioDettaglio, LocalDateTime dataOraPrestazione, LocalDateTime dataOraRichiamo, String note);
     boolean eliminazioneStorico(int id);
 
     }
