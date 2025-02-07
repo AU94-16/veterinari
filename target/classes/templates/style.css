@@ -1,50 +1,126 @@
-
-body{
+body {
     background-color: #beceda;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 934px;
     margin: 0;
-    font-family: Playfair Display, serif;
 }
 
-.container{
+.container {
     display: flex;
     width: 80%;
     max-width: 1800px;
     align-items: center;
+    justify-content: center;
+}
+
+.container-fluid img {
+    margin-left: 35px;
+    height: 53px;
+}
+
+.image {
+    flex: 1;
+    height: 100%;
+}
+
+.image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.primo p {
+    margin-top: 0px;
+    margin-bottom: 80px;
+    font-size: 15px;
+}
+
+.secondo p {
+    width: 568px;
+    font-size: 15px;
+    margin-bottom: 52px;
+    text-align: center;
+}
+
+.form {
+
+    flex: 1;
+    padding: 80px;
+}
+
+.form h2 {
+    margin-bottom: 5px;
+    font-size: 37px;
+}
+
+.form-control {
+    height: 60px;
+    width: 568px;
+    border-radius: 20px;
+    padding: 10px 15px;
+    background-color: #eeeeee;
+    font-size: 17px;
+}
+
+.logo {
+    position: absolute;
+    top: 49px;
+    right: 195px;
+}
+
+.logo img {
+    width: 130px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .separator {
+        display: none;
+    }
+}
+
+.separator {
+    margin-top: 7px;
+    font-size: 20px;
+    color: #c98040;
+    font-weight: bold;
 }
 
 .navbar {
-    background-color: #e6e1e1;
+    background-color: #435f75;
 }
 
-.home-container {
-    min-height: 100vh;
-    /* Altezza intera della viewport */
+#navbarNav {
+    margin-right: 35px;
+}
+
+#navbarNav a {
+    font-size: 20px;
+    color: #eeeeee;
+}
+
+.password-container {
     display: flex;
     align-items: center;
 }
 
-.home-text {
-    padding: 20px;
+.toggle-password {
+    position: relative;
+    right: 40px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
 }
 
-.home-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px 0 0 10px;
+.name-container {
+    display: flex;
+    gap: 18px;
 }
 
-p, a {
-    font-family: 'Codec Pro', sans-serif;
-}
-
-.btn{
-    height: 60px;
-    width: 568px;
-    background-color: #2d3f4e;
-    color: #eeeeee;
-    font-size: 17px;
+.name-container input {
+    width: 275px;
 }

@@ -33,9 +33,6 @@ public class RegistrazioneController {
     @PostMapping
     public String formManager(
             @Valid @ModelAttribute Veterinario veterinario,
-            @RequestParam(required = false) String telefono,
-            @RequestParam(required = false) String citta,
-            @RequestParam(required = false) MultipartFile fotoProfilo,
             BindingResult result,
             Model model) {
         if(result.hasErrors())
@@ -45,7 +42,7 @@ public class RegistrazioneController {
             model.addAttribute("duplicato", "Email occupata");
             return "registrazione";
         }
-        veterinarioService.registrazioneVeterinario(veterinario, telefono, citta, fotoProfilo);
+        veterinarioService.registrazioneVeterinario(veterinario);
         return "redirect:/login";
     }
 }
