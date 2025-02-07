@@ -55,6 +55,9 @@ public class Veterinario {
     @Pattern(regexp = "^[A-Za-z0-9]+$", message = "Numero di iscrizione all'albo non valido")
     private String numeroIscrizioneAlbo;
 
+    @Column
+    private String fotoProfilo;
+
     @OneToMany
             (
                     mappedBy = "veterinario",
@@ -134,6 +137,14 @@ public class Veterinario {
 
     public void setNumeroIscrizioneAlbo(String numeroIscrizioneAlbo) {
         this.numeroIscrizioneAlbo = numeroIscrizioneAlbo;
+    }
+
+    public String getFotoProfilo() {
+        return fotoProfilo;
+    }
+
+    public void setFotoProfilo(String fotoProfilo) {
+        this.fotoProfilo = fotoProfilo;
     }
 
     public List<Animale> getAnimali() {
