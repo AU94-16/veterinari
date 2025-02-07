@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 // localhost:8080/registrazione
 @Controller
@@ -20,9 +18,13 @@ public class RegistrazioneController {
     @Autowired
     private VeterinarioService veterinarioService;
 
+    Veterinario veterinario;
+
     @GetMapping
-    public String getPage(Model model) {
-        Veterinario veterinario = new Veterinario();
+    public String getPage(Model model,
+                          @RequestParam Integer id) {
+        veterinario = veterinarioService.datiVeterinario(id);
+
         model.addAttribute("veterinario", veterinario);
 
         return "registrazione";
@@ -31,6 +33,9 @@ public class RegistrazioneController {
     @PostMapping
     public String formManager(
             @Valid @ModelAttribute Veterinario veterinario,
+            @RequestParam(required = false) String telefono,
+            @RequestParam(required = false) String citta,
+            @RequestParam(required = false) MultipartFile fotoProfilo,
             BindingResult result,
             Model model) {
         if(result.hasErrors())
@@ -40,7 +45,7 @@ public class RegistrazioneController {
             model.addAttribute("duplicato", "Email occupata");
             return "registrazione";
         }
-        veterinarioService.registrazioneVeterinario(veterinario);
+        veterinarioService.registrazioneVeterinario(veterinario, telefono, citta, fotoProfilo);
         return "redirect:/login";
     }
 }

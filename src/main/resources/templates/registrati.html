@@ -24,6 +24,30 @@
             width: 568px;
             background-color: #2d3f4e;
         }
+        .form.genere {
+            display: flex;
+            width: 86%;
+            font-size: 17px;
+            margin: -70px 10px -60px 0;
+        }
+
+        .form.genere label:first-of-type {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        .form-check-input, .form-check-label  {
+            cursor: pointer;
+        }
+        .form-check-input {
+            margin-right: 5px;
+        }
+
+        .form-check-label {
+            flex-grow: 1;
+        }
+        .form-check{
+            margin: 0 0 0 0;
+        }
     </style>
 </head>
 <body>
@@ -50,6 +74,18 @@
             <div class="mb-3">
                 <input type="text" class="form-control" placeholder="N° iscrizione Albo">
             </div>
+            <div class="form genere">
+                <label for="genere">Genere:</label>
+                <input type="radio" class="form-check-input" id="maschio" name="genere" value="M">
+                <label class="form-check-label" for="maschio">Maschio</label>
+
+                <input type="radio" class="form-check-input" id="femmina" name="genere" value="F">
+                <label class="form-check-label" for="femmina">Femmina</label>
+
+                <input type="radio" class="form-check-input" id="altro" name="genere" value="A">
+                <label class="form-check-label" for="altro">Altro</label>
+            </div>
+
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="terms">
                 <label class="form-check-label" for="terms">I agree to the <a href="#">Terms & Conditions</a></label>

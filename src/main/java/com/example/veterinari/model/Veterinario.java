@@ -37,7 +37,7 @@ public class Veterinario {
 
     // Sesso: solo 'M' o 'F'
     @Column
-    @Pattern(regexp = "^[MF]$", message = "Sesso non valido")
+    @Pattern(regexp = "^[MFA]$", message = "Sesso non valido")
     private char sesso;
 
     // Telefono: numeri telefonici italiani con prefisso opzionale
