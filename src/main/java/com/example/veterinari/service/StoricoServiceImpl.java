@@ -4,11 +4,13 @@ import com.example.veterinari.dao.StoricoDao;
 import com.example.veterinari.model.Animale;
 import com.example.veterinari.model.Storico;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class StoricoServiceImpl implements StoricoService {
 
     @Autowired
@@ -30,7 +32,7 @@ public class StoricoServiceImpl implements StoricoService {
 
     @Override
     public boolean aggiuntaStorico(Storico storico, int idAnimale, String tipo, String nome, String dosaggio_dettaglio, LocalDateTime data_ora_prestazione, LocalDateTime data_ora_richiamo, String note) {
-        Animale animale = animaleService.elencoAnimali().get(idAnimale);
+        Animale animale = animaleService.datiAnimale(idAnimale);
         if (animale == null) {
             return false;
         }
