@@ -25,6 +25,9 @@ public class AnimaleServiceImpl implements AnimaleService {
     @Autowired
     private ProprietarioDao proprietarioDao;
 
+    @Autowired
+    private ProprietarioService proprietarioService;
+
 
     @Override
     public List<Animale> elencoAnimali() {
@@ -50,7 +53,7 @@ public class AnimaleServiceImpl implements AnimaleService {
         try {
             String formato = fotografia.getContentType();
             String fotografiaCodificata = "data:" + formato + ";base64," + Base64.getEncoder().encodeToString(fotografia.getBytes());
-            animale.setFotografia(copertinaCodificata);
+            animale.setFotografia(fotografiaCodificata);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
