@@ -134,10 +134,13 @@
                 document.getElementById("email").innerText = data.email;
                 document.getElementById("citta").innerText = data.citta;
                 document.getElementById("telefono").innerText = data.telefono;
-                document.querySelector(".profile-img").src = data.immagineProfilo;
+
+                // Usa l'immagine dal database o quella predefinita
+                // document.querySelector(".profile-img").src = data.immagineProfilo || '../static/immagini/user.jpg';
             })
             .catch(error => console.error("Errore nel recupero dati:", error));
     });
+
 </script>
 
 </body>
