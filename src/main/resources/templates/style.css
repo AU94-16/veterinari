@@ -17,6 +17,21 @@ body{
     margin-left: 35px;
     height: 53px;
 }
+
+.container h1{
+    width: 700px;
+    height: 312px;
+    font-family: Playfair Display, serif;
+    font-size: 84px;
+    margin-bottom: 0px;
+}
+
+.container img {
+    margin-top: 75px;
+    flex: 1;
+    width: 90%;
+    height: auto;
+}
 .image{
     flex: 1;
     height: 100%;
