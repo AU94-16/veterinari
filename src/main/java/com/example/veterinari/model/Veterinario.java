@@ -38,7 +38,7 @@ public class Veterinario {
     // Sesso: solo 'M' o 'F'
     @Column
     @Pattern(regexp = "^[MFA]$", message = "Sesso non valido")
-    private char sesso;
+    private String sesso;
 
     // Telefono: numeri telefonici italiani con prefisso opzionale
     @Column
@@ -107,11 +107,11 @@ public class Veterinario {
         this.password = password;
     }
 
-    public char getSesso() {
+    public String getSesso() {
         return sesso;
     }
 
-    public void setSesso(char sesso) {
+    public void setSesso(String sesso) {
         this.sesso = sesso;
     }
 

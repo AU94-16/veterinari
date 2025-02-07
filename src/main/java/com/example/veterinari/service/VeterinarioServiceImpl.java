@@ -34,24 +34,40 @@ public class VeterinarioServiceImpl implements VeterinarioService{
 
     //metodo usato per registrazione - salvare le modifiche - formato foto
     @Override
-    public void registrazioneVeterinario(Veterinario veterinario, String telefono, String citta, MultipartFile fotoProfilo) {
-        veterinario.setTelefono(telefono);
-        veterinario.setCitta(citta);
-        if(fotoProfilo != null && !fotoProfilo.isEmpty()) {
+    public void registrazioneVeterinario(Veterinario veterinario) {
+        veterinarioDao.save(veterinario);
+    }
+
+
+    @Override
+    public boolean controlloEmail(String email) {
+
+        return veterinarioDao.findByEmail(email) == null;
+    }
+
+    @Override
+    public void modificaDatiVeterinario(int id, String telefono, String citta, MultipartFile fotoProfilo) {
+        // Recupera il veterinario dal database usando l'ID
+        Veterinario veterinario = veterinarioDao.findById(id).orElse(null);
+
+        if (telefono != null && !telefono.isEmpty()) {
+            veterinario.setTelefono(telefono);  // Aggiorna il campo Telefono
+        }
+        if (citta != null && !citta.isEmpty()) {
+            veterinario.setCitta(citta);  // Aggiorna il campo Citta
+        }
+        if (fotoProfilo != null && !fotoProfilo.isEmpty()) {
             try {
                 String formato = fotoProfilo.getContentType();
                 String fotoProf = "data" + formato + ";base64" + Base64.getEncoder().encodeToString(fotoProfilo.getBytes());
                 veterinario.setFotoProfilo(fotoProf);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-            }
+            }  // Aggiorna il campo FotoProfilo
         }
+
         veterinarioDao.save(veterinario);
-    }
 
-    @Override
-    public boolean controlloEmail(String email) {
 
-        return veterinarioDao.findByEmail(email) == null;
     }
 }
