@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class Animale {
     private String colore;
 
     @Column
-    private LocalDate annoDiNascita;
+    private Year annoDiNascita;
 
     // Sterilizzato: solo 'S' o 'N'
     @Column
@@ -149,11 +150,11 @@ public class Animale {
         this.colore = colore;
     }
 
-    public LocalDate getAnnoDiNascita() {
+    public Year getAnnoDiNascita() {
         return annoDiNascita;
     }
 
-    public void setAnnoDiNascita(LocalDate annoDiNascita) {
+    public void setAnnoDiNascita(Year annoDiNascita) {
         this.annoDiNascita = annoDiNascita;
     }
 

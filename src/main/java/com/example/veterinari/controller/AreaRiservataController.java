@@ -1,6 +1,8 @@
 package com.example.veterinari.controller;
 
+import com.example.veterinari.model.Animale;
 import com.example.veterinari.model.Veterinario;
+import com.example.veterinari.service.AnimaleService;
 import com.example.veterinari.service.VeterinarioService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
+import java.util.List;
 
 @Controller
 @RequestMapping("/areaRiservata")
@@ -18,8 +21,11 @@ public class AreaRiservataController {
     @Autowired
     private VeterinarioService veterinarioService;
 
+    @Autowired
+    private AnimaleService animaleService;
 
-    //getPage e redirector a login in caso di mancato login
+
+    //getPage + redirector a login in caso di mancato login + stampa animali
     @GetMapping
     public String getPage(HttpSession session, Model model) {
 
@@ -29,9 +35,12 @@ public class AreaRiservataController {
         }
 
         Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
+        List<Animale> animali = animaleService.elencoAnimali();
         model.addAttribute("veterinario", veterinario);
+        model.addAttribute("animali", animali);
         return "areaRiservata";
     }
+
     //logout
     @GetMapping("/logout")
     public String logoutVeterinario(HttpSession session) {
@@ -52,6 +61,5 @@ public class AreaRiservataController {
         return "redirect:/areaRiservata";
     }
 
-    //metodo di stampa
 
 }
