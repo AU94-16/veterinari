@@ -26,7 +26,7 @@ public class StoricoServiceImpl implements StoricoService {
 
     @Override
     public Storico datiStorico(int id) {
-        Optional<Storico> storico = storicoDao.findById(id);
+        Optional<Storico> storicoOptional = storicoDao.findById(id);
         return null;
     }
 
