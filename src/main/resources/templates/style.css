@@ -78,6 +78,9 @@ body {
 }
 
 @media (max-width: 768px) {
+    .home-container {
+    margin-top: 400px;
+    }
     .separator {
         display: none;
     }
@@ -87,6 +90,15 @@ body {
     .navbar {
         padding: 5px 10px; /* Riduce il padding interno della navbar su mobile */
     }
+}
+
+@media (max-width: 412px) {
+
+        }
+        img{
+        margin-top: 20px;
+        }
+
 }
 
 .separator {
