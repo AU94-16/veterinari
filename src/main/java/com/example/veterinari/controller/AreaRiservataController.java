@@ -22,10 +22,13 @@ public class AreaRiservataController {
     //getPage e redirector a login in caso di mancato login
     @GetMapping
     public String getPage(HttpSession session, Model model) {
-        Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
-        if (veterinario == null) {
+
+       //controllo per accesso pagina senza login
+        if (session.getAttribute("veterinario") == null) {
             return "redirect:/login";
         }
+
+        Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
         model.addAttribute("veterinario", veterinario);
         return "areaRiservata";
     }
@@ -36,7 +39,7 @@ public class AreaRiservataController {
         return "redirect:/";
     }
 
-    //metodo per modifica
+    //metodo per aggiunta/modifica di alcuni campi di veterinario
     @PostMapping("/modificaDati")
     public String formManager(@RequestParam(required = false) MultipartFile fotoProfilo,
                               @RequestParam(required = false) String telefono,
@@ -49,5 +52,6 @@ public class AreaRiservataController {
         return "redirect:/areaRiservata";
     }
 
+    //metodo di stampa
 
 }

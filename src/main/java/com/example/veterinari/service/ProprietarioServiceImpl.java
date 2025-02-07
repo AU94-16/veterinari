@@ -15,16 +15,19 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 
     @Override
     public void inserisciProprietario(Proprietario proprietario) {
+
         proprietarioDao.save(proprietario);
     }
 
     @Override
     public List<Proprietario> elencoProprietario() {
+
         return (List<Proprietario>) proprietarioDao.findAll();
     }
 
     @Override
     public Proprietario datiProprietario(int id) {
+
         return proprietarioDao.findById(id).get();
     }
 

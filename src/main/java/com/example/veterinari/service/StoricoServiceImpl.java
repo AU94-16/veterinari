@@ -21,6 +21,7 @@ public class StoricoServiceImpl implements StoricoService {
 
     @Override
     public List<Storico> elencoStorico() {
+
         return (List<Storico>) storicoDao.findAll();
     }
 
