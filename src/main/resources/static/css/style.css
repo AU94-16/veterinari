@@ -89,7 +89,11 @@ body {
 
 @media (max-width: 576px) {
     .navbar {
-        padding: 5px 10px; /* Riduce il padding interno della navbar su mobile */
+        padding: 10px 10px; /* Riduce il padding interno della navbar su mobile */
+    }
+    .container-fluid img{
+        width: 50%;
+        height: auto;
     }
 }
 
