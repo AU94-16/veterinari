@@ -35,7 +35,7 @@ public class AreaRiservataController {
         }
 
         Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
-        List<Animale> animali = animaleService.elencoAnimaliVet(veterinario);
+        List<Animale> animali = animaleService.elencoAnimaliVet(veterinario.getId());
         model.addAttribute("veterinario", veterinario);
         model.addAttribute("animali", animali);
         return "area_riservata";

@@ -68,8 +68,8 @@ public class AnimaleServiceImpl implements AnimaleService {
 
     // Trova gli animali associati a un veterinario
     @Override
-    public List<Animale> elencoAnimaliVet(Veterinario veterinario) {
-        return animaleDao.findByVeterinario(veterinario);
+    public List<Animale> elencoAnimaliVet(int idVeterinario) {
+        return animaleDao.findByVeterinario_Id(idVeterinario);
     }
 
 }

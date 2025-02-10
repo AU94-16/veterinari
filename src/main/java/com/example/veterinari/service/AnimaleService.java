@@ -23,7 +23,7 @@ public interface AnimaleService {
     void eliminazioneAnimale (int idAnimale);
 
     //metodo per ottenere la lista degli animali in base al veterinario
-    List<Animale> elencoAnimaliVet(Veterinario veterinario);
+    List<Animale> elencoAnimaliVet(int idVeterinario);
 
 
 }

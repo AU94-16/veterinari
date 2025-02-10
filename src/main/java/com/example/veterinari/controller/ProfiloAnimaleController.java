@@ -1,4 +1,4 @@
-/*package com.example.veterinari.controller;
+package com.example.veterinari.controller;
 
 import com.example.veterinari.model.Animale;
 import com.example.veterinari.service.AnimaleService;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // localhost:8080/animale
 @Controller
 @RequestMapping ("/animale")
-public class DettagliAnimaleController {
+public class ProfiloAnimaleController {
 
     @Autowired
     private AnimaleService animaleService;
@@ -38,4 +38,3 @@ public class DettagliAnimaleController {
         return "modificaAnimale";
     }
 }
-*/
