@@ -49,22 +49,47 @@
     </div>
 </nav>
 
+<!--Pagina demo con barra di ricerca e card-->
 
-<!-- Contenuto principale -->
-<div class="container home-container">
-    <div class="row align-items-center">
-        <!-- Testo sopra su mobile, a sinistra su desktop -->
-        <div class="col-12 col-md-6 text-center">
-            <h1>Gestisci le cure con precisione e semplicità</h1>
-            <p>IL TUO STRUMENTO DIGITALE PER IL BENESSERE DEGLI ANIMALI</p>
-            <button class="btn btn-primary ">REGISTRATI</button>
-        </div>
-        <!-- Immagine sotto su mobile, a destra su desktop -->
-        <div class="col-12 col-md-6 home-image text-center">
+<div class="container mt-4">
+    <h1 class="text-center">Benvenuto, <span th:text="${veterinario.nome}"></span></h1>
 
-            <img src="../static/immagini/index_img.jpeg" alt="Clinica veterinaria">
+    <!-- Barra di ricerca per gli animali -->
+    <div class="mb-4">
+        <form action="/area_riservata" method="get">
+            <select id="campo" name="campo">
+                <option value="">Tutti</option>
+                <option value="nome">Nome Animale</option>
+                <option value="specie">Specie</option>
+                <option value="proprietario">Nome Proprietario</option>
+            </select>
+            <input type="text" id="valore" name="valore" class="form-control mt-2" placeholder="Inserisci valore...">
+            <button class="btn btn-primary mt-2">Cerca</button>
+        </form>
+    </div>
+
+    <!-- Messaggio se non ci sono animali -->
+    <div th:if="${animali.isEmpty()}" class="alert alert-warning text-center">
+        Nessun animale trovato in cura.
+    </div>
+
+    <!-- Lista degli animali in cura -->
+    <div class="row" id="animalCards">
+        <div th:each="animale : ${animali}" class="col-md-4">
+            <div class="card mb-3">
+                <img src="/immagini/useranimale.jpg" class="card-img-top" th:alt="'Foto di ' + ${animale.nome}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${animale.nome}"></h5>
+                    <p class="card-text">Specie: <span th:text="${animale.specie}"></span></p>
+                    <p class="card-text">Proprietario:
+                        <span th:text="${animale.proprietario.nome} + ' ' + ${animale.proprietario.cognome}"></span>
+                    </p>
+                    <a th:href="@{profilo_animale(id=${animale.id})}" class="btn btn-info">Dettagli</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

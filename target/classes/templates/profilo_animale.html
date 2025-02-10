@@ -12,92 +12,122 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <style>
+        /* Evita che la navbar copra il contenuto */
+   body {
+       padding-top: 80px; /* Altezza navbar */
+       margin: 0;
+       font-family: "Codec Pro", serif;
+   }
+
+    /* Contenitore principale */
+           .profile-container {
+        display: flex;
+        flex-wrap: wrap; /* Adatta per schermi piccoli */
+        align-items: center;
+        justify-content: center;
+        width: 60%;
+        min-height: 500px;
+        max-width: 1200px;
+        border-radius: 36px;
+        margin: 30px auto;
+        background-color: #eceaea;
+        padding: 20px;
+    }
+
+/* Contenitore immagine */
+    .profile-image-container {
+       display: flex;
+    min-height: 500px;
+    max-width: 1200px;
+    border-radius: 36px;
+    margin: 50px auto;
+    margin-right: 50px;
+    background-color: #eceaea;
+}
+
+/* Immagine profilo */
+    .profile-img {
+      width: 40%;
+       height: auto;
+       border-radius: 36%;
+       object-fit: cover;
+       margin-bottom: 20px;
+        margin-right: 30px;
+    }
+
+/* Form profilo */
+    .profile-form {
+        flex: 1;
+        width: 100%;
+         margin-right: 20px; /* Spazio tra form e bordo destro */
+    }
+
+/* Titolo input */
+    .input-title {
+        font-size: 24px;
+        font-weight: bold;
+        border: none;
+        background: none;
+        width: auto;
+        display: inline-block;
+    }
+
+/* Riga di informazioni */
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap; /* Per adattarsi ai piccoli schermi */
+    }
+
+/* Gruppo di informazioni */
+    .info-group {
+        flex: 1;
+        min-width: 200px;
+    }
+
+
+  /* Stile input */
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+
+/* Media Query per schermi piccoli */
+    @media (max-width: 768px) {
         .profile-container {
-     display: flex;
-     flex-wrap: wrap; /* Adatta per schermi piccoli */
-     align-items: center;
-     justify-content: center;
-     width: 60%;
-     min-height: 500px;
-     max-width: 1200px;
-     border-radius: 36px;
-     margin: 30px auto;
-     background-color: #eceaea;
-     padding: 20px;
- }
-
- .profile-image-container {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     width: 100%;
- }
-
- .profile-img {
-     width: 150px;
-     height: 150px;
-     border-radius: 50%;
-     object-fit: cover;
-     margin-bottom: 20px;
- }
-
- .profile-form {
-     flex: 1;
-     width: 100%;
- }
-
- .input-title {
-     font-size: 24px;
-     font-weight: bold;
-     border: none;
-     background: none;
-     width: auto;
-     display: inline-block;
- }
-
- .info-row {
-     display: flex;
-     justify-content: space-between;
-     gap: 20px;
-     flex-wrap: wrap; /* Per adattarsi ai piccoli schermi */
- }
-
- .info-group {
-     flex: 1;
-     min-width: 200px;
- }
-
- .form-control {
-     width: 100%;
-     padding: 8px;
-     font-size: 16px;
- }
-
- @media (max-width: 768px) {
-     .profile-container {
-         flex-direction: column;
-         align-items: center;
-     }
-
-     .info-row {
-         flex-direction: column;
-         align-items: center;
-     }
-
-     .info-group {
-         width: 100%;
-     }
-
-     .input-title {
-         text-align: center;
-         width: 100%;
-     }
-
-        .btn {
-            color: #eeeeee;
-            background-color: #2d3f4e;
+            flex-direction: column;
+            align-items: center;
         }
- }
+
+        .info-row {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-group {
+            width: 100%;
+        }
+
+        .input-title {
+            text-align: center;
+            width: 100%;
+        }
+
+           .btn {
+               color: #eeeeee;
+               background-color: #2d3f4e;
+           }
+
+
+    /* Evito che la navbar copra il contenuto */
+    body {
+        padding-top: 100px;
+    }
+
+    }
     </style>
 </head>
 <body>
@@ -116,30 +146,33 @@
         </div>
     </div>
 </nav>
-<div class="profile-container">
+<div class="mr-6 profile-container ">
 
     <img src="../static/immagini/user_animale.jpg" alt="Immagine Profilo" class="profile-img">
     <form th:object="${animale}" method="post">
         <div class=" mb-3 profile-info">
-            <h2>Profilo Animale</h2>
+            <h2>PROFILO ANIMALE</h2>
             <div class=" mb-3 info-row">
                 <div class="info-group">
-                    <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome">
+                    <label for="nome">Nome </label>
+                    <input type="text" th:field="*{nome}" class="form-control" id="nome">
                 </div>
             </div>
 
             <div class=" mb-3 info-row">
                 <div class="info-group">
-                    <input type="text" th:field="*{specie}" class="form-control" id="specie" placeholder="Specie">
+                    <label for="specie">Specie </label>
+                    <input type="text" th:field="*{specie}" class="form-control" id="specie">
                 </div>
                 <div class="info-group">
-                    <input type="text" th:field="*{razza}" class="form-control" id="razza" placeholder="Razza">
+                    <label for="razza">Razza </label>
+                    <input type="text" th:field="*{razza}" class="form-control" id="razza">
                 </div>
             </div>
 
             <div class="mb-3 info-row">
                 <div class="info-group">
-                    <select th:field="*{sesso}" class="form-control" id="sesso" >
+                    <select th:field="*{sesso}" class="form-control" id="sesso" > Sesso
                         <option value="">Sesso</option>
                         <option value="Maschio">Maschio</option>
                         <option value="Femmina">Femmina</option>
@@ -147,29 +180,33 @@
                 </div>
 
                 <div class="info-group">
-                    <input type="number" th:field="*{peso}" class="form-control" id="peso" placeholder="Peso">
+                    <label for="peso">Peso </label>
+                    <input type="number" th:field="*{peso}" class="form-control" id="peso" min="0">
                 </div>
             </div>
 
             <div class="mb-3 info-row">
                 <div class="info-group">
-                    <input type="text" th:field="*{colore}" class="form-control" id="colore" placeholder="Colore">
+                    <label for="colore">Colore </label>
+                    <input type="text" th:field="*{colore}" class="form-control" id="colore">
                 </div>
                 <div class="info-group">
-                    <input type="date" th:field="*{anno_di_nascita}" class="form-control" id="anno" placeholder="Anno Di Nascita">
+                    <label for="anno">Anno di Nascita</label>
+                    <input type="Year" th:field="*{anno_di_nascita}" class="form-control" id="anno">
                 </div>
             </div>
 
             <div class="mb-3 info-row">
                 <div class="info-group">
+                    <label for="sterilizzato">Sterilizzato </label>
                    <select th:field="*{sterilizzato}" class="form-control" id="sterilizzato" >
-                       <option value="">Sterilizzato</option>
                        <option value="si">Si</option>
                        <option value="no">No</option>
                    </select>
                 </div>
                 <div class="info-group">
-                    <input type="text" th:field="*{allergie}" class="form-control" id="allergie" placeholder="Allergie">
+                    <label for="allergie">Allergie </label>
+                    <input type="text-area" th:field="*{allergie}" class="form-control" id="allergie">
                 </div>
             </div>
 
@@ -189,11 +226,14 @@
             .then(data => {
                 document.getElementById("nomeAnimale").innerText.toUpperCase() = data.nome;
                 document.getElementById("nome").innerText = data.nome;
-                document.getElementById("numeroAlbo").innerText = data.numero_iscrizione_albo;
+                document.getElementById("specie").innerText = data.specie;
+                document.getElementById("razza").innerText = data.razza;
                 document.getElementById("sesso").innerText = data.sesso;
-                document.getElementById("email").innerText = data.email;
-                document.getElementById("citta").innerText = data.citta;
-                document.getElementById("telefono").innerText = data.telefono;
+                document.getElementById("peso").innerText = data.peso;
+                document.getElementById("colore").innerText = data.colore;
+                document.getElementById("anno").innerText = data.anno_di_nascita;
+                document.getElementById("sterilizzato").innerText = data.sterilizzato;
+                document.getElementById("allergie").innerText = data.allergie;
 
                 // Usa l'immagine dal database o quella predefinita
                 // document.querySelector(".profile-img").src = data.immagineProfilo || '../static/immagini/user.jpg';

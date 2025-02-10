@@ -21,17 +21,17 @@ public class StoricoServiceImpl implements StoricoService {
 
     @Override
     public List<Storico> elencoStorico() {
+
         return (List<Storico>) storicoDao.findAll();
     }
 
-        @Override
-        public Storico datiStorico(int id) {
-            Optional<Storico> storicoOptional = storicoDao.findById(id);
-            if (storicoOptional.isPresent())
-                return storicoOptional.get();
-            return null;
+    @Override
+    public Storico datiStorico(int id) {
+        Optional<Storico> storicoOptional = storicoDao.findById(id);
+        if (storicoOptional.isPresent())
+            return storicoOptional.get();
+        return null;
 
-        }
     }
 
     @Override
@@ -48,7 +48,7 @@ public class StoricoServiceImpl implements StoricoService {
             storicoDao.deleteById(id);
             return true;
         } else {
-            return false;  
+            return false;
         }
 
     }

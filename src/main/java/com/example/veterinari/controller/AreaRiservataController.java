@@ -33,17 +33,24 @@ public class AreaRiservataController {
 
     //getPage + redirector a login in caso di mancato login + stampa animali per veterinario
     @GetMapping
-    public String getPage(HttpSession session, Model model) {
+    public String getPage(HttpSession session, Model model,
+                          @RequestParam(required = false) String campo,
+                          @RequestParam(required = false)String valore) {
 
-       //controllo per accesso pagina senza login
+        //controllo per accesso pagina senza login
         if (session.getAttribute("veterinario") == null) {
             return "redirect:/accedi";
         }
         //Recupera il veterinario dalla sessione
         Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
 
-        // Recupera gli animali in cura
+        // Se non ci sono parametri, mostra tutti gli animali del veterinario
         List<Animale> animali = animaleService.elencoAnimaliVet(veterinario.getId());
+
+        // Se i parametri di ricerca sono presenti, esegue la ricerca
+        if (campo != null && valore != null && !campo.isEmpty() && !valore.isEmpty()) {
+            animali = animaleService.ricercaAnimale(campo, valore);
+        }
 
         model.addAttribute("veterinario", veterinario);
         model.addAttribute("animali", animali);
