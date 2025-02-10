@@ -8,41 +8,37 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-// localhost:8080/registrazione
+// localhost:8080/registrati
 @Controller
-@RequestMapping("/registrazione")
-public class RegistrazioneController {
+@RequestMapping("/registrati")
+public class RegistratiController {
 
     @Autowired
     private VeterinarioService veterinarioService;
 
-    Veterinario veterinario;
-
     @GetMapping
-    public String getPage(Model model,
-                          @RequestParam Integer id) {
-        veterinario = veterinarioService.datiVeterinario(id);
-
+    public String getPage(Model model) {
+        Veterinario veterinario = new Veterinario();
         model.addAttribute("veterinario", veterinario);
 
-        return "registrazione";
+        return "registrati";
     }
 
+    //Registrazione Veterinario
     @PostMapping
     public String formManager(
             @Valid @ModelAttribute Veterinario veterinario,
             BindingResult result,
             Model model) {
         if(result.hasErrors())
-            return"registrazione";
-
+            return"registrati";
+        //Controllo Email per duplicati
         if(!veterinarioService.controlloEmail(veterinario.getEmail())) {
             model.addAttribute("duplicato", "Email occupata");
-            return "registrazione";
+            return "registrati";
         }
         veterinarioService.registrazioneVeterinario(veterinario);
-        return "redirect:/login";
+        return "redirect:/accedi";
     }
 }

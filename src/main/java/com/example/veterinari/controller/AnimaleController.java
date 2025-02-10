@@ -75,7 +75,7 @@ public class AnimaleController {
     @GetMapping("/eliminaAnimale")
     public String cancellazioneAnnimale(@RequestParam int id) {
         animaleService.eliminazioneAnimale(id);
-        return "redirect:/adminlibri";
+        return "redirect:/";
     }
 
 }

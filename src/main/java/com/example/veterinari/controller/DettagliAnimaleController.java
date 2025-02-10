@@ -1,4 +1,4 @@
-package com.example.veterinari.controller;
+/*package com.example.veterinari.controller;
 
 import com.example.veterinari.model.Animale;
 import com.example.veterinari.service.AnimaleService;
@@ -38,3 +38,4 @@ public class DettagliAnimaleController {
         return "modificaAnimale";
     }
 }
+*/

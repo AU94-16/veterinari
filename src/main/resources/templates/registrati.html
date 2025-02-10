@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,30 +63,36 @@
     <div class="form">
         <h2>Crea un account</h2>
         <p>Sei già registrato? <a href="accedi.html">Accedi</a></p>
-        <form>
+        <form th:object="${veterinario}" method="post">
             <div class="mb-3 name-container">
-                <input type="text" class="form-control" placeholder="Nome">
-                <input type="text" class="form-control" placeholder="Cognome">
+                <input type="text" class="form-control" placeholder="Nome" th:field="*{nome}" required>
+                <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p> <!--Per messaggio di errore-->
+                <input type="text" class="form-control" placeholder="Cognome" th:field="*{cognome}" required>
+                <p th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></p> <!--Per messaggio di errore-->
             </div>
             <div class="mb-3">
-                <input type="email" class="form-control" placeholder="Email">
+                <input type="email" class="form-control" placeholder="Email" th:field="*{email}" required>
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p> <!--Per messaggio di errore-->
+                <p th:if="${duplicato != null}" th:text="${duplicato}"></p> <!--per duplicato email già presente-->
             </div>
             <div class="mb-3 password-container">
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}" required>
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p> <!--Per messaggio di errore-->
                 <i class="bi bi-eye toggle-password" id="togglePassword"></i>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" placeholder="N° iscrizione Albo">
+                <input type="text" class="form-control" placeholder="N° iscrizione Albo" th:field="*{numeroIscrizioneAlbo}" required>
+                <p th:if="${#fields.hasErrors('numeroIscrizioneAlbo')}" th:errors="*{numeroIscrizioneAlbo}"></p> <!--Per messaggio di errore-->
             </div>
             <div class="form genere">
                 <label for="genere">Genere:</label>
-                <input type="radio" class="form-check-input" id="maschio" name="genere" value="M">
+                <input type="radio" class="form-check-input" id="maschio" name="genere" value="M" th:field="*{sesso}">
                 <label class="form-check-label" for="maschio">Maschio</label>
 
-                <input type="radio" class="form-check-input" id="femmina" name="genere" value="F">
+                <input type="radio" class="form-check-input" id="femmina" name="genere" value="F" th:field="*{sesso}">
                 <label class="form-check-label" for="femmina">Femmina</label>
 
-                <input type="radio" class="form-check-input" id="altro" name="genere" value="A">
+                <input type="radio" class="form-check-input" id="altro" name="genere" value="A" th:field="*{sesso}">
                 <label class="form-check-label" for="altro">Altro</label>
             </div>
 

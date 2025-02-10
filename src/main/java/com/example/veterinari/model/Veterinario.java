@@ -17,12 +17,12 @@ public class Veterinario {
 
     // Nome: solo lettere e spazi
     @Column
-    @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Nome non valido")
+    @Pattern(regexp = "[a-zA-Z\\séèìòù]{1,50}", message = "Nome non valido")
     private String nome;
 
     // Cognome: solo lettere e spazi
     @Column
-    @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Cognome non valido")
+    @Pattern(regexp = "[a-zA-Z\\séèìòù]{1,50}", message = "Cognome non valido")
     private String cognome;
 
     // Email: regex per email
@@ -32,12 +32,12 @@ public class Veterinario {
 
     // Password: regex per password sicura
     @Column
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Password non valida")
+    @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,50}", message = "Password debole")
     private String password;
 
     // Sesso: solo 'M' o 'F'
     @Column
-    @Pattern(regexp = "^[MFA]$", message = "Sesso non valido")
+    //@Pattern(regexp = "^[MFA]$", message = "Sesso non valido")
     private char sesso;
 
     // Telefono: numeri telefonici italiani con prefisso opzionale

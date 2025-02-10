@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-// localhost:8080/login
+// localhost:8080/accedi
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/accedi")
+public class AccediController {
 
     @Autowired
     private VeterinarioService veterinarioService;
@@ -24,12 +24,11 @@ public class LoginController {
             Model model,
             HttpSession session) {
         if(session.getAttribute("veterinario") != null){
-            return "redirect:/riservata";
+            return "redirect:/area_riservata";
         }
         model.addAttribute("errore", errore);
-        //se no parametro errore -> null
-        //se parametro errore -> stringa vuota
-        return "login";
+
+        return "accedi";
     }
 
     @PostMapping
@@ -37,8 +36,8 @@ public class LoginController {
             @RequestParam String email,
             @RequestParam String password,
             HttpSession session) {
-        if(!veterinarioService.loginVeterinario(email,  password, session))
-            return "redirect:/login?errore";
-        return "redirect:/riservata";
+        if(!veterinarioService.loginVeterinario(email, password, session))
+            return "redirect:/accedi?errore";
+        return "redirect:/area_riservata";
     }
 }

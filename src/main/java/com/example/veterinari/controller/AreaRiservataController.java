@@ -15,7 +15,7 @@ import java.util.Base64;
 import java.util.List;
 
 @Controller
-@RequestMapping("/areaRiservata")
+@RequestMapping("/area_riservata")
 public class AreaRiservataController {
 
     @Autowired
@@ -31,14 +31,14 @@ public class AreaRiservataController {
 
        //controllo per accesso pagina senza login
         if (session.getAttribute("veterinario") == null) {
-            return "redirect:/login";
+            return "redirect:/accedi";
         }
 
         Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
         List<Animale> animali = animaleService.elencoAnimali();
         model.addAttribute("veterinario", veterinario);
         model.addAttribute("animali", animali);
-        return "areaRiservata";
+        return "area_riservata";
     }
 
     //logout
@@ -58,7 +58,7 @@ public class AreaRiservataController {
         Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
         veterinarioService.modificaDatiVeterinario(veterinario.getId(), telefono, citta, fotoProfilo);
 
-        return "redirect:/areaRiservata";
+        return "redirect:/area_riservata";
     }
 
 

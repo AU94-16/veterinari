@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
+import java.util.Optional;
 
 @Service
 public class VeterinarioServiceImpl implements VeterinarioService{
@@ -15,11 +16,16 @@ public class VeterinarioServiceImpl implements VeterinarioService{
    @Autowired
    private VeterinarioDao veterinarioDao;
 
+   //Recupera
     @Override
     public Veterinario datiVeterinario(int id) {
-        return veterinarioDao.findById(id).get();
+       Optional<Veterinario> veterinarioOptional = veterinarioDao.findById(id); //optional: pensato per gestire id che non ci sono
+        if(veterinarioOptional.isPresent())
+            return veterinarioOptional.get();
+        return null;
     }
 
+    //Login del Veterinario
     @Override
     public boolean loginVeterinario(String email, String password, HttpSession session) {
         Veterinario veterinario = veterinarioDao.findByEmailAndPassword(email, password);
@@ -28,33 +34,32 @@ public class VeterinarioServiceImpl implements VeterinarioService{
             session.setAttribute("veterinario", veterinario);
             return true;
         }
-
         return false;
     }
 
-    //metodo usato per registrazione - salvare le modifiche - formato foto
+    //Registrazione nuovo veterinario
     @Override
     public void registrazioneVeterinario(Veterinario veterinario) {
         veterinarioDao.save(veterinario);
     }
 
-
+    //Controllo email per registrazione
     @Override
     public boolean controlloEmail(String email) {
-
         return veterinarioDao.findByEmail(email) == null;
     }
 
+    //Modifica dati Veterinario
     @Override
     public void modificaDatiVeterinario(int id, String telefono, String citta, MultipartFile fotoProfilo) {
         // Recupera il veterinario dal database usando l'ID
         Veterinario veterinario = veterinarioDao.findById(id).orElse(null);
 
         if (telefono != null && !telefono.isEmpty()) {
-            veterinario.setTelefono(telefono);  // Aggiorna il campo Telefono
+            veterinario.setTelefono(telefono);  // Modifica il campo Telefono
         }
         if (citta != null && !citta.isEmpty()) {
-            veterinario.setCitta(citta);  // Aggiorna il campo Citta
+            veterinario.setCitta(citta);  // Modifica il campo Citta
         }
         if (fotoProfilo != null && !fotoProfilo.isEmpty()) {
             try {
@@ -63,11 +68,10 @@ public class VeterinarioServiceImpl implements VeterinarioService{
                 veterinario.setFotoProfilo(fotoProf);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-            }  // Aggiorna il campo FotoProfilo
+            }  // Modifica il campo FotoProfilo
         }
 
         veterinarioDao.save(veterinario);
-
 
     }
 }

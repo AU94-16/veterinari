@@ -52,11 +52,6 @@ public class Proprietario {
     @Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$", message = "Email non valida")
     private String email;
 
-    // Password: regex per password sicura
-    @Column
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Password non valida")
-    private String password;
-
     // Sesso: solo 'M' o 'F'
     @Column
     @Pattern(regexp = "^[MF]$", message = "Sesso non valido")
@@ -141,14 +136,6 @@ public class Proprietario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public char getSesso() {
