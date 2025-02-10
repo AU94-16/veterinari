@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,58 +15,78 @@
     <style>
         body {
             font-family: "Codec Pro", serif;
+            margin-top: 50px;
         }
 
         .profile-container {
             display: flex;
-            align-items: center;
-            width: 60%;
             min-height: 500px;
             max-width: 1200px;
             border-radius: 36px;
             margin: 30px auto;
             background-color: #eceaea;
+
         }
 
         .profile-img {
-            width: 50%;
+            width: 45%;
             height: auto;
             border-radius: 36px 0 0 36px;
             object-fit: cover;
         }
 
-        .profile-info {
-            flex: 1;
-            padding: 20px;
-            margin-top: -200px;
-        }
-
-        .profile-info h2 {
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
 
         .info-row {
             display: flex;
             justify-content: space-between;
             gap: 20px;
+            flex-wrap: wrap; /* Per adattarsi ai piccoli schermi */
         }
 
         .info-group {
             flex: 1;
+            width: 50px;
         }
 
-        .info-group p {
-            margin: 0;
+        form{
+            width: 100%;
+            padding: 8px;
             font-size: 16px;
-            font-weight: bold;
+            align-items: center;
         }
 
-        .info-group span {
-            font-size: 20px;
-            font-weight: normal;
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
         }
 
+        @media (max-width: 768px) {
+            body{
+                margin-top: 250px;
+            }
+            .profile-img {
+                flex-wrap: wrap;
+                margin-top: 20px;
+                width: 90%;
+                height: auto;
+                border-radius: 36px;
+                object-fit: cover;
+            }
+            .profile-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-group {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -87,49 +108,58 @@
 
 <div class="profile-container">
     <img src="../static/immagini/user.jpg" alt="Immagine Profilo" class="profile-img">
-    <div class="profile-info">
-        <h2>IL TUO PROFILO</h2>
-        <div class="info-row">
-            <div class="info-group">
-                <p>Nome Cognome</p>
-                <span id="nomeCognome">Utente</span>
+
+    <form th:object="${veterinario}" method="post">
+        <div class=" mb-3 profile-info">
+            <h2> IL TUO PROFILO </h2>
+            <div class=" mb-3 info-row">
+                <div class="info-group">
+                    <label for="nome">Nome Cognome</label>
+                    <input type="text" th:field="*{nomeCognome}" class="form-control" id="nome">
+                </div>
+                <div class="info-group">
+                    <label for="numeroAlbo">Numero iscrizione all’albo</label>
+                    <input type="text" th:field="*{numeroAlbo}" class="form-control" id="numeroAlbo">
+                </div>
             </div>
-            <div class="info-group">
-                <p>Numero iscrizione all’albo</p>
-                <span id="numeroAlbo">numero</span>
+
+            <div class="mb-3 info-row">
+                <div class="info-group">
+                    <label for="sesso">Sesso</label>
+                    <select th:field="*{sesso}" class="form-control" id="sesso">
+                        <option value="M">Maschio</option>
+                        <option value="F">Femmina</option>
+                        <option value="A">Altro</option>
+                    </select>
+                </div>
+                <div class="mb-3 info-group">
+                    <label for="email">Email</label>
+                    <input type="email" th:field="*{email}" class="form-control" id="email">
+                </div>
             </div>
+
+            <div class="info-row">
+                <div class="info-group">
+                    <label for="citta">Città</label>
+                    <input type="text" th:field="*{citta}" class="form-control" id="citta">
+                </div>
+                <div class="info-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" th:field="*{telefono}" class="form-control" id="telefono">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Salva</button>
         </div>
-        <div class="info-row">
-            <div class="info-group">
-                <p>Sesso</p>
-                <span id="sesso">sesso</span>
-            </div>
-            <div class="info-group">
-                <p>Email</p>
-                <span id="email">email@gmail.com</span>
-            </div>
-        </div>
-        <div class="info-row">
-            <div class="info-group">
-                <p>Città</p>
-                <span id="citta">città</span>
-            </div>
-            <div class="info-group">
-                <p>Telefono</p>
-                <span id="telefono">telefono</span>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
 <script>
-    //data = database
-    // inserire link database
-
     document.addEventListener("DOMContentLoaded", function () {
         fetch(" ")
             .then(response => response.json())
             .then(data => {
-                document.getElementById("nomeCognome").innerText = data.nome + " " + data.cognome;
+                document.getElementById("nome").innerText = data.nome;
+
                 document.getElementById("numeroAlbo").innerText = data.numero_iscrizione_albo;
                 document.getElementById("sesso").innerText = data.sesso;
                 document.getElementById("email").innerText = data.email;
