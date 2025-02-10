@@ -2,9 +2,7 @@ package com.example.veterinari.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
 
-import java.time.LocalDate;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
