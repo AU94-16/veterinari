@@ -19,8 +19,10 @@ public interface AnimaleDao extends CrudRepository<Animale, Integer> {
     List<Animale> findBySpecie(String specie);
 
     //ricerca animali in base al nome e cognome del proprietario
-    @Query("SELECT * FROM Animale a JOIN proprietario p ON a.id_proprietario = p.id " +
+    /*@Query("SELECT * FROM Animale a JOIN proprietario p ON a.id_proprietario = p.id " +
             "WHERE LOWER(a.proprietario.nome) LIKE LOWER(CONCAT('%', :nome, '%')) " +
+            "OR LOWER(a.proprietario.cognome) LIKE LOWER(CONCAT('%', :cognome, '%'))")*/
+    @Query("SELECT a FROM Animale a WHERE LOWER(a.proprietario.nome) LIKE LOWER(CONCAT('%', :nome, '%')) " +
             "OR LOWER(a.proprietario.cognome) LIKE LOWER(CONCAT('%', :cognome, '%'))")
     List<Animale> findByProprietario(@Param("nome") String nome, @Param("cognome") String cognome);
 }

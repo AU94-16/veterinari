@@ -3,8 +3,6 @@ package com.example.veterinari.service;
 import com.example.veterinari.dao.AnimaleDao;
 import com.example.veterinari.dao.ProprietarioDao;
 import com.example.veterinari.model.Animale;
-import com.example.veterinari.model.Proprietario;
-import com.example.veterinari.model.Veterinario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -92,7 +90,6 @@ public class AnimaleServiceImpl implements AnimaleService {
                 String cognome = nomeCognome.length > 1 ? nomeCognome[1] : "";
                 return animaleDao.findByProprietario(nome, cognome);
         }
-
 
     }
 
