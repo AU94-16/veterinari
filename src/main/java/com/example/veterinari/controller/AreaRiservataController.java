@@ -1,8 +1,10 @@
 package com.example.veterinari.controller;
 
 import com.example.veterinari.model.Animale;
+import com.example.veterinari.model.Proprietario;
 import com.example.veterinari.model.Veterinario;
 import com.example.veterinari.service.AnimaleService;
+import com.example.veterinari.service.ProprietarioService;
 import com.example.veterinari.service.VeterinarioService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class AreaRiservataController {
 
     @Autowired
     private AnimaleService animaleService;
+
+    @Autowired
+    private ProprietarioService proprietarioService;
 
 
     //getPage + redirector a login in caso di mancato login + stampa animali per veterinario
@@ -75,6 +80,12 @@ public class AreaRiservataController {
                               @RequestParam int idProprietario) {
         Animale animale = new Animale();
         animaleService.registrazioneAnimale(animale, nome, specie, razza, sesso, fotografia, annoDiNascita, sterilizzato, allergie, idProprietario);
+        return "redirect:/";
+    }
+
+    @PostMapping("/registrazioneProprietario")
+    public  String formManager(@ModelAttribute Proprietario proprietario) {
+        proprietarioService.inserisciProprietario(proprietario);
         return "redirect:/";
     }
 
