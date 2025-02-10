@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 // localhost:8080/animale
 @Controller
-@RequestMapping ("/animale")
+@RequestMapping ("/profilo_animale")
 public class ProfiloAnimaleController {
 
     @Autowired
@@ -29,12 +29,14 @@ public class ProfiloAnimaleController {
         model.addAttribute("animale", animale);
         model.addAttribute("storico", storicoService.elencoStorico());
 
-        return "dettaglioAnimale";
+        return "profilo_animale";
     }
-    @GetMapping
+
+
+ /*   @GetMapping
     public String modificaAnimale(int id, Model model){
         Animale animale = animaleService.datiAnimale(id);
         model.addAttribute("animale", animale);
         return "modificaAnimale";
-    }
+    }*/
 }
