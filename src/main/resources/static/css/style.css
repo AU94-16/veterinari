@@ -127,6 +127,7 @@ body {
 
 .navbar-brand img{
     width: 50%;
+    height: auto;
 }
 
 .password-container {
