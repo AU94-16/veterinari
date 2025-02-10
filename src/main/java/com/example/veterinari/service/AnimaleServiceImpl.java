@@ -26,6 +26,9 @@ public class AnimaleServiceImpl implements AnimaleService {
     @Autowired
     private ProprietarioDao proprietarioDao;
 
+    @Autowired
+    private ProprietarioService proprietarioService;
+
     @Override
     public List<Animale> elencoAnimali() {
         return (List<Animale>) animaleDao.findAll();
@@ -57,7 +60,7 @@ public class AnimaleServiceImpl implements AnimaleService {
         animale.setAnnoDiNascita(annoDiNascita);
         animale.setSterilizzato(sterilizzato);
         animale.setAllergie(allergie);
-        // animale.setProprietario(proprietarioService.datiProprietario(idProprietario));
+        animale.setProprietario(proprietarioService.datiProprietario(idProprietario));
     }
 
     @Override

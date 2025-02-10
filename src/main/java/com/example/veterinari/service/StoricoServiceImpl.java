@@ -32,22 +32,8 @@ public class StoricoServiceImpl implements StoricoService {
     }
 
     @Override
-    public boolean aggiuntaStorico(Storico storico, int idAnimale, String tipo, String nome, String dosaggioDettaglio, LocalDateTime dataOraPrestazione, LocalDateTime dataOraRichiamo, String note) {
-        Animale animale = animaleService.datiAnimale(idAnimale);
-        if (animale == null) {
-            return false;
-        }
-
-        storico.setAnimale(animale);
-        storico.setTipo(tipo);
-        storico.setNome(nome);
-        storico.setDosaggioDettaglio(dosaggioDettaglio);
-        storico.setDataOraPrestazione(dataOraPrestazione);
-        storico.setDataOraRichiamo(dataOraRichiamo);
-        storico.setNote(note);
-
+    public void aggiuntaStorico(Storico storico) {
         storicoDao.save(storico);
-        return true;
     }
 
 

@@ -2,6 +2,7 @@ package com.example.veterinari.controller;
 
 import com.example.veterinari.model.Animale;
 import com.example.veterinari.model.Proprietario;
+import com.example.veterinari.model.Storico;
 import com.example.veterinari.service.AnimaleService;
 import com.example.veterinari.service.ProprietarioService;
 import com.example.veterinari.service.StoricoService;
@@ -31,12 +32,12 @@ public class ProfiloAnimaleController {
 
 
     @GetMapping
-    public String dettaglioAnimale(int id, Model model, HttpSession session) {
+    public String dettaglioAnimale(int id, Model model, HttpSession session, int idStorico, int idProprietario) {
         Animale animale = animaleService.datiAnimale(id);
 
         model.addAttribute("animale", animale);
-        model.addAttribute("storico", storicoService.elencoStorico());
-
+        model.addAttribute("storico", storicoService.datiStorico(idStorico));
+        model.addAttribute("proprietario", proprietarioService.datiProprietario(idProprietario)); // recupero anche del prorpietario insieme alla ricerca di animale
         return "profilo_animale";
     }
 
@@ -63,11 +64,17 @@ public class ProfiloAnimaleController {
         return "redirect:/";
     }
 
-
-
     @GetMapping("/eliminaAnimale")
     public String cancellazioneAnnimale(@RequestParam int id) {
         animaleService.eliminazioneAnimale(id);
         return "redirect:/";
     }
+
+    @PostMapping("/aggiuntaStorico")
+    public String formManager (@ModelAttribute Storico storico) { // in un secondo momento registriamo uno storico iniziale, per poi aggiungerne altri
+        storicoService.aggiuntaStorico(storico);
+                return "redirect:/animale";
+    }
+
+
 }
