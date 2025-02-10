@@ -25,7 +25,7 @@ public class AreaRiservataController {
     private AnimaleService animaleService;
 
 
-    //getPage + redirector a login in caso di mancato login + stampa animali
+    //getPage + redirector a login in caso di mancato login + stampa animali per veterinario
     @GetMapping
     public String getPage(HttpSession session, Model model) {
 
@@ -35,7 +35,7 @@ public class AreaRiservataController {
         }
 
         Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
-        List<Animale> animali = animaleService.elencoAnimali();
+        List<Animale> animali = animaleService.elencoAnimaliVet(veterinario);
         model.addAttribute("veterinario", veterinario);
         model.addAttribute("animali", animali);
         return "area_riservata";

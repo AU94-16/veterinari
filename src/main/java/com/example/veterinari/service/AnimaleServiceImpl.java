@@ -4,6 +4,7 @@ import com.example.veterinari.dao.AnimaleDao;
 import com.example.veterinari.dao.ProprietarioDao;
 import com.example.veterinari.model.Animale;
 import com.example.veterinari.model.Proprietario;
+import com.example.veterinari.model.Veterinario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,9 +25,6 @@ public class AnimaleServiceImpl implements AnimaleService {
 
     @Autowired
     private ProprietarioDao proprietarioDao;
-
-
-
 
     @Override
     public List<Animale> elencoAnimali() {
@@ -66,6 +64,12 @@ public class AnimaleServiceImpl implements AnimaleService {
     public void eliminazioneAnimale(int idAnimale) {
         Animale animale = datiAnimale(idAnimale);
         animaleDao.delete(animale);
+    }
+
+    // Trova gli animali associati a un veterinario
+    @Override
+    public List<Animale> elencoAnimaliVet(Veterinario veterinario) {
+        return animaleDao.findByVeterinario(veterinario);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.veterinari.service;
 
 import com.example.veterinari.model.Animale;
+import com.example.veterinari.model.Veterinario;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -21,7 +22,8 @@ public interface AnimaleService {
     // eliminazione di un animale dal registro del veterinario nell'area riservata
     void eliminazioneAnimale (int idAnimale);
 
-
+    //metodo per ottenere la lista degli animali in base al veterinario
+    List<Animale> elencoAnimaliVet(Veterinario veterinario);
 
 
 }
