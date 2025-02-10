@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.Year;
 import java.util.Base64;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class AreaRiservataController {
         if (session.getAttribute("veterinario") == null) {
             return "redirect:/accedi";
         }
-
+        //session
         Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
         List<Animale> animali = animaleService.elencoAnimaliVet(veterinario.getId());
         model.addAttribute("veterinario", veterinario);
@@ -59,6 +60,22 @@ public class AreaRiservataController {
         veterinarioService.modificaDatiVeterinario(veterinario.getId(), telefono, citta, fotoProfilo);
 
         return "redirect:/area_riservata";
+    }
+
+    //Registrazione animale
+    @PostMapping("/registrazioneAnimale")
+    public String formManager(@RequestParam String nome,
+                              @RequestParam String specie,
+                              @RequestParam String razza,
+                              @RequestParam char sesso,
+                              @RequestParam MultipartFile fotografia,
+                              @RequestParam Year annoDiNascita,
+                              @RequestParam char sterilizzato,
+                              @RequestParam String allergie,
+                              @RequestParam int idProprietario) {
+        Animale animale = new Animale();
+        animaleService.registrazioneAnimale(animale, nome, specie, razza, sesso, fotografia, annoDiNascita, sterilizzato, allergie, idProprietario);
+        return "redirect:/";
     }
 
 

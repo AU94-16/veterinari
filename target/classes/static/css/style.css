@@ -127,6 +127,7 @@ body {
 
 .navbar-brand img{
     width: 50%;
+    height: auto;
 }
 
 .password-container {
@@ -144,7 +145,7 @@ body {
 
 .name-container {
     display: flex;
-    gap: 18px;
+    gap: 10px;
 }
 
 .name-container input {
