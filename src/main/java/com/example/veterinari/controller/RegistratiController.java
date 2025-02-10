@@ -41,4 +41,5 @@ public class RegistratiController {
         veterinarioService.registrazioneVeterinario(veterinario);
         return "redirect:/accedi";
     }
+
 }

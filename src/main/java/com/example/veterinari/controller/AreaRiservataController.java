@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.Year;
-import java.util.Base64;
+
 import java.util.List;
 
 @Controller
@@ -39,9 +39,12 @@ public class AreaRiservataController {
         if (session.getAttribute("veterinario") == null) {
             return "redirect:/accedi";
         }
-        //session
+        //Recupera il veterinario dalla sessione
         Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
+
+        // Recupera gli animali in cura
         List<Animale> animali = animaleService.elencoAnimaliVet(veterinario.getId());
+
         model.addAttribute("veterinario", veterinario);
         model.addAttribute("animali", animali);
         return "area_riservata";
@@ -89,5 +92,11 @@ public class AreaRiservataController {
         return "redirect:/";
     }
 
+    //Ricerca
+    @GetMapping("/ricerca")
+    public List<Animale> ricercaAnimale(@RequestParam String campo,
+                                        @RequestParam String valore){
+        return animaleService.ricercaAnimale(campo, valore);
+    }
 
 }
