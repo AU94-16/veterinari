@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,61 +12,92 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <style>
-        body {
-            font-family: "Codec Pro", serif;
-        }
-
         .profile-container {
-            display: flex;
-            align-items: center;
-            width: 60%;
-            min-height: 500px;
-            max-width: 1200px;
-            border-radius: 36px;
-            margin: 30px auto;
-            background-color: #eceaea;
-        }
+     display: flex;
+     flex-wrap: wrap; /* Adatta per schermi piccoli */
+     align-items: center;
+     justify-content: center;
+     width: 60%;
+     min-height: 500px;
+     max-width: 1200px;
+     border-radius: 36px;
+     margin: 30px auto;
+     background-color: #eceaea;
+     padding: 20px;
+ }
 
-        .profile-img {
-            padding: 20px;
-            width: 25%;
-            height: auto;
-            border-radius: 50%;
-            object-fit: cover;
-        }
+ .profile-image-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+ }
 
-        .profile-info {
-            flex: 1;
-            padding: 20px;
-            margin-top: -200px;
-        }
+ .profile-img {
+     width: 150px;
+     height: 150px;
+     border-radius: 50%;
+     object-fit: cover;
+     margin-bottom: 20px;
+ }
 
-        .profile-info h2 {
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+ .profile-form {
+     flex: 1;
+     width: 100%;
+ }
 
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
+ .input-title {
+     font-size: 24px;
+     font-weight: bold;
+     border: none;
+     background: none;
+     width: auto;
+     display: inline-block;
+ }
 
-        .info-group {
-            flex: 1;
-        }
+ .info-row {
+     display: flex;
+     justify-content: space-between;
+     gap: 20px;
+     flex-wrap: wrap; /* Per adattarsi ai piccoli schermi */
+ }
 
-        .info-group p {
-            margin: 0;
-            font-size: 16px;
-            font-weight: bold;
-        }
+ .info-group {
+     flex: 1;
+     min-width: 200px;
+ }
 
-        .info-group span {
-            font-size: 20px;
-            font-weight: normal;
-        }
+ .form-control {
+     width: 100%;
+     padding: 8px;
+     font-size: 16px;
+ }
 
+ @media (max-width: 768px) {
+     .profile-container {
+         flex-direction: column;
+         align-items: center;
+     }
+
+     .info-row {
+         flex-direction: column;
+         align-items: center;
+     }
+
+     .info-group {
+         width: 100%;
+     }
+
+     .input-title {
+         text-align: center;
+         width: 100%;
+     }
+
+        .btn {
+            color: #eeeeee;
+            background-color: #2d3f4e;
+        }
+ }
     </style>
 </head>
 <body>
@@ -85,42 +116,68 @@
         </div>
     </div>
 </nav>
-
 <div class="profile-container">
+
     <img src="../static/immagini/user_animale.jpg" alt="Immagine Profilo" class="profile-img">
-    <div class="profile-info">
-        <h2>PROFILO DI <span id="nomeAnimale"> ANIMALE </span></h2>
-        <div class="info-row">
-            <div class="info-group">
-                <p>Nome Cognome</p>
-                <span id="nome">Utente</span>
+    <form th:object="${animale}" method="post">
+        <div class=" mb-3 profile-info">
+            <h2>Profilo Animale</h2>
+            <div class=" mb-3 info-row">
+                <div class="info-group">
+                    <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome">
+                </div>
             </div>
-            <div class="info-group">
-                <p>Numero iscrizione all’albo</p>
-                <span id="numeroAlbo">numero</span>
+
+            <div class=" mb-3 info-row">
+                <div class="info-group">
+                    <input type="text" th:field="*{specie}" class="form-control" id="specie" placeholder="Specie">
+                </div>
+                <div class="info-group">
+                    <input type="text" th:field="*{razza}" class="form-control" id="razza" placeholder="Razza">
+                </div>
             </div>
+
+            <div class="mb-3 info-row">
+                <div class="info-group">
+                    <select th:field="*{sesso}" class="form-control" id="sesso" >
+                        <option value="">Sesso</option>
+                        <option value="Maschio">Maschio</option>
+                        <option value="Femmina">Femmina</option>
+                    </select>
+                </div>
+
+                <div class="info-group">
+                    <input type="number" th:field="*{peso}" class="form-control" id="peso" placeholder="Peso">
+                </div>
+            </div>
+
+            <div class="mb-3 info-row">
+                <div class="info-group">
+                    <input type="text" th:field="*{colore}" class="form-control" id="colore" placeholder="Colore">
+                </div>
+                <div class="info-group">
+                    <input type="date" th:field="*{anno_di_nascita}" class="form-control" id="anno" placeholder="Anno Di Nascita">
+                </div>
+            </div>
+
+            <div class="mb-3 info-row">
+                <div class="info-group">
+                   <select th:field="*{sterilizzato}" class="form-control" id="sterilizzato" >
+                       <option value="">Sterilizzato</option>
+                       <option value="si">Si</option>
+                       <option value="no">No</option>
+                   </select>
+                </div>
+                <div class="info-group">
+                    <input type="text" th:field="*{allergie}" class="form-control" id="allergie" placeholder="Allergie">
+                </div>
+            </div>
+
+
+
+            <button type="submit" class="btn  form-control mb-3" >Salva</button>
         </div>
-        <div class="info-row">
-            <div class="info-group">
-                <p>Sesso</p>
-                <span id="sesso">sesso</span>
-            </div>
-            <div class="info-group">
-                <p>Email</p>
-                <span id="email">email@gmail.com</span>
-            </div>
-        </div>
-        <div class="info-row">
-            <div class="info-group">
-                <p>Città</p>
-                <span id="citta">città</span>
-            </div>
-            <div class="info-group">
-                <p>Telefono</p>
-                <span id="telefono">telefono</span>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
 <script>
     //data = database
