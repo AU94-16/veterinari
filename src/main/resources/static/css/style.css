@@ -145,7 +145,7 @@ body {
 
 .name-container {
     display: flex;
-    gap: 18px;
+    gap: 10px;
 }
 
 .name-container input {
