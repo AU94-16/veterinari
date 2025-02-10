@@ -26,6 +26,9 @@ public class AnimaleServiceImpl implements AnimaleService {
     @Autowired
     private ProprietarioDao proprietarioDao;
 
+    @Autowired
+    private ProprietarioService proprietarioService;
+
     @Override
     public List<Animale> elencoAnimali() {
         return (List<Animale>) animaleDao.findAll();
@@ -57,7 +60,7 @@ public class AnimaleServiceImpl implements AnimaleService {
         animale.setAnnoDiNascita(annoDiNascita);
         animale.setSterilizzato(sterilizzato);
         animale.setAllergie(allergie);
-        // animale.setProprietario(proprietarioService.datiProprietario(idProprietario));
+        animale.setProprietario(proprietarioService.datiProprietario(idProprietario));
     }
 
     @Override
@@ -68,8 +71,29 @@ public class AnimaleServiceImpl implements AnimaleService {
 
     // Trova gli animali associati a un veterinario
     @Override
-    public List<Animale> elencoAnimaliVet(Veterinario veterinario) {
-        return animaleDao.findByVeterinario(veterinario);
+    public List<Animale> elencoAnimaliVet(int idVeterinario) {
+        return animaleDao.findByVeterinario_Id(idVeterinario);
+    }
+
+    //Ricerca Animale per campo (select) con valore dato
+    @Override
+    public List<Animale> ricercaAnimale(String campo, String valore) {
+        switch (campo) {
+            case "nome":
+                return animaleDao.findByNome(valore);
+
+            case "specie":
+                return animaleDao.findBySpecie(valore);
+
+            default: //case "proprietario"
+                // Dividiamo il valore in nome e cognome (separati da spazio)
+                String[] nomeCognome = valore.split(" ");
+                String nome = nomeCognome[0];
+                String cognome = nomeCognome.length > 1 ? nomeCognome[1] : "";
+                return animaleDao.findByProprietario(nome, cognome);
+        }
+
+
     }
 
 }
