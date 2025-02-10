@@ -71,7 +71,7 @@ public class ProfiloAnimaleController {
     }
 
     @PostMapping("/aggiuntaStorico")
-    public String formManager (@ModelAttribute Storico storico) { // in un secondo momento registriamo uno storico iniziale, per poi aggiungerne altri 
+    public String formManager (@ModelAttribute Storico storico) { // in un secondo momento registriamo uno storico iniziale, per poi aggiungerne altri
         storicoService.aggiuntaStorico(storico);
                 return "redirect:/animale";
     }
