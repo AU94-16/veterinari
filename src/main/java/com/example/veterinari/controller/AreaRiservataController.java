@@ -54,18 +54,6 @@ public class AreaRiservataController {
         return "redirect:/";
     }
 
-    //metodo per aggiunta/modifica di alcuni campi di veterinario
-    @PostMapping("/modificaDati")
-    public String formManager(@RequestParam(required = false) MultipartFile fotoProfilo,
-                              @RequestParam(required = false) String telefono,
-                              @RequestParam(required = false) String citta,
-                              HttpSession session) {
-
-        Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
-        veterinarioService.modificaDatiVeterinario(veterinario.getId(), telefono, citta, fotoProfilo);
-
-        return "redirect:/area_riservata";
-    }
 
     //Registrazione animale
     @PostMapping("/registrazioneAnimale")
