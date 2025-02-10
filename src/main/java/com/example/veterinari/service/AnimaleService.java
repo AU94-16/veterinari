@@ -25,5 +25,7 @@ public interface AnimaleService {
     //metodo per ottenere la lista degli animali in base al veterinario
     List<Animale> elencoAnimaliVet(int idVeterinario);
 
+    //metodo di ricerca animale
+    List<Animale> ricercaAnimale(String campo, String valore);
 
 }
