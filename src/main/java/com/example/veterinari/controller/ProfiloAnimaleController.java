@@ -17,7 +17,7 @@ import java.time.Year;
 import java.util.List;
 
 
-// localhost:8080/animale
+// localhost:8080/profilo_animale
 @Controller
 @RequestMapping ("/profilo_animale")
 public class ProfiloAnimaleController {
