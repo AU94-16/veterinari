@@ -1,12 +1,11 @@
 package com.example.veterinari.service;
 
 import com.example.veterinari.dao.StoricoDao;
-import com.example.veterinari.model.Animale;
 import com.example.veterinari.model.Storico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +27,10 @@ public class StoricoServiceImpl implements StoricoService {
     @Override
     public Storico datiStorico(int id) {
         Optional<Storico> storicoOptional = storicoDao.findById(id);
+        if (storicoOptional.isPresent())
+            return storicoOptional.get();
         return null;
+
     }
 
     @Override
@@ -45,7 +47,7 @@ public class StoricoServiceImpl implements StoricoService {
             storicoDao.deleteById(id);
             return true;
         } else {
-            return false;  
+            return false;
         }
 
     }
