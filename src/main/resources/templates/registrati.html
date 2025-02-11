@@ -58,7 +58,7 @@
 <body>
 <div class="container container">
     <div class="logo">
-        <a href="index.html"><img src="../static/immagini/logo_vet.png" alt="Logo"></a>
+        <a th:href="@{/}"><img src="../static/immagini/logo_vet.png" alt="Logo"></a>
     </div>
     <div class="image">
         <img src="../static/immagini/log1.jpg" class="slide" alt="Slide 1">
@@ -74,7 +74,7 @@
     </div>
     <div class="form">
         <h2>Crea un account</h2>
-        <p>Sei già registrato? <a href="accedi.html">Accedi</a></p>
+        <p>Sei già registrato? <a th:href="@{/accedi}">Accedi</a></p>
         <form th:object="${veterinario}" method="post">
             <div class="mb-3 name-container">
                 <input type="text" class="form-control" placeholder="Nome" th:field="*{nome}" required>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -63,13 +63,13 @@
         <div class="collapse navbar-collapse text-end justify-content-end" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="accedi.html">LOG IN</a>
+                    <a class="nav-link" th:href="@{/accedi}">LOG IN</a>
                 </li>
                 <li class="separator">
                     |
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="registrati.html">SIGN IN</a>
+                    <a class="nav-link" th:href="@{/registrati}">SIGN IN</a>
                 </li>
             </ul>
         </div>
@@ -84,7 +84,7 @@
             <h1>Gestisci le cure con precisione e semplicità</h1>
             <p>IL TUO STRUMENTO DIGITALE PER IL BENESSERE DEGLI ANIMALI</p>
             <div class="d-flex justify-content-center">
-                <button class="btn btn-primary" onclick="window.location.href='registrati.html';">REGISTRATI</button>
+                <a class="btn btn-primary" th:href="@{/registrati}" >REGISTRATI</a>
             </div>
         </div>
 
