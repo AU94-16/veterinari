@@ -52,17 +52,29 @@
         .form-check {
             margin: 0 0 0 0;
         }
+
     </style>
 </head>
 <body>
 <div class="container container">
     <div class="logo">
-        <a href="index.html"><img src="../static/immagini/logo_vet.png" alt="Logo"></a>
+        <a th:href="@{/}"><img src="../static/immagini/logo_vet.png" alt="Logo"></a>
     </div>
-    <div class="image"><img src="../static/immagini/log1.jpg" alt="gatto" class="img-fluid rounded-start"></div>
+    <div class="image">
+        <img src="../static/immagini/log1.jpg" class="slide" alt="Slide 1">
+        <img src="../static/immagini/log2.jpg" class="slide" alt="Slide 2">
+        <img src="../static/immagini/log3.jpg" class="slide" alt="Slide 3">
+        <img src="../static/immagini/log4.jpg" class="slide" alt="Slide 4">
+        <img src="../static/immagini/log5.jpg" class="slide" alt="Slide 5">
+        <img src="../static/immagini/log6.jpg" class="slide" alt="Slide 6">
+        <img src="../static/immagini/log7.jpg" class="slide" alt="Slide 7">
+        <img src="../static/immagini/log8.jpg" class="slide" alt="Slide 8">
+        <img src="../static/immagini/log9.jpg" class="slide" alt="Slide 9">
+        <img src="../static/immagini/log10.jpg" class="slide" alt="Slide 10">
+    </div>
     <div class="form">
         <h2>Crea un account</h2>
-        <p>Sei già registrato? <a href="accedi.html">Accedi</a></p>
+        <p>Sei già registrato? <a th:href="@{/accedi}">Accedi</a></p>
         <form th:object="${veterinario}" method="post">
             <div class="mb-3 name-container">
                 <input type="text" class="form-control" placeholder="Nome" th:field="*{nome}" required>
@@ -97,12 +109,6 @@
             </div>
 
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="pay" required>
-                <label class="form-check-label" for="pay">Procedi al Pagamento<a href="#"></a></label>
-                
-            </div>
-
-            <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="terms" required>
                 <label class="form-check-label" for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
             </div>
@@ -123,23 +129,37 @@
             this.classList.add("bi-eye");
         }
     });
+    let previousIndex = -1; // Memorizza l'indice precedente
 
-   
-     document.getElementById()
-    
+    function changeImage() {
+        const images = document.querySelectorAll('.image img');
 
+        // Nasconde tutte le immagini
+        images.forEach(img => img.style.display = 'none');
 
+        // Seleziona un indice random tra 0 e la lunghezza dell'array immagini
+        let newIndex;
 
-    /*document.getElementById("registerForm").addEventListener("submit", function(event) {
-      const termsCheckbox = document.getElementById("terms");
+        // Se il nuovo indice è uguale al precedente, seleziona un altro indice
+        do {
+            newIndex = Math.floor(Math.random() * images.length);
+        } while (newIndex === previousIndex); // Riprova se l'indice è lo stesso di quello precedente
 
-      if (!termsCheckbox.checked) {
-        event.preventDefault(); // Impedisce l'invio del form
-        alert("Devi accettare i Termini e Condizioni per creare un account.");
-        return false; // Ferma ulteriori azioni
-      }
-    });*/
+        // Mostra l'immagine random
+        images[newIndex].style.display = 'block';
+
+        // Aggiorna previousIndex con il nuovo indice
+        previousIndex = newIndex;
+    }
+
+    // Mostra la prima immagine all'inizio
+    changeImage();
+
+    // Cambia immagine ogni 4 secondi in modo randomico
+    setInterval(changeImage, 4000);
+
 
 </script>
+
 </body>
 </html>
