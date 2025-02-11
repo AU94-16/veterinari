@@ -28,7 +28,7 @@ body {
 .image img {
     display: none; /* Nasconde tutte le immagini tranne una */
     width: 100%; /* Larghezza fissa al 100% del contenitore */
-    height: 850px; /* Mantiene le proporzioni senza schiacciare */
+    height: 800px; /* Mantiene le proporzioni senza schiacciare */
     border-radius: 36px;
     object-fit: cover; /* Assicura che l'immagine si adatti bene senza distorsioni */
 }
