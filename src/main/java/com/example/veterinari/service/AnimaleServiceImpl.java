@@ -70,25 +70,26 @@ public class AnimaleServiceImpl implements AnimaleService {
     // Trova gli animali associati a un veterinario
     @Override
     public List<Animale> elencoAnimaliVet(int idVeterinario) {
+
         return animaleDao.findByVeterinario_Id(idVeterinario);
     }
 
     //Ricerca Animale per campo (select) con valore dato
     @Override
-    public List<Animale> ricercaAnimale(String campo, String valore) {
+    public List<Animale> ricercaAnimale(int idVeterinario, String campo, String valore) {
         switch (campo) {
             case "nome":
-                return animaleDao.findByNome(valore);
+                return animaleDao.findByNomeAndVeterinarioId(valore, idVeterinario);
 
             case "specie":
-                return animaleDao.findBySpecie(valore);
+                return animaleDao.findBySpecieAndVeterinarioId(valore,idVeterinario);
 
             default: //case "proprietario"
                 // Dividiamo il valore in nome e cognome (separati da spazio)
                 String[] nomeCognome = valore.split(" ");
                 String nome = nomeCognome[0];
                 String cognome = nomeCognome.length > 1 ? nomeCognome[1] : "";
-                return animaleDao.findByProprietario(nome, cognome);
+                return animaleDao.findByProprietarioAndVeterinarioId(nome, cognome, idVeterinario);
         }
 
     }

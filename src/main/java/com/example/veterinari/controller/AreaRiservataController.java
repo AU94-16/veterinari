@@ -44,12 +44,13 @@ public class AreaRiservataController {
         //Recupera il veterinario dalla sessione
         Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
 
-        // Se non ci sono parametri, mostra tutti gli animali del veterinario
-        List<Animale> animali = animaleService.elencoAnimaliVet(veterinario.getId());
+        List<Animale> animali;
 
         // Se i parametri di ricerca sono presenti, esegue la ricerca
         if (campo != null && valore != null && !campo.isEmpty() && !valore.isEmpty()) {
-            animali = animaleService.ricercaAnimale(campo, valore);
+            animali = animaleService.ricercaAnimale(veterinario.getId(), campo, valore);
+        } else {  // Se non ci sono parametri, mostra tutti gli animali del veterinario
+            animali = animaleService.elencoAnimaliVet(veterinario.getId());
         }
 
         model.addAttribute("veterinario", veterinario);
@@ -88,10 +89,10 @@ public class AreaRiservataController {
     }
 
     //Ricerca
-    @GetMapping("/ricerca")
+    /*@GetMapping("/ricerca")
     public List<Animale> ricercaAnimale(@RequestParam String campo,
                                         @RequestParam String valore){
         return animaleService.ricercaAnimale(campo, valore);
-    }
+    }*/
 
 }
