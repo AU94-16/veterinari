@@ -24,7 +24,7 @@
             max-width: 1200px;
             border-radius: 36px;
             margin: 30px auto;
-            background-color: #eceaea;
+            background-color: #e2dfdf;
 
         }
 
@@ -115,8 +115,10 @@
             <div class=" mb-3 info-row">
                 <div class="info-group">
                     <label for="nome">Nome Cognome</label>
-                    <input type="text" th:field="*{nome}" class="form-control" id="nome">
-                    <input type="text" th:field="*{cognome}" class="form-control" id="cognome">
+                    <input type="text" class="form-control" id="nomeCognome"
+                           th:value="*{nome + ' ' + cognome}" readonly>
+                    <input type="hidden" th:field="*{nome}"> <!--input nascosti - per readonly non servirebbero per ora messi per sicurezza-->
+                    <input type="hidden" th:field="*{cognome}"> <!--input nascosti - per readonly non servirebbero per ora messi per sicurezza-->
                 </div>
                 <div class="info-group">
                     <label for="numeroAlbo">Numero iscrizione all’albo</label>
