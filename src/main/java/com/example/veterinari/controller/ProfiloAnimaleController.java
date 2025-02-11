@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.Year;
 
 
-// localhost:8080/animale
+// localhost:8080/profilo_animale
 @Controller
 @RequestMapping ("/profilo_animale")
 public class ProfiloAnimaleController {
