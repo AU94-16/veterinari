@@ -13,7 +13,7 @@ public interface StoricoService {
     void aggiuntaStorico(Storico storico);
     // void modificaDatiStorico(int id, int idAnimale, String tipo, String nome, String dosaggioDettaglio, LocalDateTime dataOraPrestazione, LocalDateTime dataOraRichiamo, String note);
     boolean eliminazioneStorico(int id);
-
+    List<Storico> elencoStoricoPerAnimale(Integer idAnimale);
     }
 
 

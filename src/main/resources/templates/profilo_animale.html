@@ -194,7 +194,7 @@
 
     <img src="../static/immagini/user_animale.jpg" alt="Immagine Profilo" class="profile-img">
 
-    <form th:object="${animale}" method="post">
+    <form  th:object="${animale}" method="post">
 
         <div class=" mb-3 profile-info">
 
@@ -222,9 +222,8 @@
                 <div class="info-group">
                     <label for="sesso">Sesso</label>
                     <select th:field="*{sesso}" class="form-control" id="sesso">
-                        <option value="">Seleziona</option>
-                        <option value="Maschio">Maschio</option>
-                        <option value="Femmina">Femmina</option>
+                        <option value="M">Maschio</option>
+                        <option value="F">Femmina</option>
                     </select>
                 </div>
                 <div class="info-group">
@@ -240,7 +239,7 @@
                 </div>
                 <div class="info-group">
                     <label for="anno">Anno di Nascita</label>
-                    <input type="Year" th:field="*{anno_di_nascita}" class="form-control" id="anno">
+                    <input type="number" min="1990" max="2025" step="1" th:field="*{annoDiNascita}" class="form-control" id="anno">
                 </div>
             </div>
 
@@ -248,8 +247,8 @@
                 <div class="info-group">
                     <label for="sterilizzato">Sterilizzato </label>
                     <select th:field="*{sterilizzato}" class="form-control" id="sterilizzato">
-                        <option value="si">Si</option>
-                        <option value="no">No</option>
+                        <option value="S">Si</option>
+                        <option value="N">No</option>
                     </select>
                 </div>
                 <div class="info-group">
@@ -314,8 +313,8 @@
             <td th:test="${proprietario.cognome}"></td>
             <td th:test="${proprietario.indirizzo}"></td>
             <td th:test="${proprietario.citta}"></td>
-            <td th:test="${proprietario.codice_fiscale}"></td>
-            <td th:test="${proprietario.cap}"></td>
+            <td th:test="${proprietario.codiceFiscale}"></td>
+            <td th:test="${proprietario.CAP}"></td>
             <td th:test="${proprietario.telefono}"></td>
             <td th:test="${proprietario.email}"></td>
             <td th:test="${proprietario.sesso}"></td>

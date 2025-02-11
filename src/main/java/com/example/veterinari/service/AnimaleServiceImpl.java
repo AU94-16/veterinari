@@ -42,7 +42,7 @@ public class AnimaleServiceImpl implements AnimaleService {
     }
 
     @Override
-    public void registrazioneAnimale(Animale animale, String nome, String specie, String razza, char sesso, MultipartFile fotografia, Year annoDiNascita, char sterilizzato, String allergie, int idProprietario) {
+    public void registrazioneAnimale(Animale animale, String nome, String specie, String razza, char sesso, MultipartFile fotografia, Year annoDiNascita, String colore, char sterilizzato, String allergie, int idProprietario) {
         animale.setNome(nome);
         animale.setSpecie(specie);
         animale.setRazza(razza);
@@ -56,6 +56,7 @@ public class AnimaleServiceImpl implements AnimaleService {
             System.out.println(e.getMessage());
         }
         animale.setAnnoDiNascita(annoDiNascita);
+        animale.setColore(colore);
         animale.setSterilizzato(sterilizzato);
         animale.setAllergie(allergie);
         animale.setProprietario(proprietarioService.datiProprietario(idProprietario));
