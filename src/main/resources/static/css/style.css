@@ -1,5 +1,5 @@
 body {
-    background-color: #beceda;
+    background-color: #f8f8f8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,7 +116,7 @@ body {
 }
 
 .navbar {
-    background-color: #435f75;
+    background-color: #2d3f4e;
 }
 
 #navbarNav {
