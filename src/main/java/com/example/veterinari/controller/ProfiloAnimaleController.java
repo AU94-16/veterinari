@@ -32,7 +32,9 @@ public class ProfiloAnimaleController {
 
 
     @GetMapping
-    public String dettaglioAnimale(int id, Model model, HttpSession session, int idStorico, int idProprietario) {
+    public String dettaglioAnimale(int id, Model model, HttpSession session,
+                                   @RequestParam(required = false) int idStorico,
+                                   int idProprietario) {
         Animale animale = animaleService.datiAnimale(id);
 
         model.addAttribute("animale", animale);
