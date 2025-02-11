@@ -26,13 +26,16 @@ body {
 }
 
 .image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px 10px 10px 10px;
+    display: none; /* Nasconde tutte le immagini tranne una */
+    width: 100%; /* Larghezza fissa al 100% del contenitore */
+    height: 850px; /* Mantiene le proporzioni senza schiacciare */
+    border-radius: 36px;
+    object-fit: cover; /* Assicura che l'immagine si adatti bene senza distorsioni */
 }
 
+
 .primo p {
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 80px;
     font-size: 15px;
 }
