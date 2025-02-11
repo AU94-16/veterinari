@@ -35,7 +35,7 @@ public class AreaRiservataController {
     @GetMapping
     public String getPage(HttpSession session, Model model,
                           @RequestParam(required = false) String campo,
-                          @RequestParam(required = false)String valore) {
+                          @RequestParam(required = false) String valore) {
 
         //controllo per accesso pagina senza login
         if (session.getAttribute("veterinario") == null) {
@@ -74,11 +74,12 @@ public class AreaRiservataController {
                               @RequestParam char sesso,
                               @RequestParam MultipartFile fotografia,
                               @RequestParam Year annoDiNascita,
+                              @RequestParam String colore,
                               @RequestParam char sterilizzato,
                               @RequestParam String allergie,
                               @RequestParam int idProprietario) {
         Animale animale = new Animale();
-        animaleService.registrazioneAnimale(animale, nome, specie, razza, sesso, fotografia, annoDiNascita, sterilizzato, allergie, idProprietario);
+        animaleService.registrazioneAnimale(animale, nome, specie, razza, sesso, fotografia, annoDiNascita, colore, sterilizzato, allergie, idProprietario);
         return "redirect:/";
     }
 

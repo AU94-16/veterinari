@@ -49,7 +49,7 @@ public class Animale {
     @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Colore non valido")
     private String colore;
 
-    @Column
+    @Column(name="anno_di_nascita")
     private Year annoDiNascita;
 
     // Sterilizzato: solo 'S' o 'N'

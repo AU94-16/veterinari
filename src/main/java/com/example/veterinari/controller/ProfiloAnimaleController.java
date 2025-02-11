@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.Year;
+import java.util.List;
 
 
 // localhost:8080/profilo_animale
@@ -32,50 +33,64 @@ public class ProfiloAnimaleController {
 
 
     @GetMapping
-    public String dettaglioAnimale(int id, Model model, HttpSession session,
-                                   @RequestParam(required = false) int idStorico,
-                                   int idProprietario) {
+    public String getPage(@RequestParam int id,
+                                   Model model,
+                          HttpSession session) {
+
+        // Controllo login veterinario
+        if (session.getAttribute("veterinario") == null) {
+            return "redirect:/accedi";
+        }
+
+        // Recupera animale
         Animale animale = animaleService.datiAnimale(id);
 
+        // Recupera proprietario
+        Proprietario proprietario = animale.getProprietario();
+
+        // Recupera lo storico degli interventi
+        List<Storico> storico = storicoService.elencoStoricoPerAnimale(id);
+
         model.addAttribute("animale", animale);
-        model.addAttribute("storico", storicoService.datiStorico(idStorico));
-        model.addAttribute("proprietario", proprietarioService.datiProprietario(idProprietario)); // recupero anche del prorpietario insieme alla ricerca di animale
+        model.addAttribute("storico", storico);
+        model.addAttribute("proprietario", proprietario); // recupero anche del prorpietario insieme alla ricerca di animale
         return "profilo_animale";
     }
 
     //Modifica animale
-    @PostMapping("/modificaAnimale")
+    @PostMapping
     public String formManager(@RequestParam int id,
                               @RequestParam String nome,
                               @RequestParam String specie,
                               @RequestParam String razza,
                               @RequestParam char sesso,
-                              @RequestParam MultipartFile fotografia,
+                              @RequestParam(required = false) MultipartFile fotografia,
                               @RequestParam Year annoDiNascita,
+                              @RequestParam(required = false) String colore,
                               @RequestParam char sterilizzato,
-                              @RequestParam String allergie,
+                              @RequestParam(required = false) String allergie,
                               @RequestParam int idProprietario) {
         Animale animale = animaleService.datiAnimale(id);
-        animaleService.registrazioneAnimale(animale, nome, specie, razza, sesso, fotografia, annoDiNascita, sterilizzato, allergie, idProprietario);
-        return "redirect:/";
+        animaleService.registrazioneAnimale(animale, nome, specie, razza, sesso, fotografia, annoDiNascita, colore, sterilizzato, allergie, idProprietario);
+        return "redirect:/profilo_animale";
     }
 
-    @PostMapping("/registrazioneProprietario")
+   /* @PostMapping("/registrazioneProprietario")
     public  String formManager(@ModelAttribute Proprietario proprietario) {
         proprietarioService.inserisciProprietario(proprietario);
         return "redirect:/";
-    }
+    }*/
 
     @GetMapping("/eliminaAnimale")
     public String cancellazioneAnnimale(@RequestParam int id) {
         animaleService.eliminazioneAnimale(id);
-        return "redirect:/";
+        return "redirect:/profilo_animale";
     }
 
     @PostMapping("/aggiuntaStorico")
     public String formManager (@ModelAttribute Storico storico) { // in un secondo momento registriamo uno storico iniziale, per poi aggiungerne altri
         storicoService.aggiuntaStorico(storico);
-                return "redirect:/animale";
+                return "redirect:/profilo_animale";
     }
 
 

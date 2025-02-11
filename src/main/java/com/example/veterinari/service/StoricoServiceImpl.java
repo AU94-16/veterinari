@@ -51,4 +51,9 @@ public class StoricoServiceImpl implements StoricoService {
         }
 
     }
+
+    @Override
+    public List<Storico> elencoStoricoPerAnimale(Integer idAnimale) {
+        return storicoDao.findStoricoByAnimale_Id(idAnimale);
+    }
 }
