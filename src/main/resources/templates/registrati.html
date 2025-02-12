@@ -85,19 +85,7 @@
         color: red;
         }
 
-        .spinner {
-        border: 4px solid #f3f3f3; /* Background color */
-        border-top: 4px solid #3498db; /* Color of the spinner */
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        animation: spin 2s linear infinite;
-        }
 
-        @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-        }
 
     </style>
 </head>
@@ -224,9 +212,9 @@
             <h3> Inserisci i dati di pagamento </h3>
             <label for="email">Email:</label>
             <br>
-            <input type="email" class="form-control" required>
+            <input type="email" id="campo1" class="form-control" required>
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="pass-word" required>
+            <input type="password" class="form-control" id="campo2" required>
             <button class="btn" id="pagamentoButton"> Procedi al pagamento </button>
         </div>
     </div>
@@ -234,48 +222,44 @@
 
 
 
-    // Gestione apertura e chiusura del popup con la checkbox
+// Gestione apertura e chiusura del popup con la checkbox
+
     document.getElementById("pagamentoCheck").addEventListener("change", function(event) {
     if (event.target.checked) {
         document.getElementById("pagamentoPopup").style.display = "flex";
     }
-});
+    });
 
-document.getElementById("chiudiPopup").addEventListener("click", function() {
-    document.getElementById("pagamentoPopup").style.display = "none";
-    document.getElementById("pagamentoCheck").checked = false;
-});
+    document.getElementById("chiudiPopup").addEventListener("click", function() {
+        document.getElementById("pagamentoPopup").style.display = "none";
+        document.getElementById("pagamentoCheck").checked = false;
+    });
 
-document.getElementById("pagamentoButton").addEventListener("click", function() {
-    // Mostra l'indicatore di caricamento
-    document.getElementById("loadingIndicator").style.display = "block";
-    document.getElementByClass("spinner").style.display = "block";
-
+    document.getElementById("pagamentoButton").addEventListener("click", function() {
     // Nasconde il popup
     document.getElementById("pagamentoPopup").style.display = "none";
     document.getElementById("pagamentoCheck").checked = true;
 
-    // Esegui un setTimeout per simulare il caricamento
+
+    // Esegui un setTimeout per simulare il caricamento dei dati di pagamento
     setTimeout(function() {
         // Dopo il tempo di attesa (simulazione caricamento), svuota i campi
         document.getElementById("campo1").value = ""; // Svuota il campo 1
         document.getElementById("campo2").value = ""; // Svuota il campo 2
-        // Aggiungi altre righe per svuotare gli altri campi se necessario
 
-        // Nascondi l'indicatore di caricamento (assicurandoci che venga eseguito)
-        const loadingIndicator = document.getElementById("loadingIndicator");
-        loadingIndicator.style.display = "none";
-        const spinner = document.getElementByClass("spinner");
-        spinner.style.display = "none";
-    }, 5000); // 3000 millisecondi = 3 secondi di "caricamento"
+        // Ora il pulsante sarà di nuovo cliccabile
+        document.getElementById("pagamentoButton").disabled = false;
+
+    }, 3000); // 3000 millisecondi = 3 secondi di "caricamento"
 });
+
 
 
 
 </script>
 
 
-<div id="loadingIndicator" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+<div id="loadingIndicator" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999;">
     <div class="spinner" style="display:none;"></div>
 </div>
 
