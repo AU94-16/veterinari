@@ -73,7 +73,6 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate (-50%, -50%);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
@@ -85,19 +84,33 @@
         color: red;
         }
 
+        .loading-indicator {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        display: none;
+        }
+
         .spinner {
-        border: 4px solid #f3f3f3; /* Background color */
-        border-top: 4px solid #3498db; /* Color of the spinner */
+        border: 4px solid #f3f3f3; /* Light grey */
+        border-top: 4px solid #3498db; /* Blue */
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        animation: spin 2s linear infinite;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
         }
+
 
     </style>
 </head>
@@ -123,23 +136,24 @@
         <p>Sei già registrato? <a th:href="@{/accedi}">Accedi</a></p>
         <form th:object="${veterinario}" method="post">
             <div class="mb-3 name-container">
-                <input type="text" class="form-control" placeholder="Nome" th:field="*{nome}" required>
+                <input type="text" class="form-control" name="nome" placeholder="Nome" th:field="*{nome}" required>
                 <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p> <!--Per messaggio di errore-->
-                <input type="text" class="form-control" placeholder="Cognome" th:field="*{cognome}" required>
+
+                <input type="text" class="form-control" name="cognome" placeholder="Cognome" th:field="*{cognome}" required>
                 <p th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></p> <!--Per messaggio di errore-->
             </div>
             <div class="mb-3">
-                <input type="email" class="form-control" placeholder="Email" th:field="*{email}" required>
+                <input type="email" class="form-control" name="email" placeholder="Email" th:field="*{email}" required>
                 <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p> <!--Per messaggio di errore-->
                 <p th:if="${duplicato != null}" th:text="${duplicato}"></p> <!--per duplicato email già presente-->
             </div>
             <div class="mb-3 password-container">
-                <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}" required>
+                <input type="password" class="form-control" name="password" placeholder="Password" th:field="*{password}" required>
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p> <!--Per messaggio di errore-->
                 <i class="bi bi-eye toggle-password" id="togglePassword"></i>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" placeholder="N° iscrizione Albo" th:field="*{numeroIscrizioneAlbo}" required>
+                <input type="text" class="form-control" name="numeroIscrizioneAlbo" placeholder="N° iscrizione Albo" th:field="*{numeroIscrizioneAlbo}" required>
                 <p th:if="${#fields.hasErrors('numeroIscrizioneAlbo')}" th:errors="*{numeroIscrizioneAlbo}"></p> <!--Per messaggio di errore-->
             </div>
             <div class="form genere">
@@ -224,60 +238,90 @@
             <h3> Inserisci i dati di pagamento </h3>
             <label for="email">Email:</label>
             <br>
-            <input type="email" class="form-control" required>
+            <input type="email" id="campo1" class="form-control" required>
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="pass-word" required>
+            <input type="password" class="form-control" id="campo2" required>
             <button class="btn" id="pagamentoButton"> Procedi al pagamento </button>
+
+            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+            <div class="spinner"></div>
+
+        </div>
         </div>
     </div>
     `);
 
+    function formCompleto() {
+        let campi = [
+            "nome", "cognome", "email", "password", "numeroIscrizioneAlbo"
+        ];
 
+        for (let campo of campi) {
+            let input = document.querySelector(`[name="${campo}"]`);
+            if (!input) {
+                return false;
+            }
+            if (input.value.trim() === "") {
+                return false;
+            }
+        }
 
-    // Gestione apertura e chiusura del popup con la checkbox
-    document.getElementById("pagamentoCheck").addEventListener("change", function(event) {
-    if (event.target.checked) {
-        document.getElementById("pagamentoPopup").style.display = "flex";
+        // Verifica se è stato selezionato un genere
+        let genereSelezionato = document.querySelector('input[name="genere"]:checked');
+        if (!genereSelezionato) {
+            return false;
+        }
+
+        // Verifica se i termini e condizioni sono accettati
+        if (!document.getElementById("terms").checked) {
+            return false;
+        }
+
+        return true;
     }
-});
-
-document.getElementById("chiudiPopup").addEventListener("click", function() {
-    document.getElementById("pagamentoPopup").style.display = "none";
-    document.getElementById("pagamentoCheck").checked = false;
-});
-
-document.getElementById("pagamentoButton").addEventListener("click", function() {
-    // Mostra l'indicatore di caricamento
-    document.getElementById("loadingIndicator").style.display = "block";
-    document.getElementByClass("spinner").style.display = "block";
-
-    // Nasconde il popup
-    document.getElementById("pagamentoPopup").style.display = "none";
-    document.getElementById("pagamentoCheck").checked = true;
-
-    // Esegui un setTimeout per simulare il caricamento
-    setTimeout(function() {
-        // Dopo il tempo di attesa (simulazione caricamento), svuota i campi
-        document.getElementById("campo1").value = ""; // Svuota il campo 1
-        document.getElementById("campo2").value = ""; // Svuota il campo 2
-        // Aggiungi altre righe per svuotare gli altri campi se necessario
-
-        // Nascondi l'indicatore di caricamento (assicurandoci che venga eseguito)
-        const loadingIndicator = document.getElementById("loadingIndicator");
-        loadingIndicator.style.display = "none";
-        const spinner = document.getElementByClass("spinner");
-        spinner.style.display = "none";
-    }, 5000); // 3000 millisecondi = 3 secondi di "caricamento"
-});
 
 
+    document.getElementById("pagamentoCheck").addEventListener("change", function(event) {
+        if (event.target.checked) {
+            if (!formCompleto()) {
+                alert("Compila tutti i campi prima di accettare il pagamento!");
+                event.target.checked = false;
+                return;
+            }
+            document.getElementById("pagamentoPopup").style.display = "flex";
+        }
+    });
+
+    document.getElementById("chiudiPopup").addEventListener("click", function() {
+        document.getElementById("pagamentoPopup").style.display = "none";
+        document.getElementById("pagamentoCheck").checked = false;
+    });
+
+    document.getElementById("pagamentoButton").addEventListener("click", function () {
+        if (!formCompleto()) {
+            alert("Compila tutti i campi prima di procedere!");
+            document.getElementById("pagamentoCheck").checked = false;
+            return;
+        }
+
+        // Nasconde il popup
+        document.getElementById("pagamentoPopup").style.display = "none";
+        document.getElementById("pagamentoCheck").checked = true;
+
+        // Mostra l'indicatore di caricamento con rotazione
+        let loadingIndicator = document.getElementById("loadingIndicator");
+        loadingIndicator.style.display = "block";
+        loadingIndicator.style.animation = "spin 1s linear infinite";
+
+        setTimeout(function () {
+            // Nasconde il caricamento e ferma la rotazione
+            loadingIndicator.style.display = "none";
+            loadingIndicator.style.animation = "none";
+        }, 3000);
+    });
 
 </script>
 
-
-<div id="loadingIndicator" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-    <div class="spinner" style="display:none;"></div>
-</div>
 
 </body>
 </html>
