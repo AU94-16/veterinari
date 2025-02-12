@@ -1,6 +1,7 @@
 package com.example.veterinari.dao;
 
 import com.example.veterinari.model.Animale;
+import com.example.veterinari.model.Proprietario;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

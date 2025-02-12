@@ -46,7 +46,7 @@ public class ProfiloAnimaleController {
         Animale animale = animaleService.datiAnimale(id);
 
         // Recupera proprietario
-        Proprietario proprietario = animale.getProprietario();
+        Proprietario proprietario = proprietarioService.datiProprietario(id);
 
         // Recupera lo storico degli interventi
         List<Storico> storico = storicoService.elencoStoricoPerAnimale(id);
