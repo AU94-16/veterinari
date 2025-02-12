@@ -73,7 +73,6 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate (-50%, -50%);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
@@ -245,7 +244,7 @@
 
             <div id="loadingIndicator" class="loading-indicator" style="display: none;">
             <div class="spinner"></div>
-            
+
         </div>
         </div>
     </div>
@@ -256,9 +255,14 @@
 // Gestione apertura e chiusura del popup con la checkbox
 
     document.getElementById("pagamentoCheck").addEventListener("change", function(event) {
-    if (event.target.checked) {
-        document.getElementById("pagamentoPopup").style.display = "flex";
-    }
+        if (event.target.checked) {
+            if (!formCompleto()) {
+                alert("Compila tutti i campi prima di accettare il pagamento!");
+                event.target.checked = false;
+                return;
+            }
+            document.getElementById("pagamentoPopup").style.display = "flex";
+        }
     });
 
     document.getElementById("chiudiPopup").addEventListener("click", function() {
@@ -266,7 +270,49 @@
         document.getElementById("pagamentoCheck").checked = false;
     });
 
-    document.getElementById("pagamentoButton").addEventListener("click", function() {
+    document.getElementById("pagamentoButton").addEventListener("click", function () {
+        if (!formCompleto()) {
+            alert("Compila tutti i campi prima di procedere!");
+            document.getElementById("pagamentoCheck").checked = false;
+            return;
+        }
+
+        // Nasconde il popup
+        document.getElementById("pagamentoPopup").style.display = "none";
+        document.getElementById("pagamentoCheck").checked = true;
+
+        // Mostra l'indicatore di caricamento con rotazione
+        let loadingIndicator = document.getElementById("loadingIndicator");
+        loadingIndicator.style.display = "block";
+        loadingIndicator.style.animation = "spin 1s linear infinite";
+
+        setTimeout(function () {
+            // Nasconde il caricamento e ferma la rotazione
+            loadingIndicator.style.display = "none";
+            loadingIndicator.style.animation = "none";
+        }, 3000);
+    });
+
+    function formCompleto() {
+        let campi = [
+            "nome", "cognome", "email", "password", "numeroIscrizioneAlbo"
+        ];
+
+        for (let campo of campi) {
+            let valore = document.querySelector(`[name="${campo}"]`).value.trim();
+            if (!valore) return false;
+        }
+
+        // Verifica se è stato selezionato un genere
+        let genereSelezionato = document.querySelector('input[name="genere"]:checked');
+        if (!genereSelezionato) return false;
+
+        // Verifica se i termini e condizioni sono accettati
+        if (!document.getElementById("terms").checked) return false;
+
+        return true;
+    }
+    /*document.getElementById("pagamentoButton").addEventListener("click", function() {
     // Nasconde il popup
     document.getElementById("pagamentoPopup").style.display = "none";
     document.getElementById("pagamentoCheck").checked = true;
@@ -284,7 +330,7 @@
         document.getElementById("pagamentoButton").disabled = false;
 
     }, 3000); // 3000 millisecondi = 3 secondi di "caricamento"
-});
+});*/
 
 </script>
 
