@@ -136,13 +136,14 @@
         <p>Sei già registrato? <a th:href="@{/accedi}">Accedi</a></p>
         <form th:object="${veterinario}" method="post">
             <div class="mb-3 name-container">
-                <input type="text" class="form-control" placeholder="Nome" th:field="*{nome}" required>
+                <input type="text" class="form-control" id="nome" placeholder="Nome" th:field="*{nome}" required>
                 <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p> <!--Per messaggio di errore-->
-                <input type="text" class="form-control" placeholder="Cognome" th:field="*{cognome}" required>
+
+                <input type="text" class="form-control" id="cognome" placeholder="Cognome" th:field="*{cognome}" required>
                 <p th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></p> <!--Per messaggio di errore-->
             </div>
             <div class="mb-3">
-                <input type="email" class="form-control" placeholder="Email" th:field="*{email}" required>
+                <input type="email" class="form-control" id="email" placeholder="Email" th:field="*{email}" required>
                 <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p> <!--Per messaggio di errore-->
                 <p th:if="${duplicato != null}" th:text="${duplicato}"></p> <!--per duplicato email già presente-->
             </div>
@@ -152,7 +153,7 @@
                 <i class="bi bi-eye toggle-password" id="togglePassword"></i>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" placeholder="N° iscrizione Albo" th:field="*{numeroIscrizioneAlbo}" required>
+                <input type="text" class="form-control" id="numeroIscrizioneAlbo" placeholder="N° iscrizione Albo" th:field="*{numeroIscrizioneAlbo}" required>
                 <p th:if="${#fields.hasErrors('numeroIscrizioneAlbo')}" th:errors="*{numeroIscrizioneAlbo}"></p> <!--Per messaggio di errore-->
             </div>
             <div class="form genere">
@@ -250,9 +251,35 @@
     </div>
     `);
 
+    function formCompleto() {
+        let campi = [
+            "nome", "cognome", "email", "password", "numeroIscrizioneAlbo"
+        ];
 
+        for (let campo of campi) {
+            let input = document.getElementById(campo);
+            if (!input || input.value.trim() === "") {
+                console.log(`Campo mancante o vuoto: ${campo}`); // Debug
+                return false;
+            }
+        }
 
-// Gestione apertura e chiusura del popup con la checkbox
+        // Verifica se è stato selezionato un genere
+        let genereSelezionato = document.querySelector('input[name="genere"]:checked');
+        if (!genereSelezionato) {
+            console.log("Genere non selezionato"); // Debug
+            return false;
+        }
+
+        // Verifica se i termini e condizioni sono accettati
+        if (!document.getElementById("terms").checked) {
+            console.log("Termini non accettati"); // Debug
+            return false;
+        }
+
+        console.log("Form completo!"); // Debug
+        return true;
+    }
 
     document.getElementById("pagamentoCheck").addEventListener("change", function(event) {
         if (event.target.checked) {
@@ -292,45 +319,6 @@
             loadingIndicator.style.animation = "none";
         }, 3000);
     });
-
-    function formCompleto() {
-        let campi = [
-            "nome", "cognome", "email", "password", "numeroIscrizioneAlbo"
-        ];
-
-        for (let campo of campi) {
-            let valore = document.querySelector(`[name="${campo}"]`).value.trim();
-            if (!valore) return false;
-        }
-
-        // Verifica se è stato selezionato un genere
-        let genereSelezionato = document.querySelector('input[name="genere"]:checked');
-        if (!genereSelezionato) return false;
-
-        // Verifica se i termini e condizioni sono accettati
-        if (!document.getElementById("terms").checked) return false;
-
-        return true;
-    }
-    /*document.getElementById("pagamentoButton").addEventListener("click", function() {
-    // Nasconde il popup
-    document.getElementById("pagamentoPopup").style.display = "none";
-    document.getElementById("pagamentoCheck").checked = true;
-
-    // mostra indicatore caricamento
-    document.getElementById("loadingIndicator").style.display = "block";
-
-    // Esegui un setTimeout per simulare il caricamento dei dati di pagamento
-    setTimeout(function() {
-        // Dopo il tempo di attesa (simulazione caricamento), svuota i campi e nascondi indicatore
-        document.getElementById("campo1").value = ""; // Svuota il campo 1
-        document.getElementById("campo2").value = ""; // Svuota il campo 2
-
-        // Ora il pulsante sarà di nuovo cliccabile
-        document.getElementById("pagamentoButton").disabled = false;
-
-    }, 3000); // 3000 millisecondi = 3 secondi di "caricamento"
-});*/
 
 </script>
 
