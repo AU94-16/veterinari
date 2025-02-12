@@ -5,7 +5,6 @@ import com.example.veterinari.model.Proprietario;
 import com.example.veterinari.model.Veterinario;
 import com.example.veterinari.service.AnimaleService;
 import com.example.veterinari.service.ProprietarioService;
-import jakarta.persistence.Table;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
