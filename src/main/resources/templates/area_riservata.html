@@ -15,19 +15,10 @@
             crossorigin="anonymous"></script>
 
     <style>
-        body {
-            font-family: "Codec Pro", serif;
-            padding-top: 70px; /* Distanza dal top per evitare che la navbar copra l'h1 */
-        }
-
-        
-
-
 
     </style>
 
 </head>
-
 
 <body>
 
@@ -59,7 +50,7 @@
 <!--Pagina demo con barra di ricerca e card-->
 
 <div class="container mt-4">
-    <h1 class="text-center" th:text="|Salve ${veterinario.nome} !|">Benvenuto!</h1>
+    <div id="benvenuto"><h1 class="text-center" th:text="|Salve ${veterinario.nome} !|">Benvenuto!</h1></div>
 
     <!-- Barra di ricerca per gli animali -->
     <div class="mb-4">
