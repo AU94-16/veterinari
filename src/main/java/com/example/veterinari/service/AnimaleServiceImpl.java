@@ -44,6 +44,7 @@ public class AnimaleServiceImpl implements AnimaleService {
 
     @Override
     public void registrazioneAnimale(Animale animale) {
+
         animaleDao.save(animale);
     }
 
