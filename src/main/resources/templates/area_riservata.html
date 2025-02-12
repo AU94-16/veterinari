@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +9,25 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="css/style.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+
     <style>
-        body {
-            font-family: "Codec Pro", serif;
-        }
+
     </style>
+
 </head>
+
 <body>
+
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Logo a sinistra -->
         <a class="navbar-brand" href="index.html">
-            <img src="../static/immagini/scritta_logo.png" alt="vet_clinic">
+            <img src="immagini/scritta_logo.png" alt="vet_clinic">
         </a>
 
         <!-- Bottone per il menu mobile-->
@@ -36,13 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="accedi.html">LOG IN</a>
-                </li>
-                <li class="separator">
-                    |
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="registrati.html">SIGN IN</a>
+                    <a class="nav-link" href="accedi.html">LOG OUT</a>
                 </li>
             </ul>
         </div>
@@ -52,7 +50,7 @@
 <!--Pagina demo con barra di ricerca e card-->
 
 <div class="container mt-4">
-    <h1 class="text-center">Benvenuto, <span th:text="${veterinario.nome}"></span></h1>
+    <div id="benvenuto"><h1 class="text-center" th:text="|Salve ${veterinario.nome} !|">Benvenuto!</h1></div>
 
     <!-- Barra di ricerca per gli animali -->
     <div class="mb-4">
@@ -90,6 +88,7 @@
         </div>
     </div>
 </div>
+<a th:href="@{/profilo_vet}">profilovet</a>
 
 </body>
 </html>

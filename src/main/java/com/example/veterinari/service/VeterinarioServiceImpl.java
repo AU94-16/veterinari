@@ -51,27 +51,25 @@ public class VeterinarioServiceImpl implements VeterinarioService{
 
     //Modifica dati Veterinario
     @Override
-    public void modificaDatiVeterinario(int id, String telefono, String citta, MultipartFile fotoProfilo) {
-        // Recupera il veterinario dal database usando l'ID
-        Veterinario veterinario = veterinarioDao.findById(id).orElse(null);
+    public void modificaDatiVeterinario(int id, String telefono, String citta, MultipartFile fotoProfilo, HttpSession session) {
+        // Recupera il veterinario dal database
+        Veterinario veterinario = veterinarioDao.findById(id).get();
 
-        if (telefono != null && !telefono.isEmpty()) {
-            veterinario.setTelefono(telefono);  // Modifica il campo Telefono
-        }
-        if (citta != null && !citta.isEmpty()) {
-            veterinario.setCitta(citta);  // Modifica il campo Citta
-        }
-        if (fotoProfilo != null && !fotoProfilo.isEmpty()) {
-            try {
-                String formato = fotoProfilo.getContentType();
-                String fotoProf = "data" + formato + ";base64" + Base64.getEncoder().encodeToString(fotoProfilo.getBytes());
-                veterinario.setFotoProfilo(fotoProf);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }  // Modifica il campo FotoProfilo
-        }
+            veterinario.setTelefono(telefono);
+            veterinario.setCitta(citta);
 
-        veterinarioDao.save(veterinario);
+            if (fotoProfilo != null && !fotoProfilo.isEmpty()) {
+                try {
+                    String formato = fotoProfilo.getContentType();
+                    String fotoProf = "data" + formato + ";base64" + Base64.getEncoder().encodeToString(fotoProfilo.getBytes());
+                    veterinario.setFotoProfilo(fotoProf);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }  // Modifica il campo FotoProfilo
+            }
+
+            veterinarioDao.save(veterinario);
+            session.setAttribute("veterinario", veterinario);
 
     }
 }
