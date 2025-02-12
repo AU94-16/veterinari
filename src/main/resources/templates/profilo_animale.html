@@ -122,35 +122,6 @@
     <br>
 
     <div class="table-container">
-
-    <h2 th:text="STORICO">STORICO</h2>
-
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">TIPO</th>
-            <th scope="col">NOME</th>
-            <th scope="col">DOSAGGIO DETTAGLIO</th>
-            <th scope="col">DATA ORA PRESTAZIONE</th>
-            <th scope="col">DATA ORA RICHIAMO</th>
-            <th scope="col">NOTE</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="storico : ${storico}">
-            <td th:text="${storico.tipo}"></td>
-            <td th:text="${storico.nome}"></td>
-            <td th:text="${storico.dosaggioDettaglio}"></td>
-            <td th:text="${storico.dataOraPrestazione}"></td>
-            <td th:text="${storico.dataOraRichiamo}"></td>
-            <td th:text="${storico.note}"></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <br>
-
     <h2 th:text="PROPRIETARIO">PROPRIETARIO</h2>
 
     <table class="table">
@@ -178,6 +149,34 @@
             <td th:text="${proprietario.telefono}"></td>
             <td th:text="${proprietario.email}"></td>
             <td th:text="${proprietario.sesso}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br> 
+
+    <h2 th:text="STORICO">STORICO</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">TIPO</th>
+            <th scope="col">NOME</th>
+            <th scope="col">DOSAGGIO DETTAGLIO</th>
+            <th scope="col">DATA ORA PRESTAZIONE</th>
+            <th scope="col">DATA ORA RICHIAMO</th>
+            <th scope="col">NOTE</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="storico : ${storico}">
+            <td th:text="${storico.tipo}"></td>
+            <td th:text="${storico.nome}"></td>
+            <td th:text="${storico.dosaggioDettaglio}"></td>
+            <td th:text="${storico.dataOraPrestazione}"></td>
+            <td th:text="${storico.dataOraRichiamo}"></td>
+            <td th:text="${storico.note}"></td>
         </tr>
         </tbody>
     </table>
