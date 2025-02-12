@@ -101,7 +101,7 @@
                 </div>
             </div>
 
-            <div class="mb-3 info-row">
+            <div class="mb-4 info-row">
                 <div class="info-group">
                     <label for="sterilizzato">Sterilizzato </label>
                     <select th:field="*{sterilizzato}" class="form-control" id="sterilizzato">
@@ -114,8 +114,18 @@
                     <input type="text-area" th:field="*{allergie}" class="form-control" id="allergie">
                 </div>
             </div>
-            <input type="hidden" th:field="*{proprietario.id}">
-            <button type="submit" class="btn  form-control mb-3">Salva</button>
+
+            <div class="mb-3  info-row">
+                <div class="info-group">
+                    <input type="hidden" th:field="*{proprietario.id}">
+                    <button type="submit" class="btn btn-primary form-control w-100">Modifica</button>
+                </div>
+                <div class="info-group">
+                    <input type="hidden" th:field="*{proprietario.id}">
+                    <button type="submit" class="btn btn-danger form-control w-100">Elimina</button>
+                </div>
+            </div>
+
         </div>
     </form>
     <div class="clearfix"></div> <!-- Spezza i float -->
