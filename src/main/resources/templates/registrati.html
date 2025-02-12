@@ -85,14 +85,19 @@
             color: red;
         }
 
+        /* Stili per l'indicatore di caricamento */
         .loading-indicator {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: none;
+            z-index: 1000;
+        }
+
+        .loading-indicator img {
+            width: 50px; /* Puoi regolare la dimensione della tua GIF */
+            height: 50px; /* Puoi regolare la dimensione della tua GIF */
         }
 
 
