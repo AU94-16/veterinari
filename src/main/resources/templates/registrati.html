@@ -179,6 +179,8 @@
 </div>
 
 
+
+
 <script th:inline="javascript">
     document.getElementById("togglePassword").addEventListener("click", function () {
         const passwordField = document.getElementById("password");
@@ -243,10 +245,8 @@
             <img src="immagini/loading.gif" alt="Caricamento..." />
 
         </div>
-
     </div>
 </div>
-
     `);
 
     document.getElementById("pagamentoCheck").addEventListener("change", function (event) {
@@ -283,7 +283,7 @@
             // Rendi di nuovo cliccabile il pulsante
             document.getElementById("pagamentoButton").disabled = false;
 
-        }, 3000); // 3000 millisecondi = 3 secondi di "caricamento"
+        }, 6000); // 6000 millisecondi = 3 secondi di "caricamento"
     });
 
 
