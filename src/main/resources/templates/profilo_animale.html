@@ -85,7 +85,7 @@
                 </div>
                 <div class="info-group">
                     <label for="peso">Peso </label>
-                    <input type="number" th:field="*{peso}" class="form-control" id="peso" min="0">
+                    <input type="text" th:field="*{peso}" class="form-control" id="peso" min="0">
                 </div>
             </div>
 
@@ -113,7 +113,7 @@
                     <input type="text-area" th:field="*{allergie}" class="form-control" id="allergie">
                 </div>
             </div>
-
+            <input type="hidden" th:field="*{proprietario.id}">
             <button type="submit" class="btn  form-control mb-3">Salva</button>
         </div>
     </form>
@@ -165,16 +165,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="proprietario : ${proprietario}">
-            <td th:test="${proprietario.nome}"></td>
-            <td th:test="${proprietario.cognome}"></td>
-            <td th:test="${proprietario.indirizzo}"></td>
-            <td th:test="${proprietario.citta}"></td>
-            <td th:test="${proprietario.codiceFiscale}"></td>
-            <td th:test="${proprietario.CAP}"></td>
-            <td th:test="${proprietario.telefono}"></td>
-            <td th:test="${proprietario.email}"></td>
-            <td th:test="${proprietario.sesso}"></td>
+        <tr>
+            <td th:text="${proprietario.nome}"></td>
+            <td th:text="${proprietario.cognome}"></td>
+            <td th:text="${proprietario.indirizzo}"></td>
+            <td th:text="${proprietario.citta}"></td>
+            <td th:text="${proprietario.codiceFiscale}"></td>
+            <td th:text="${proprietario.CAP}"></td>
+            <td th:text="${proprietario.telefono}"></td>
+            <td th:text="${proprietario.email}"></td>
+            <td th:text="${proprietario.sesso}"></td>
         </tr>
         </tbody>
     </table>

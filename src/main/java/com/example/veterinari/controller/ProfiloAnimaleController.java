@@ -64,16 +64,19 @@ public class ProfiloAnimaleController {
                               @RequestParam String specie,
                               @RequestParam String razza,
                               @RequestParam char sesso,
+                              @RequestParam String peso,
                               @RequestParam(required = false) MultipartFile fotografia,
                               @RequestParam Year annoDiNascita,
                               @RequestParam(required = false) String colore,
                               @RequestParam char sterilizzato,
                               @RequestParam(required = false) String allergie,
-                              @RequestParam int idProprietario) {
+                              Model model) {
         Animale animale = animaleService.datiAnimale(id);
-        animaleService.registrazioneAnimale(animale, nome, specie, razza, sesso, fotografia, annoDiNascita, colore, sterilizzato, allergie, idProprietario);
-        return "redirect:/profilo_animale";
+        animaleService.modificaAnimale(animale, nome, specie, razza, sesso, peso, fotografia, annoDiNascita, colore, sterilizzato, allergie);
+        return "redirect:/profilo_animale?id=" + id;
     }
+
+
 
    /* @PostMapping("/registrazioneProprietario")
     public  String formManager(@ModelAttribute Proprietario proprietario) {

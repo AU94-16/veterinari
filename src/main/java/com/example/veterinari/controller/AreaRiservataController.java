@@ -66,7 +66,7 @@ public class AreaRiservataController {
     }
 
 
-    //Registrazione animale
+    /*//Registrazione animale
     @PostMapping("/registrazioneAnimale")
     public String formManager(@RequestParam String nome,
                               @RequestParam String specie,
@@ -81,7 +81,7 @@ public class AreaRiservataController {
         Animale animale = new Animale();
         animaleService.registrazioneAnimale(animale, nome, specie, razza, sesso, fotografia, annoDiNascita, colore, sterilizzato, allergie, idProprietario);
         return "redirect:/";
-    }
+    }*/
 
     @PostMapping("/registrazioneProprietario")
     public  String formManager(@ModelAttribute Proprietario proprietario) {
