@@ -236,58 +236,33 @@
     // Cambia immagine ogni 4 secondi in modo randomico
     setInterval(changeImage, 4000);
 
-    function isFormComplete() {
-        // Controlla se i campi di input sono compilati
-        let nome = document.querySelector('[name="nome"]').value.trim();
-        let cognome = document.querySelector('[name="cognome"]').value.trim();
-        let email = document.querySelector('[name="email"]').value.trim();
-        let password = document.querySelector('[name="password"]').value.trim();
-        let numeroIscrizioneAlbo = document.querySelector('[name="numeroIscrizioneAlbo"]').value.trim();
-
-        // Controlla se almeno un genere è stato selezionato
-        let genereSelezionato = document.querySelector('input[name="genere"]:checked');
-
-        // Verifica se i termini sono accettati
-        let termsAccepted = document.getElementById("terms").checked;
-
-        // Verifica se il pagamento è accettato
-        let pagamentoAccepted = document.getElementById("pagamentoCheck").checked;
-
-        // Restituisce 'true' se tutti i campi sono compilati, altrimenti 'false'
-        return nome !== "" && cognome !== "" && email !== "" && password !== "" && numeroIscrizioneAlbo !== "" &&
-            genereSelezionato !== null && termsAccepted && pagamentoAccepted;
-    }
-
     // per il popup del pagamento
     document.body.insertAdjacentHTML("beforeend", `
-    <div id="pagamentoPopup" class="popup">
-        <div class="contenutoPopup">
-            <span id="chiudiPopup">&times;</span>
-            <h2> Metodo di pagamento: PayPal </h2>
-            <br>
-            <h3> Inserisci i dati di pagamento </h3>
-            <label for="email">Email:</label>
-            <br>
-            <input type="email" id="campo1" class="form-control" required>
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="campo2" required>
-            <button class="btn" id="pagamentoButton"> Procedi al pagamento </button>
+    <!-- Popup del pagamento -->
+<div id="pagamentoPopup" class="popup">
+    <div class="contenutoPopup">
+        <span id="chiudiPopup">&times;</span>
+        <h2> Metodo di pagamento: PayPal </h2>
+        <br>
+        <h3> Inserisci i dati di pagamento </h3>
+        <label for="email">Email:</label>
+        <br>
+        <input type="email" id="campo1" class="form-control" required>
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="campo2" required>
+        <button class="btn" id="pagamentoButton"> Procedi al pagamento </button>
 
-            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+        <!-- Indicatore di caricamento -->
+        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
             <div class="spinner"></div>
-
-        </div>
         </div>
     </div>
+</div>
+
     `);
 
     document.getElementById("pagamentoCheck").addEventListener("change", function (event) {
         if (event.target.checked) {
-            if (!isFormComplete()) {
-                alert("Compila tutti i campi prima di accettare il pagamento!");
-                event.target.checked = false;
-                return;
-            }
             document.getElementById("pagamentoPopup").style.display = "flex";
         }
     });
@@ -302,18 +277,27 @@
         document.getElementById("pagamentoPopup").style.display = "none";
         document.getElementById("pagamentoCheck").checked = true;
 
+        // Mostra l'indicatore di caricamento
+        document.getElementById("loadingIndicator").style.display = "block";
+
+        // Disabilita il pulsante durante il caricamento
+        document.getElementById("pagamentoButton").disabled = true;
 
         // Esegui un setTimeout per simulare il caricamento dei dati di pagamento
         setTimeout(function () {
-            // Dopo il tempo di attesa (simulazione caricamento), svuota i campi
+            // Dopo il tempo di attesa (simulazione caricamento), nascondi l'indicatore di caricamento
+            document.getElementById("loadingIndicator").style.display = "none";
+
+            // Svuota i campi
             document.getElementById("campo1").value = ""; // Svuota il campo 1
             document.getElementById("campo2").value = ""; // Svuota il campo 2
 
-            // Ora il pulsante sarà di nuovo cliccabile
+            // Rendi di nuovo cliccabile il pulsante
             document.getElementById("pagamentoButton").disabled = false;
 
         }, 3000); // 3000 millisecondi = 3 secondi di "caricamento"
     });
+
 
 </script>
 
