@@ -15,6 +15,7 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 
     @Override
     public void inserisciProprietario(Proprietario proprietario) {
+
         proprietarioDao.save(proprietario);
     }
 
