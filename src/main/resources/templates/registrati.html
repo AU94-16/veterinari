@@ -136,24 +136,24 @@
         <p>Sei già registrato? <a th:href="@{/accedi}">Accedi</a></p>
         <form th:object="${veterinario}" method="post">
             <div class="mb-3 name-container">
-                <input type="text" class="form-control" id="nome" placeholder="Nome" th:field="*{nome}" required>
+                <input type="text" class="form-control" name="nome" placeholder="Nome" th:field="*{nome}" required>
                 <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p> <!--Per messaggio di errore-->
 
-                <input type="text" class="form-control" id="cognome" placeholder="Cognome" th:field="*{cognome}" required>
+                <input type="text" class="form-control" name="cognome" placeholder="Cognome" th:field="*{cognome}" required>
                 <p th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></p> <!--Per messaggio di errore-->
             </div>
             <div class="mb-3">
-                <input type="email" class="form-control" id="email" placeholder="Email" th:field="*{email}" required>
+                <input type="email" class="form-control" name="email" placeholder="Email" th:field="*{email}" required>
                 <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p> <!--Per messaggio di errore-->
                 <p th:if="${duplicato != null}" th:text="${duplicato}"></p> <!--per duplicato email già presente-->
             </div>
             <div class="mb-3 password-container">
-                <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}" required>
+                <input type="password" class="form-control" name="password" placeholder="Password" th:field="*{password}" required>
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p> <!--Per messaggio di errore-->
                 <i class="bi bi-eye toggle-password" id="togglePassword"></i>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" id="numeroIscrizioneAlbo" placeholder="N° iscrizione Albo" th:field="*{numeroIscrizioneAlbo}" required>
+                <input type="text" class="form-control" name="numeroIscrizioneAlbo" placeholder="N° iscrizione Albo" th:field="*{numeroIscrizioneAlbo}" required>
                 <p th:if="${#fields.hasErrors('numeroIscrizioneAlbo')}" th:errors="*{numeroIscrizioneAlbo}"></p> <!--Per messaggio di errore-->
             </div>
             <div class="form genere">
@@ -257,9 +257,11 @@
         ];
 
         for (let campo of campi) {
-            let input = document.getElementById(campo);
-            if (!input || input.value.trim() === "") {
-                console.log(`Campo mancante o vuoto: ${campo}`); // Debug
+            let input = document.querySelector(`[name="${campo}"]`);
+            if (!input) {
+                return false;
+            }
+            if (input.value.trim() === "") {
                 return false;
             }
         }
@@ -267,19 +269,17 @@
         // Verifica se è stato selezionato un genere
         let genereSelezionato = document.querySelector('input[name="genere"]:checked');
         if (!genereSelezionato) {
-            console.log("Genere non selezionato"); // Debug
             return false;
         }
 
         // Verifica se i termini e condizioni sono accettati
         if (!document.getElementById("terms").checked) {
-            console.log("Termini non accettati"); // Debug
             return false;
         }
 
-        console.log("Form completo!"); // Debug
         return true;
     }
+
 
     document.getElementById("pagamentoCheck").addEventListener("change", function(event) {
         if (event.target.checked) {
