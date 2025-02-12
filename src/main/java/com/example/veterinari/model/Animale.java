@@ -32,7 +32,7 @@ public class Animale {
 
     // Sesso: solo 'M' o 'F'
     @Column
-    @Pattern(regexp = "^[MF]$", message = "Sesso non valido")
+    //@Pattern(regexp = "^[MF]$", message = "Sesso non valido")
     private char sesso;
 
     // Fotografia: non deve essere vuoto
@@ -41,8 +41,8 @@ public class Animale {
 
     // Peso: solo numeri positivi
     @Column
-    @Pattern(regexp = "^\\d+(\\.\\d{1,2})?$", message = "Peso non valido")
-    private float peso;
+    //@Pattern(regexp = "^\\d+(,\\d+)?$", message = "Peso non valido")
+    private Float peso;
 
     // Colore: solo lettere e spazi
     @Column
@@ -54,7 +54,7 @@ public class Animale {
 
     // Sterilizzato: solo 'S' o 'N'
     @Column
-    @Pattern(regexp = "^[SN]$", message = "Sterilizzazione non valida")
+    //@Pattern(regexp = "^[SN]$", message = "Sterilizzazione non valida")
     private char sterilizzato;
 
     @Column

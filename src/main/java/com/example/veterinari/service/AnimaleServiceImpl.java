@@ -3,6 +3,7 @@ package com.example.veterinari.service;
 import com.example.veterinari.dao.AnimaleDao;
 import com.example.veterinari.dao.ProprietarioDao;
 import com.example.veterinari.model.Animale;
+import com.example.veterinari.model.Veterinario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,11 +43,17 @@ public class AnimaleServiceImpl implements AnimaleService {
     }
 
     @Override
-    public void registrazioneAnimale(Animale animale, String nome, String specie, String razza, char sesso, MultipartFile fotografia, Year annoDiNascita, String colore, char sterilizzato, String allergie, int idProprietario) {
+    public void registrazioneAnimale(Animale animale) {
+        animaleDao.save(animale);
+    }
+
+    @Override
+    public void modificaAnimale(Animale animale, String nome, String specie, String razza, char sesso, String peso, MultipartFile fotografia, Year annoDiNascita, String colore, char sterilizzato, String allergie) {
         animale.setNome(nome);
         animale.setSpecie(specie);
         animale.setRazza(razza);
         animale.setSesso(sesso);
+        animale.setPeso(Float.parseFloat(peso));
         // per la fotografia dell'animale
         try {
             String formato = fotografia.getContentType();
@@ -59,7 +66,7 @@ public class AnimaleServiceImpl implements AnimaleService {
         animale.setColore(colore);
         animale.setSterilizzato(sterilizzato);
         animale.setAllergie(allergie);
-        animale.setProprietario(proprietarioService.datiProprietario(idProprietario));
+        animaleDao.save(animale);
     }
 
     @Override
