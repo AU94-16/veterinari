@@ -51,19 +51,13 @@ public class VeterinarioServiceImpl implements VeterinarioService{
 
     //Modifica dati Veterinario
     @Override
-    public void modificaDatiVeterinario(int id, String telefono, String citta, MultipartFile fotoProfilo) {
+    public void modificaDatiVeterinario(int id, String telefono, String citta, MultipartFile fotoProfilo, HttpSession session) {
         // Recupera il veterinario dal database
-        Optional<Veterinario> optionalVeterinario = veterinarioDao.findById(id);
-        if (optionalVeterinario.isPresent()) {
-            Veterinario veterinario = optionalVeterinario.get();
+        Veterinario veterinario = veterinarioDao.findById(id).get();
 
+            veterinario.setTelefono(telefono);
+            veterinario.setCitta(citta);
 
-            if (telefono != null && !telefono.isEmpty()) {
-                veterinario.setTelefono(telefono);  // Modifica il campo Telefono
-            }
-            if (citta != null && !citta.isEmpty()) {
-                veterinario.setCitta(citta);  // Modifica il campo Citta
-            }
             if (fotoProfilo != null && !fotoProfilo.isEmpty()) {
                 try {
                     String formato = fotoProfilo.getContentType();
@@ -75,6 +69,7 @@ public class VeterinarioServiceImpl implements VeterinarioService{
             }
 
             veterinarioDao.save(veterinario);
-        }
+            session.setAttribute("veterinario", veterinario);
+
     }
 }

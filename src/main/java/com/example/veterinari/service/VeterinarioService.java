@@ -10,5 +10,5 @@ public interface VeterinarioService {
     boolean loginVeterinario(String email, String password, HttpSession session);
     void registrazioneVeterinario(Veterinario veterinario);
     boolean controlloEmail(String email);
-    void modificaDatiVeterinario(int id, String telefono, String citta, MultipartFile fotoProfilo);
+    void modificaDatiVeterinario(int id, String telefono, String citta, MultipartFile fotoProfilo, HttpSession session);
 }

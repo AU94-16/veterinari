@@ -111,7 +111,7 @@
     <img th:src="${veterinario.fotoProfilo != null ? veterinario.fotoProfilo : '../static/immagini/user.jpg'}"
          alt="Immagine Profilo" class="profile-img">
 
-    <form th:action="@{/profilo_vet/modifica}" method="post" enctype="multipart/form-data" th:object="${veterinario}">
+    <form th:action="@{/profilo_vet/modifica}" method="post" enctype="multipart/form-data" >
         <div class="mb-3 profile-info">
             <h2> IL TUO PROFILO </h2>
 
@@ -119,41 +119,34 @@
                 <div class="info-group">
                     <label for="nomeCognome">Nome Cognome</label>
                     <input type="text" class="form-control" id="nomeCognome"
-                           th:value="*{nome + ' ' + cognome}" readonly>
-                    <input type="hidden" th:field="*{nome}">
-                    <input type="hidden" th:field="*{cognome}">
+                           th:value="${veterinario.nome + ' ' + veterinario.cognome}" readonly>
                 </div>
                 <div class="info-group">
                     <label for="numeroAlbo">Numero iscrizione all’albo</label>
-                    <input type="text" th:field="*{numeroIscrizioneAlbo}" class="form-control" id="numeroAlbo" readonly>
+                    <input type="text" th:value="${veterinario.numeroIscrizioneAlbo}" class="form-control" id="numeroAlbo" readonly>
                 </div>
             </div>
 
             <div class="mb-3 info-row">
                 <div class="info-group">
                     <label for="sesso">Sesso</label>
-                    <select th:field="*{sesso}" class="form-control" id="sesso" disabled>
-                        <option value="M">Maschio</option>
-                        <option value="F">Femmina</option>
-                        <option value="A">Altro</option>
-                    </select>
+                    <input type="text" th:value="${veterinario.sesso == 'M' ? 'Maschio' : veterinario.sesso=='F' ? 'Femmina' : 'Altro'}" class="form-control" id="sesso" readonly>
                 </div>
                 <div class="mb-3 info-group">
                     <label for="email">Email</label>
-                    <input type="email" th:field="*{email}" class="form-control" id="email" readonly>
+                    <input type="email" th:value="${veterinario.email}" class="form-control" id="email" readonly>
                 </div>
             </div>
 
             <div class="info-row">
                 <div class="info-group">
                     <label for="citta">Città</label>
-                    <input type="text" th:field="*{citta}" class="form-control" id="citta">
-                    <div class="text-danger" th:if="${#fields.hasErrors('citta')}" th:errors="*{citta}"></div>
+                    <input type="text" name="citta" th:value="${veterinario.citta}" class="form-control" id="citta">
                 </div>
                 <div class="info-group">
                     <label for="telefono">Telefono</label>
-                    <input type="text" th:field="*{telefono}" class="form-control" id="telefono">
-                    <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+                    <input type="text" name="telefono" th:value="${veterinario.telefono}" class="form-control" id="telefono">
+
                 </div>
             </div>
 

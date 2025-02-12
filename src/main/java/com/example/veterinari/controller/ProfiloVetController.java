@@ -47,32 +47,9 @@ public class ProfiloVetController {
                               @RequestParam(required = false) String citta,
                               HttpSession session) {
 
-        if (result.hasErrors()) {
-            return "profilo_vet";
-        }
-
         // Recupera il veterinario dalla sessione
         Veterinario veterinarioSession = (Veterinario) session.getAttribute("veterinario");
-
-        if (veterinarioSession != null) {
-            veterinarioService.modificaDatiVeterinario(veterinarioSession.getId(), telefono, citta, fotoProfilo);
-
-            // Aggiorna i dati nella sessione
-            veterinarioSession.setTelefono(telefono);
-            veterinarioSession.setCitta(citta);
-
-            if (fotoProfilo != null && !fotoProfilo.isEmpty()) {
-                try {
-                    String formato = fotoProfilo.getContentType();
-                    String fotoProf = "data:" + formato + ";base64," + Base64.getEncoder().encodeToString(fotoProfilo.getBytes());
-                    veterinarioSession.setFotoProfilo(fotoProf);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-
-            session.setAttribute("veterinario", veterinarioSession);
-        }
+        veterinarioService.modificaDatiVeterinario(veterinarioSession.getId(), telefono, citta, fotoProfilo, session);
 
         return "redirect:/profilo_vet";
     }
