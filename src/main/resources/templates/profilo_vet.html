@@ -89,6 +89,7 @@
     </style>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="index.html">
@@ -106,29 +107,32 @@
 </nav>
 
 <div class="profile-container">
-    <img src="../static/immagini/user.jpg" alt="Immagine Profilo" class="profile-img">
+    <!-- Caricamento immagine profilo -->
+    <img th:src="${veterinario.fotoProfilo != null ? veterinario.fotoProfilo : '../static/immagini/user.jpg'}"
+         alt="Immagine Profilo" class="profile-img">
 
-    <form th:object="${veterinario}" method="post">
-        <div class=" mb-3 profile-info">
+    <form th:action="@{/profilo_vet/modifica}" method="post" enctype="multipart/form-data" th:object="${veterinario}">
+        <div class="mb-3 profile-info">
             <h2> IL TUO PROFILO </h2>
-            <div class=" mb-3 info-row">
+
+            <div class="mb-3 info-row">
                 <div class="info-group">
-                    <label for="nome">Nome Cognome</label>
+                    <label for="nomeCognome">Nome Cognome</label>
                     <input type="text" class="form-control" id="nomeCognome"
                            th:value="*{nome + ' ' + cognome}" readonly>
-                    <input type="hidden" th:field="*{nome}"> <!--input nascosti - per readonly non servirebbero per ora messi per sicurezza-->
-                    <input type="hidden" th:field="*{cognome}"> <!--input nascosti - per readonly non servirebbero per ora messi per sicurezza-->
+                    <input type="hidden" th:field="*{nome}">
+                    <input type="hidden" th:field="*{cognome}">
                 </div>
                 <div class="info-group">
                     <label for="numeroAlbo">Numero iscrizione all’albo</label>
-                    <input type="text" th:field="*{numeroIscrizioneAlbo}" class="form-control" id="numeroAlbo">
+                    <input type="text" th:field="*{numeroIscrizioneAlbo}" class="form-control" id="numeroAlbo" readonly>
                 </div>
             </div>
 
             <div class="mb-3 info-row">
                 <div class="info-group">
                     <label for="sesso">Sesso</label>
-                    <select th:field="*{sesso}" class="form-control" id="sesso">
+                    <select th:field="*{sesso}" class="form-control" id="sesso" disabled>
                         <option value="M">Maschio</option>
                         <option value="F">Femmina</option>
                         <option value="A">Altro</option>
@@ -136,7 +140,7 @@
                 </div>
                 <div class="mb-3 info-group">
                     <label for="email">Email</label>
-                    <input type="email" th:field="*{email}" class="form-control" id="email">
+                    <input type="email" th:field="*{email}" class="form-control" id="email" readonly>
                 </div>
             </div>
 
@@ -144,18 +148,26 @@
                 <div class="info-group">
                     <label for="citta">Città</label>
                     <input type="text" th:field="*{citta}" class="form-control" id="citta">
+                    <div class="text-danger" th:if="${#fields.hasErrors('citta')}" th:errors="*{citta}"></div>
                 </div>
                 <div class="info-group">
                     <label for="telefono">Telefono</label>
                     <input type="text" th:field="*{telefono}" class="form-control" id="telefono">
+                    <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
                 </div>
+            </div>
+
+            <div class="info-group">
+                <label for="fotoProfilo">Foto Profilo</label>
+                <input type="file" name="fotoProfilo" class="form-control" id="fotoProfilo">
             </div>
 
             <button type="submit" class="btn btn-primary mt-3">Salva</button>
         </div>
     </form>
 </div>
-<script>
+
+<!--<script>
     document.addEventListener("DOMContentLoaded", function () {
         fetch(" ")
             .then(response => response.json())
@@ -174,7 +186,7 @@
             .catch(error => console.error("Errore nel recupero dati:", error));
     });
 
-</script>
+</script>-->
 
 </body>
 </html>
