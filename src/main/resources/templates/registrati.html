@@ -85,7 +85,7 @@
             color: red;
         }
 
-        /* Stili per l'indicatore di caricamento */
+        /* stile per l'indicatore di caricamento */
         .loading-indicator {
             position: absolute;
             top: 50%;
@@ -224,10 +224,10 @@
     // Cambia immagine ogni 4 secondi in modo randomico
     setInterval(changeImage, 4000);
 
+
     // per il popup del pagamento
     document.body.insertAdjacentHTML("beforeend", `
-    <!-- Popup del pagamento -->
-<div id="pagamentoPopup" class="popup">
+    <div id="pagamentoPopup" class="popup">
     <div class="contenutoPopup">
         <span id="chiudiPopup">&times;</span>
         <h2> Metodo di pagamento: PayPal </h2>
@@ -240,10 +240,9 @@
         <input type="password" class="form-control" id="campo2" required>
         <button class="btn" id="pagamentoButton"> Procedi al pagamento </button>
 
-        <!-- Indicatore di caricamento -->
-        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+        
+        <div id="loadingIndicator" class="loading-indicator">
             <img src="immagini/loading.gif" alt="Caricamento..." />
-
         </div>
     </div>
 </div>
@@ -260,32 +259,35 @@
         document.getElementById("pagamentoCheck").checked = false;
     });
 
+    // al click del bottone del pagamento
     document.getElementById("pagamentoButton").addEventListener("click", function () {
-        // Nasconde il popup
+        // mostro l'indicatore di caricamento
+        document.getElementById("loadingIndicator").style.display = "flex";
+        // e disabilito il pulsante di pagamento che non deve essere usato durante il loading
+        document.getElementById("pagamentoButton").disabled = true;
+
+        // devo ritardare chiudusa popup per permettere di vedere il caricamento
+        setTimeout(function () {
+        // nascondo il popup solo dopo che l'utente ha visto il caricamento
         document.getElementById("pagamentoPopup").style.display = "none";
         document.getElementById("pagamentoCheck").checked = true;
 
-        // Mostra l'indicatore di caricamento
-        document.getElementById("loadingIndicator").style.display = "block";
-
-        // Disabilita il pulsante durante il caricamento
-        document.getElementById("pagamentoButton").disabled = true;
-
-        // Esegui un setTimeout per simulare il caricamento dei dati di pagamento
-        setTimeout(function () {
-            // Dopo il tempo di attesa (simulazione caricamento), nascondi l'indicatore di caricamento
+            // simulo attesa di caricamento 8 secondi per il pagamento
+            setTimeout(function () {
+            // l'indicatore viene nascosto dopo il caricamento
             document.getElementById("loadingIndicator").style.display = "none";
 
-            // Svuota i campi
-            document.getElementById("campo1").value = ""; // Svuota il campo 1
-            document.getElementById("campo2").value = ""; // Svuota il campo 2
+            // svuoto entrambi i campi, non devono rimanere compilati
+            document.getElementById("campo1").value = "";
+            document.getElementById("campo2").value = "";
 
-            // Rendi di nuovo cliccabile il pulsante
+            // riabilito il pulsante dopo il pagamento
             document.getElementById("pagamentoButton").disabled = false;
 
-        }, 6000); // 6000 millisecondi = 3 secondi di "caricamento"
-    });
+        }, 8000);
 
+    }, 5000); // tempo che ci mette il popup a chiudersi dopo che si clicca su procedi al pagamento  (5 secondi)
+});
 
 </script>
 
