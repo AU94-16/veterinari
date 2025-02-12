@@ -13,27 +13,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <link href="css/profilo_animale.css" rel="stylesheet"/>
+    <link href="../static/css/profilo_animale.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 
-            crossorigin="anonymous"></script>
-
-   
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
 
 
         <a class="navbar-brand" href="index.html">
-            <img src="immagini/scritta_logo.png" alt="vet_clinic">
+            <img src="../static/immagini/scritta_logo.png" alt="vet_clinic">
         </a>
 
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -45,154 +42,216 @@
         </div>
 
 
-</nav>
-<div class="container">
-<div class="mr-6 profile-container ">
+    </nav>
+    <div class="container">
+        <div class="mr-6 profile-container ">
 
-    <img src="immagini/user_animale.jpg" alt="Immagine Profilo" class="profile-img">
+            <img src="../static/immagini/user_animale.jpg" alt="Immagine Profilo" class="profile-img">
 
-    <form  th:object="${animale}" method="post">
+            <form th:object="${animale}" method="post">
 
-        <div class=" mb-3 profile-info">
+                <div class=" mb-3 profile-info">
 
-            <h2>PROFILO ANIMALE</h2>
+                    <h2>PROFILO ANIMALE</h2>
 
-            <div class=" mb-3 info-row">
-                <div class="info-group">
-                    <label for="nome">Nome </label>
-                    <input type="text" th:field="*{nome}" class="form-control" id="nome">
+                    <div class=" mb-3 info-row">
+                        <div class="info-group">
+                            <label for="nome">Nome </label>
+                            <input type="text" th:field="*{nome}" class="form-control" id="nome">
+                        </div>
+                    </div>
+
+                    <div class=" mb-3 info-row">
+                        <div class="info-group">
+                            <label for="specie">Specie </label>
+                            <input type="text" th:field="*{specie}" class="form-control" id="specie">
+                        </div>
+                        <div class="info-group">
+                            <label for="razza">Razza </label>
+                            <input type="text" th:field="*{razza}" class="form-control" id="razza">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 info-row">
+                        <div class="info-group">
+                            <label for="sesso">Sesso</label>
+                            <select th:field="*{sesso}" class="form-control" id="sesso">
+                                <option value="">Seleziona</option>
+                                <option value="M">Maschio</option>
+                                <option value="F">Femmina</option>
+                            </select>
+                        </div>
+                        <div class="info-group">
+                            <label for="peso">Peso </label>
+                            <input type="text" th:field="*{peso}" class="form-control" id="peso" min="0">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 info-row">
+                        <div class="info-group">
+                            <label for="colore">Colore </label>
+                            <input type="text" th:field="*{colore}" class="form-control" id="colore">
+                        </div>
+                        <div class="info-group">
+                            <label for="anno">Anno di Nascita</label>
+                            <input type="number" min="1990" max="2025" step="1" th:field="*{annoDiNascita}"
+                                class="form-control" id="anno">
+                        </div>
+                    </div>
+
+                    <div class="mb-4 info-row">
+                        <div class="info-group">
+                            <label for="sterilizzato">Sterilizzato </label>
+                            <select th:field="*{sterilizzato}" class="form-control" id="sterilizzato">
+                                <option value="Si">SI</option>
+                                <option value="Nn">N</option>
+                            </select>
+                        </div>
+                        <div class="info-group">
+                            <label for="allergie">Allergie </label>
+                            <input type="text-area" th:field="*{allergie}" class="form-control" id="allergie">
+                        </div>
+                    </div>
+                    <div class="mb-4 info-row" id="bottoniContainer">
+                        <div class="info-group">
+                            <input type="hidden" th:field="*{proprietario.id}">
+                            <button type="submit" class="btn btn-primary form-control w-100"
+                                id="modifica">Modifica</button>
+                        </div>
+                        <div class="info-group">
+                            <input type="hidden" th:field="*{proprietario.id}">
+                            <!-- Bottone per aprire il primo modal -->
+                            <button type="button" class="btn btn-danger form-control w-100" id="elimina"
+                                data-bs-toggle="modal" data-bs-target="#eliminaModal">Elimina</button>
+                        </div>
+                    </div>
+
+                    <!-- Modal di conferma eliminazione -->
+                    <div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="eliminaModalLabel">Attenzione</h5>
+                                </div>
+                                <div class="modal-body">
+                                    Sei sicuro di voler eliminare?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                        id="btn-annulla" data-bs-toggle="modal" data-bs-target="#annullaModal">NO</button>
+                                    <!-- Bottone per aprire il secondo modal -->
+                                    <button type="button" class="btn btn-primary" id="btn-conferma"
+                                        data-bs-toggle="modal" data-bs-target="#confermaModal">SI, sono sicuro</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal di eliminazione avvenuta con successo -->
+                    <div class="modal fade" id="confermaModal" tabindex="-1" aria-labelledby="confermaModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confermaModalLabel">Conferma</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-check2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                    </svg>
+                                    Eliminazione avvenuta con successo!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+            </form>
+            <div class="clearfix"></div> <!-- Spezza i float -->
+            <br>
+
+            <div class="table-container">
+                <h2 th:text="PROPRIETARIO">PROPRIETARIO</h2>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">NOME</th>
+                            <th scope="col">COGNOME</th>
+                            <th scope="col">INDIRIZZO</th>
+                            <th scope="col">CITTA</th>
+                            <th scope="col">CODICE FISCALE</th>
+                            <th scope="col">CAP</th>
+                            <th scope="col">TELEFONO</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">SESSO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td th:text="${proprietario.nome}"></td>
+                            <td th:text="${proprietario.cognome}"></td>
+                            <td th:text="${proprietario.indirizzo}"></td>
+                            <td th:text="${proprietario.citta}"></td>
+                            <td th:text="${proprietario.codice_fiscale}"></td>
+                            <td th:text="${proprietario.cap}"></td>
+                            <td th:text="${proprietario.telefono}"></td>
+                            <td th:text="${proprietario.email}"></td>
+                            <td th:text="${proprietario.sesso}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br>
+
+                <h2 th:text="STORICO">STORICO</h2>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">TIPO</th>
+                            <th scope="col">NOME</th>
+                            <th scope="col">DOSAGGIO DETTAGLIO</th>
+                            <th scope="col">DATA ORA PRESTAZIONE</th>
+                            <th scope="col">DATA ORA RICHIAMO</th>
+                            <th scope="col">NOTE</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="storico : ${storico}">
+                            <td th:text="${storico.tipo}"></td>
+                            <td th:text="${storico.nome}"></td>
+                            <td th:text="${storico.dosaggioDettaglio}"></td>
+                            <td th:text="${storico.dataOraPrestazione}"></td>
+                            <td th:text="${storico.dataOraRichiamo}"></td>
+                            <td th:text="${storico.note}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
-
-            <div class=" mb-3 info-row">
-                <div class="info-group">
-                    <label for="specie">Specie </label>
-                    <input type="text" th:field="*{specie}" class="form-control" id="specie">
-                </div>
-                <div class="info-group">
-                    <label for="razza">Razza </label>
-                    <input type="text" th:field="*{razza}" class="form-control" id="razza">
-                </div>
-            </div>
-
-            <div class="mb-3 info-row">
-                <div class="info-group">
-                    <label for="sesso">Sesso</label>
-                    <select th:field="*{sesso}" class="form-control" id="sesso">
-                        <option value="M">Maschio</option>
-                        <option value="F">Femmina</option>
-                    </select>
-                </div>
-                <div class="info-group">
-                    <label for="peso">Peso </label>
-                    <input type="text" th:field="*{peso}" class="form-control" id="peso" min="0">
-                </div>
-            </div>
-
-            <div class="mb-3 info-row">
-                <div class="info-group">
-                    <label for="colore">Colore </label>
-                    <input type="text" th:field="*{colore}" class="form-control" id="colore">
-                </div>
-                <div class="info-group">
-                    <label for="anno">Anno di Nascita</label>
-                    <input type="number" min="1990" max="2025" step="1" th:field="*{annoDiNascita}" class="form-control" id="anno">
-                </div>
-            </div>
-
-            <div class="mb-4 info-row">
-                <div class="info-group">
-                    <label for="sterilizzato">Sterilizzato </label>
-                    <select th:field="*{sterilizzato}" class="form-control" id="sterilizzato">
-                        <option value="si">Si</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-                <div class="info-group">
-                    <label for="allergie">Allergie </label>
-                    <input type="text-area" th:field="*{allergie}" class="form-control" id="allergie">
-                </div>
-            </div>
-
-            <div class="mb-3  info-row">
-                <div class="info-group">
-                    <input type="hidden" th:field="*{proprietario.id}">
-                    <button type="submit" class="btn btn-primary form-control w-100">Modifica</button>
-                </div>
-                <div class="info-group">
-                    <input type="hidden" th:field="*{proprietario.id}">
-                    <button type="submit" class="btn btn-danger form-control w-100">Elimina</button>
-                </div>
-            </div>
-
         </div>
-    </form>
-    <div class="clearfix"></div> <!-- Spezza i float -->
-    <br>
-
-    <div class="table-container">
-    <h2 th:text="PROPRIETARIO">PROPRIETARIO</h2>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">NOME</th>
-            <th scope="col">COGNOME</th>
-            <th scope="col">INDIRIZZO</th>
-            <th scope="col">CITTA</th>
-            <th scope="col">CODICE FISCALE</th>
-            <th scope="col">CAP</th>
-            <th scope="col">TELEFONO</th>
-            <th scope="col">EMAIL</th>
-            <th scope="col">SESSO</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td th:text="${proprietario.nome}"></td>
-            <td th:text="${proprietario.cognome}"></td>
-            <td th:text="${proprietario.indirizzo}"></td>
-            <td th:text="${proprietario.citta}"></td>
-            <td th:text="${proprietario.codice_fiscale}"></td>
-            <td th:text="${proprietario.cap}"></td>
-            <td th:text="${proprietario.telefono}"></td>
-            <td th:text="${proprietario.email}"></td>
-            <td th:text="${proprietario.sesso}"></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <br> 
-
-    <h2 th:text="STORICO">STORICO</h2>
-
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">TIPO</th>
-            <th scope="col">NOME</th>
-            <th scope="col">DOSAGGIO DETTAGLIO</th>
-            <th scope="col">DATA ORA PRESTAZIONE</th>
-            <th scope="col">DATA ORA RICHIAMO</th>
-            <th scope="col">NOTE</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:each="storico : ${storico}">
-            <td th:text="${storico.tipo}"></td>
-            <td th:text="${storico.nome}"></td>
-            <td th:text="${storico.dosaggioDettaglio}"></td>
-            <td th:text="${storico.dataOraPrestazione}"></td>
-            <td th:text="${storico.dataOraRichiamo}"></td>
-            <td th:text="${storico.note}"></td>
-        </tr>
-        </tbody>
-    </table>
-
-</div>
-</div>
-</div>
+    </div>
 </body>
+<script>
+
+    function ripristinaColBtnElimina() {
+        let btnElimina = document.getElementById("elimina");
+    btnElimina.classList.remove("btn-secondary"); 
+    btnElimina.classList.add("btn-danger");   
+    }
+
+document.getElementById("btn-annulla").addEventListener("click", ripristinaColBtnElimina());
+    
+document.getElementById("confermaModal").addEventListener("hidden.bs.modal", ripristinaColBtnElimina());
+
+
+</script>
 
 </html>
