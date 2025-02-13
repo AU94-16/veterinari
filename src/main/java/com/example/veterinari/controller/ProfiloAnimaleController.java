@@ -49,9 +49,12 @@ public class ProfiloAnimaleController {
         // Recupera animale
         Animale animale = animaleService.datiAnimale(id);
         model.addAttribute("animale", animale);
-        // Recupera proprietario
-        Proprietario proprietario = proprietarioService.datiProprietario(id);
+
+        //Recupero Proprietario
+        int idProprietario = animale.getProprietario().getId();
+        Proprietario proprietario = proprietarioService.datiProprietario(idProprietario);
         model.addAttribute("proprietario", proprietario);
+
         // Recupera lista dello storico degli interventi
         List<Storico> storicoLista = storicoService.elencoStoricoPerAnimale(id);
         model.addAttribute("storicoLista", storicoLista);
