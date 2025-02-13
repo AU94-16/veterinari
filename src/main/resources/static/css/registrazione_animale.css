@@ -1,0 +1,23 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    min-height: 80px; /* Altezza minima */
+    background-color: #2d3f4e;
+}
+
+
+#navbarNav {
+    margin-right: 35px;
+}
+
+#navbarNav a {
+    font-size: 20px;
+    color: #eeeeee;
+}
+
+.navbar-brand img{
+    width: 50%;
+    height: auto;
+}
