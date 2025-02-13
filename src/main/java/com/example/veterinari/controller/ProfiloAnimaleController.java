@@ -3,13 +3,16 @@ package com.example.veterinari.controller;
 import com.example.veterinari.model.Animale;
 import com.example.veterinari.model.Proprietario;
 import com.example.veterinari.model.Storico;
+import com.example.veterinari.model.Veterinario;
 import com.example.veterinari.service.AnimaleService;
 import com.example.veterinari.service.ProprietarioService;
 import com.example.veterinari.service.StoricoService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,18 +45,21 @@ public class ProfiloAnimaleController {
             return "redirect:/accedi";
         }
 
+
         // Recupera animale
         Animale animale = animaleService.datiAnimale(id);
-
+        model.addAttribute("animale", animale);
         // Recupera proprietario
         Proprietario proprietario = proprietarioService.datiProprietario(id);
+        model.addAttribute("proprietario", proprietario);
+        // Recupera lista dello storico degli interventi
+        List<Storico> storicoLista = storicoService.elencoStoricoPerAnimale(id);
+        model.addAttribute("storicoLista", storicoLista);
 
-        // Recupera lo storico degli interventi
-        List<Storico> storico = storicoService.elencoStoricoPerAnimale(id);
 
-        model.addAttribute("animale", animale);
-        model.addAttribute("storico", storico);
-        model.addAttribute("proprietario", proprietario); // recupero anche del prorpietario insieme alla ricerca di animale
+        // Aggiungi l'oggetto storico vuoto per il form
+        model.addAttribute("storico", new Storico());
+
         return "profilo_animale";
     }
 
@@ -77,24 +83,32 @@ public class ProfiloAnimaleController {
     }
 
 
-
-   /* @PostMapping("/registrazioneProprietario")
-    public  String formManager(@ModelAttribute Proprietario proprietario) {
-        proprietarioService.inserisciProprietario(proprietario);
-        return "redirect:/";
-    }*/
-
     @GetMapping("/eliminaAnimale")
     public String cancellazioneAnnimale(@RequestParam int id) {
         animaleService.eliminazioneAnimale(id);
-        return "redirect:/profilo_animale";
+        return "redirect:/area_riservata";
     }
 
-    @PostMapping("/aggiuntaStorico")
-    public String formManager (@ModelAttribute Storico storico) { // in un secondo momento registriamo uno storico iniziale, per poi aggiungerne altri
-        storicoService.aggiuntaStorico(storico);
-                return "redirect:/profilo_animale";
+
+
+    @PostMapping("/aggiungiStorico")
+    public String aggiungiStorico(@Valid @ModelAttribute("storico") Storico storico,
+                                  BindingResult bindingResult,
+                                  @RequestParam("animaleId") int animaleId,  // Usa @RequestParam per recuperare l'ID animale
+                                  Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "profilo_animale";
+        }
+
+        storicoService.aggiuntaStorico(storico, animaleId);
+        return "redirect:/profilo_animale?id=" + animaleId;
     }
 
+    @GetMapping("/eliminaStorico")
+    public String eliminaStorico(@RequestParam int storicoId, @RequestParam int animaleId) {
+        storicoService.eliminaStorico(storicoId);
+        return "redirect:/profilo_animale?id=" + animaleId;
+    }
 
 }

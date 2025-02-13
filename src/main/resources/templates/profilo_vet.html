@@ -108,7 +108,7 @@
 
 <div class="profile-container">
     <!-- Caricamento immagine profilo -->
-    <img th:src="${veterinario.fotoProfilo != null ? veterinario.fotoProfilo : '../static/immagini/user.jpg'}"
+    <img th:src="${veterinario.fotoProfilo != null ? 'data:image/jpeg;base64,' + veterinario.fotoProfilo : 'immagini/user.jpg'}"
          alt="Immagine Profilo" class="profile-img">
 
     <form th:action="@{/profilo_vet/modifica}" method="post" enctype="multipart/form-data" >
@@ -160,26 +160,6 @@
     </form>
 </div>
 
-<!--<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch(" ")
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("nome").innerText = data.nome;
-
-                document.getElementById("numeroAlbo").innerText = data.numero_iscrizione_albo;
-                document.getElementById("sesso").innerText = data.sesso;
-                document.getElementById("email").innerText = data.email;
-                document.getElementById("citta").innerText = data.citta;
-                document.getElementById("telefono").innerText = data.telefono;
-
-                // Usa l'immagine dal database o quella predefinita
-                // document.querySelector(".profile-img").src = data.immagineProfilo || '../static/immagini/user.jpg';
-            })
-            .catch(error => console.error("Errore nel recupero dati:", error));
-    });
-
-</script>-->
 
 </body>
 </html>
