@@ -47,10 +47,11 @@ Apri il browser e vai su http://localhost:8080
 | Background | ![#F8F8F8](https://placehold.co/15x15/F8F8F8/F8F8F8.png) #F8F8F8 |
 
 Logo:
-![logo_vet.png](src/main/resources/static/immagini/logo_vet.png)
+<img src="immagini/logo_vet.png)" alt="logo" width="300">
+
 
 Scritta:
-![scritta_logo_sfondo.png](src/main/resources/static/immagini/scritta_logo_sfondo.png)
+<img src="immagini/scritta_logo_sfondo.png)" alt="scritta" width="300">
 ## Authors
 
 - [@steph-05](https://github.com/steph-05)
