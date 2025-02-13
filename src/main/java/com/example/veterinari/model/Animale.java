@@ -37,9 +37,9 @@ public class Animale {
     @Column
     private String fotografia;
 
-    // Peso: solo numeri positivi
+    // Peso: solo numeri positivi - con o senza . - nullo
     @Column
-    @Pattern(regexp = "^\\d+(\\.\\d+)?$", message = "Peso non valido")
+    //@Pattern(regexp = "^(\\d+(\\.\\d+)?)?$", message = "Peso non valido")
     private Float peso;
 
     // Colore: solo lettere e spazi - permette stringhe vuote
@@ -130,11 +130,11 @@ public class Animale {
         this.fotografia = fotografia;
     }
 
-    public float getPeso() {
+    public Float getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(Float peso) {
         this.peso = peso;
     }
 
