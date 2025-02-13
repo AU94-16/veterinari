@@ -61,7 +61,7 @@ public class VeterinarioServiceImpl implements VeterinarioService{
             if (fotoProfilo != null && !fotoProfilo.isEmpty()) {
                 try {
                     String formato = fotoProfilo.getContentType();
-                    String fotoProf = "data" + formato + ";base64" + Base64.getEncoder().encodeToString(fotoProfilo.getBytes());
+                    String fotoProf = "data:" + formato + ";base64," + Base64.getEncoder().encodeToString(fotoProfilo.getBytes());
                     veterinario.setFotoProfilo(fotoProf);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
