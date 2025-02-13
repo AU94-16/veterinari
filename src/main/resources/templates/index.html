@@ -13,47 +13,72 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <style>
+
         body {
-
             padding-top: 10px; /* Distanza dal top per evitare che la navbar copra l'h1 */
-        }
-
-        .btn {
-            width: 400px;
-            height: 100px
-            font-size: 25px;
-            padding: 20px;
-            border-radius: 20px;
-            background-color: #eeeeee;
-            color: #202020;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-
-        .container p {
-            max-width: 90%;
-            font-size: 25px;
-            margin-bottom: 30px;
         }
 
         .container h1 {
             max-width: 90%;
-            font-size: 60px;
+            font-size: 35px;
+
+            color: #333;
             margin-bottom: 30px;
         }
 
-        .home-container img{
+        .container p {
+            font-family: "Lora", serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: italic;
+            max-width: 90%;
+            font-size: 22px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6; /* Migliora la leggibilità */
+        }
+
+        .home-container img {
             margin-top: 15px;
             width: 90%;
         }
 
-    .home-container .home-image img {
-    width: 85%;
-    height: auto;
-    border-radius: 15px;
-    object-fit: cover;
+        .home-container .home-image img {
+            width: 85%;
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+        }
 
-    }
+        .btn {
+            background-color: #2d3f4e;
+        }
+
+        .btn-primary {
+            width: 400px;
+            height: 100px
+            background-color: #2d3f4e; /* Cambia il colore di sfondo */
+            border-color: #2d3f4e;
+            color: #fff;
+            padding: 12px 30px; /* Aumenta il padding */
+            font-size: 1.2em;
+            border-radius: 8px;
+
+        }
+
+        .btn-primary:hover {
+            background-color: #1a2530; /* Scurisce al passaggio del mouse */
+            border-color: #1a2530;
+        }
+
+        .navbar-toggler {
+        margin: 0 auto;
+        display: block;
+        background-color: transparent;
+        border-color: white;
+
+        }
+
 
     </style>
 </head>
@@ -67,7 +92,7 @@
         </a>
 
         <!-- Bottone per il menu mobile-->
-        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -94,10 +119,10 @@
     <div class="row align-items-center">
         <!-- Testo sopra su mobile, a sinistra su desktop -->
         <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center text-center">
-            <h1>Gestisci le cure con precisione e semplicità</h1>
-            <p>IL TUO STRUMENTO DIGITALE PER IL BENESSERE DEGLI ANIMALI</p>
+            <h1>GESTISCI LE CURE CON PRECISIONE E SEMPLICITA'</h1>
+            <p>Il tuo stumento digitale, per il benessere degli animali</p>
             <div class="d-flex justify-content-center">
-                <a class="btn btn-primary" th:href="@{/registrati}" >REGISTRATI</a>
+                <a class="btn btn-primary" th:href="@{/registrati}">REGISTRATI</a>
             </div>
         </div>
 
