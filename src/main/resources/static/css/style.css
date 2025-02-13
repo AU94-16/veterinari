@@ -3,14 +3,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 934px;
+    min-height: 100vh; /* Altezza minima pari all'altezza della viewport */
+    /*height: 934px;*/
     margin: 0;
+    padding: 20px; /* aggiunge spazio intorno al contenuto per schermi piccoli */
 }
 
 .container {
     display: flex;
-    width: 80%;
-    max-width: 1800px;
+    width: 90%;
+    max-width: 1200px;
     align-items: center;
     justify-content: center;
 }

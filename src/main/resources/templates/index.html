@@ -4,108 +4,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title> Vet Care HUB </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="css/style.css" rel="stylesheet"/>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <style>
 
         body {
-            padding-top: 10px; /* Distanza dal top per evitare che la navbar copra l'h1 */
+            background-color: #f8f9fa; /* Grigio chiaro */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .container h1 {
-            max-width: 90%;
-            font-size: 35px;
-
-            color: #333;
-            margin-bottom: 30px;
+        /* stile navbar */
+        .navbar {
+            background-color: #2d3f4e; /* blu scelto per il progetto */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra sottile */
         }
 
-        .container p {
-            font-family: "Lora", serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: italic;
-            max-width: 90%;
-            font-size: 22px;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6; /* Migliora la leggibilità */
+        .navbar-brand img {
+            max-height: 40px; /* Altezza massima del logo */
         }
 
-        .home-container img {
-            margin-top: 15px;
-            width: 90%;
+        /* animazioni di login e signin */
+        .navbar-nav .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: #ffffff;
+            margin-left: 15px;
         }
 
-        .home-container .home-image img {
-            width: 85%;
-            height: auto;
-            border-radius: 15px;
-            object-fit: cover;
+        .navbar-nav .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            left: 50%;
+            bottom: -3px;
+            transition: all 0.3s ease-out;
         }
 
-        .btn {
-            background-color: #2d3f4e;
-        }
-
-        .btn-primary {
-            width: 400px;
-            height: 100px
-            background-color: #2d3f4e; /* Cambia il colore di sfondo */
-            border-color: #2d3f4e;
-            color: #fff;
-            padding: 12px 30px; /* Aumenta il padding */
-            font-size: 1.2em;
-            border-radius: 8px;
-
-        }
-
-        .btn-primary:hover {
-            background-color: #1a2530; /* Scurisce al passaggio del mouse */
-            border-color: #1a2530;
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+            left: 0;
         }
 
         .navbar-toggler {
-        margin: 0 auto;
-        display: block;
-        background-color: transparent;
-        border-color: white;
-
+            background-color: transparent;
+            border-color: trasparent;
         }
 
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: none; /* Eventualmente rimuove anche l'ombra */
+        }
 
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Section Styles */
+        .home-container {
+            padding: 50px 20px; /* Ridotto il padding laterale per schermi più piccoli */
+            text-align: center;
+            margin-top: 50px; /* Spazio dalla navbar */
+        }
+
+        .home-container h1 {
+            max-width: 90%;
+            font-size: 40px; /* Dimensione del titolo */
+            color: #343a40; /* Nero */
+            margin-bottom: 20px;
+        }
+
+        .home-container p {
+            font-family: "Lora", serif;
+            font-optical-sizing:auto;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 22px; /* Dimensione del paragrafo */
+            color: #6c757d; /* Grigio medio */
+            margin-bottom: 30px;
+            line-height: 1.6; /* migliora leggibilità */
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background-color: #2d3f4e; /* Blu principale */
+            border-color: #2d3f4e;
+            color: #fff;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: auto; /* Adatta la larghezza al contenuto */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Blu più scuro al passaggio del mouse */
+            border-color: #0056b3;
+        }
+
+        /* Image Styles */
+        .home-image img {
+            width: 100%; /* L'immagine occupa tutta la larghezza del contenitore */
+            max-width: 500px; /* Larghezza massima dell'immagine */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra sottile */
+            margin-top: 20px; /* Spazio sopra l'immagine */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2d3f4e;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto; /* Spinge il footer in fondo */
+            font-size: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .home-container {
+                text-align: left; /* Allinea il testo a sinistra su schermi più grandi */
+            }
+            .home-image {
+                text-align: right; /* Allinea l'immagine a destra su schermi più grandi */
+            }
+
+        }
     </style>
 </head>
 <body>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <div class="container-fluid">
-        <!-- Logo a sinistra -->
+    <div class="container">
         <a class="navbar-brand" href="index.html">
             <img src="immagini/scritta_logo.png" alt="vet_clinic">
         </a>
-
-        <!-- Bottone per il menu mobile-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <!-- Contenuto della navbar -->
-        <div class="collapse navbar-collapse text-end justify-content-end" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/accedi}">LOG IN</a>
                 </li>
-                <li class="separator">
-                    |
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/registrati}">SIGN IN</a>
                 </li>
@@ -114,25 +172,24 @@
     </div>
 </nav>
 
-<!-- Contenuto principale -->
+<!-- Hero Section -->
 <div class="container home-container">
     <div class="row align-items-center">
-        <!-- Testo sopra su mobile, a sinistra su desktop -->
-        <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center text-center">
+        <div class="col-md-6">
             <h1>GESTISCI LE CURE CON PRECISIONE E SEMPLICITA'</h1>
-            <p>Il tuo stumento digitale, per il benessere degli animali</p>
-            <div class="d-flex justify-content-center">
-                <a class="btn btn-primary" th:href="@{/registrati}">REGISTRATI</a>
-            </div>
+            <p>Il tuo strumento digitale per il benessere degli animali</p>
+            <a class="btn btn-primary" th:href="@{/registrati}">REGISTRATI</a>
         </div>
-
-
-        <!-- Immagine sotto su mobile, a destra su desktop -->
-        <div class="col-12 col-md-6 home-image text-center">
+        <div class="col-md-6 home-image">
             <img src="immagini/index_img.jpeg" alt="Clinica veterinaria">
         </div>
     </div>
 </div>
-</body>
 
+<!-- Footer -->
+<footer>
+    <p>© 2025 Vet Clinic. All rights reserved.</p>
+</footer>
+
+</body>
 </html>
