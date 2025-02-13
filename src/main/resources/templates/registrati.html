@@ -38,6 +38,10 @@
             cursor: pointer;
         }
 
+        #sologenere {
+        padding: 20px;
+        }
+
         .form-check-input, .form-check-label {
             cursor: pointer;
         }
@@ -60,8 +64,9 @@
             top: 0;
             left: 0;
             margin: auto;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            width: 500px;
+            height: 500px;
+
             justify-content: center;
             align-items: center;
         }
@@ -96,8 +101,8 @@
         }
 
         .loading-indicator img {
-            width: 50px; /* Puoi regolare la dimensione della tua GIF */
-            height: 50px; /* Puoi regolare la dimensione della tua GIF */
+            width: 50px;
+            height: 50px;
         }
 
 
@@ -150,7 +155,10 @@
                 <p th:if="${#fields.hasErrors('numeroIscrizioneAlbo')}" th:errors="*{numeroIscrizioneAlbo}"></p>
                 <!--Per messaggio di errore-->
             </div>
-            <div class="form genere">
+            <br>
+            <br>
+            <div class="form genere" id="sologenere">
+
                 <label for="genere">Genere:</label>
                 <input type="radio" class="form-check-input" id="maschio" name="genere" value="M" th:field="*{sesso}">
                 <label class="form-check-label" for="maschio">Maschio</label>
@@ -161,7 +169,8 @@
                 <input type="radio" class="form-check-input" id="altro" name="genere" value="A" th:field="*{sesso}">
                 <label class="form-check-label" for="altro">Altro</label>
             </div>
-
+            <br>
+            <br>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="terms" required>
                 <label class="form-check-label" for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
@@ -230,14 +239,16 @@
     <div id="pagamentoPopup" class="popup">
     <div class="contenutoPopup">
         <span id="chiudiPopup">&times;</span>
-        <h2> Metodo di pagamento: PayPal </h2>
+        <h3> Metodo di pagamento: PayPal </h3>
         <br>
-        <h3> Inserisci i dati di pagamento </h3>
+        <h4> Inserisci i dati di pagamento </h4>
+        <br>
         <label for="email">Email:</label>
         <br>
         <input type="email" id="campo1" class="form-control" required>
         <label for="password">Password:</label>
         <input type="password" class="form-control" id="campo2" required>
+        <hr>
         <button class="btn" id="pagamentoButton"> Procedi al pagamento </button>
 
 
