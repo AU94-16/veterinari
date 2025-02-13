@@ -122,7 +122,7 @@ button[type="submit"] {
             <option value="">-- Seleziona un Proprietario --</option>
             <option th:each="proprietario : ${proprietari}"
                     th:value="${proprietario.id}"
-                    th:text="${proprietario.nome + ' ' + proprietario.cognome + ' (' + proprietario.codiceFiscale + ')'}">
+                    th:text="${proprietario.nome ' (' + proprietario.codiceFiscale + ')'}">
             </option>
         </select>
     </div>
@@ -133,11 +133,11 @@ button[type="submit"] {
         <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
     </div>
 
-    <div class="mb-3">
+ <!--   <div class="mb-3">
         <label for="cognome">Cognome</label>
         <input type="text" id="cognome" class="form-control" th:field="*{cognome}" required>
         <div class="text-danger" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></div>
-    </div>
+    </div>-->
 
     <div class="mb-3">
         <label for="codiceFiscale">Codice Fiscale</label>
