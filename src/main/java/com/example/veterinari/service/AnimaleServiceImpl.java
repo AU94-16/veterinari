@@ -56,12 +56,14 @@ public class AnimaleServiceImpl implements AnimaleService {
         animale.setSesso(sesso);
         animale.setPeso(Float.parseFloat(peso));
         // per la fotografia dell'animale
-        try {
-            String formato = fotografia.getContentType();
-            String fotografiaCodificata = "data:" + formato + ";base64," + Base64.getEncoder().encodeToString(fotografia.getBytes());
-            animale.setFotografia(fotografiaCodificata);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        if(fotografia != null && !fotografia.isEmpty()) {
+            try {
+                String formato = fotografia.getContentType();
+                String fotografiaCodificata = "data:" + formato + ";base64," + Base64.getEncoder().encodeToString(fotografia.getBytes());
+                animale.setFotografia(fotografiaCodificata);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
         animale.setAnnoDiNascita(annoDiNascita);
         animale.setColore(colore);
