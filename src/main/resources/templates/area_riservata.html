@@ -72,7 +72,7 @@
                        placeholder="Inserisci valore...">
                 <button class="btn btn-primary">Cerca</button>
                 <!-- Bottone per inserire un nuovo animale -->
-                <a href="/inserisci_animale" class="btn btn-success">Inserisci Animale</a>
+                <a th:href="@{/registrazione_animale}" class="btn btn-success">Inserisci Animale</a>
             </div>
         </form>
     </div>
@@ -90,7 +90,7 @@
                     <div class="row g-0">
                         <!-- Immagine (1/3) -->
                         <div class="col-4">
-                            <img th:src="@{immagini/user_animale.jpg}" class="img-fluid rounded-start"
+                            <img th:src="@{${animale.fotografia == null ? 'immagini/user_animale.jpg' : animale.fotografia}}" class="img-fluid rounded-start"
                                  style="height: 100px; object-fit: cover;" th:alt="'Foto di ' + ${animale.nome}">
                         </div>
                         <!-- Info (2/3) -->

@@ -14,7 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/registrazione-animale")
+@RequestMapping("/registrazione_animale")
 public class RegistrazioneAnimaleController {
 
 
@@ -41,7 +41,7 @@ public class RegistrazioneAnimaleController {
 
             // Recupera la lista dei proprietari esistenti per la selezione
             model.addAttribute("proprietari", proprietarioService.elencoProprietario());
-            return "registrazione-animale";
+            return "registrazione_animale";
         }
 
 
@@ -62,7 +62,7 @@ public class RegistrazioneAnimaleController {
             // Se ci sono errori di validazione, torna al form con i messaggi di errore + riprende elenco proprietari
             if (animaleResult.hasErrors() || (idProprietario == null && proprietarioResult.hasErrors())) {
                 model.addAttribute("proprietari", proprietarioService.elencoProprietario());
-                return "registrazione-animale";
+                return "registrazione_animale";
             }
 
             // Se è stato selezionato un proprietario esistente - associa proprietario e salva
