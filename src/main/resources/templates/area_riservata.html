@@ -26,7 +26,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
         <!-- Logo a sinistra -->
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" th:href="@{/area_riservata}">
             <img src="immagini/scritta_logo.png" alt="vet_clinic">
         </a>
 
@@ -39,6 +39,12 @@
         <!-- Contenuto della navbar -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/profilo_vet}">IL MIO PROFILO</a>
+                </li>
+                <li class="separator">
+                    |
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="accedi.html">LOG OUT</a>
                 </li>

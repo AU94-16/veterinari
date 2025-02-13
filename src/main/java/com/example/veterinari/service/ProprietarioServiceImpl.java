@@ -29,4 +29,5 @@ public class ProprietarioServiceImpl implements ProprietarioService {
         return proprietarioDao.findById(id).get();
     }
 
+
 }
