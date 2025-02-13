@@ -39,7 +39,7 @@ public class RegistrazioneAnimaleController {
             model.addAttribute("animale", new Animale());
             model.addAttribute("proprietario", new Proprietario());
 
-            // Recupera la lista dei proprietari esistenti per la selezione
+            // Recupera la lista dei proprietari esistenti per Select
             model.addAttribute("proprietari", proprietarioService.elencoProprietario());
             return "registrazione_animale";
         }
@@ -63,6 +63,11 @@ public class RegistrazioneAnimaleController {
             if (animaleResult.hasErrors() || (idProprietario == null && proprietarioResult.hasErrors())) {
                 model.addAttribute("proprietari", proprietarioService.elencoProprietario());
                 return "registrazione_animale";
+            }
+
+            // Imposta valore di default per peso se non è presente
+            if (animale.getPeso() == null || animale.getPeso() <= 0) {
+                animale.setPeso(0.0f);  // Imposta un valore predefinito di 0 (o altro valore valido)
             }
 
             // Se è stato selezionato un proprietario esistente - associa proprietario e salva
