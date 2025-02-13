@@ -17,7 +17,7 @@ Database: XAMPP
 
 Clona il repository
 
-git clone https://github.com/tuo-utente/VetCareHub.git
+git clone https://github.com/AU94-16/veterinari
 
 Importa il progetto in IntelliJ IDEA
 
@@ -25,7 +25,7 @@ Configura il database (modifica il file application.properties con i dettagli de
 
 Avvia l'applicazione
 
-Apri il browser e vai su http://localhost:8080
+Apri il browser e vai su localhost:8080
 
 ## Features
 
