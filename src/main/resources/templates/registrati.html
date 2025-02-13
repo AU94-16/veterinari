@@ -82,6 +82,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
+
         #chiudiPopup {
             cursor: pointer;
             float: right;
@@ -104,6 +105,15 @@
             width: 50px;
             height: 50px;
         }
+        .paypal {
+            position: absolute;
+            left: 10px;
+            top: 9%;
+            transform: translateY(-50%);
+            width: 60px; /* Regola la dimensione */
+            height: auto;
+        }
+
 
 
 
@@ -237,26 +247,26 @@
     // per il popup del pagamento
     document.body.insertAdjacentHTML("beforeend", `
     <div id="pagamentoPopup" class="popup">
-    <div class="contenutoPopup">
-        <span id="chiudiPopup">&times;</span>
-        <h3> Metodo di pagamento: PayPal </h3>
-        <br>
-        <h4> Inserisci i dati di pagamento </h4>
-        <br>
-        <label for="email">Email:</label>
-        <br>
-        <input type="email" id="campo1" class="form-control" required>
-        <label for="password">Password:</label>
-        <input type="password" class="form-control" id="campo2" required>
-        <hr>
-        <button class="btn" id="pagamentoButton"> Procedi al pagamento </button>
+        <div class="contenutoPopup">
+            <img src="immagini/paypal.png" alt="paypal" class="paypal">
+            <span id="chiudiPopup">&times;</span>
+            <h3> Metodo di pagamento: PayPal </h3>
 
-
-        <div id="loadingIndicator" class="loading-indicator">
-            <img src="immagini/loading.gif" alt="Caricamento..." />
+            <br>
+            <h4> Inserisci i dati di pagamento </h4>
+            <br>
+            <label for="email">Email:</label>
+            <br>
+            <input type="email" id="campo1" class="form-control" required>
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="campo2" required>
+            <hr>
+            <button class="btn" id="pagamentoButton"> Procedi al pagamento </button>
+            <div id="loadingIndicator" class="loading-indicator">
+                <img src="immagini/loading.gif" alt="Caricamento..." />
+            </div>
         </div>
     </div>
-</div>
     `);
 
     document.getElementById("pagamentoCheck").addEventListener("change", function (event) {
