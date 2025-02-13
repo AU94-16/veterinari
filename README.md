@@ -21,7 +21,7 @@ git clone https://github.com/AU94-16/veterinari
 
 Importa il progetto in IntelliJ IDEA
 
-Configura il database (modifica il file application.properties con i dettagli del tuo database)
+Importa database
 
 Avvia l'applicazione
 
