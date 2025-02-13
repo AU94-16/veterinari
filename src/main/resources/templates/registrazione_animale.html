@@ -8,99 +8,34 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" th:href="@{css/registrazione_animale.css}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
-    <style>
-        body {
-    font-family: "Playfair Display", serif;
-    background-color: #f8f9fa;
-    padding: 20px;
-}
+            crossorigin="anonymous">
+    </script>
 
-.btn {
-    color: #eeeeee;
-    font-size: 17px;
-    height: 60px;
-    width: 100%;
-    background-color: #2d3f4e;
-    border: none;
-    border-radius: 12px;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background-color: #1e2b36;
-}
-
-.form-genere {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 17px;
-}
-
-.form-genere label {
-    cursor: pointer;
-}
-
-.form-label {
-    font-weight: bold;
-}
-
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 500px;
-    max-width: 1200px;
-    border-radius: 36px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: #e2dfdf;
-}
-
-form {
-    width: 100%;
-    padding: 16px;
-    font-size: 16px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-button[type="submit"] {
-    margin-top: 20px;
-}
-
-    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-    <div class="container">
-        <a class="navbar-brand" th:href="@{/area_riservata}">
-            <img src="immagini/scritta_logo.png" alt="vet_clinic">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <!-- Logo a sinistra -->
+        <a class="navbar-brand" th:href="@{/registrazione_animale}">
+            <img th:src="@{immagini/scritta_logo.png}" alt="vet_clinic">
         </a>
-
+        <!-- Bottone Mobile -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Menu -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/profilo_vet}">IL MIO PROFILO</a>
                 </li>
-                <li class="separator">
-                    |
-                </li>
+                <li class="separator">|</li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/area_riservata/logout}">LOG OUT</a>
                 </li>
@@ -108,45 +43,40 @@ button[type="submit"] {
         </div>
     </div>
 </nav>
-<div class="container mt-5">
-<h2 class="mb-4">Aggiungi un nuovo proprietario e il suo animale</h2>
 
-<form th:action="@{/registrazioneAnimale/aggiungi}" method="post" th:object="${animale}">
-    <h3>Dati Proprietario</h3>
-
-    <h3>Seleziona un Proprietario Esistente o Aggiungine uno Nuovo</h3>
-
-    <div class="mb-3">
-        <label for="proprietarioEsistente">Proprietario Esistente</label>
-        <select id="proprietarioEsistente" name="proprietario.id" class="form-control">
-            <option value="">-- Seleziona un Proprietario --</option>
-            <option th:each="proprietario : ${proprietari}"
-                    th:value="${proprietario.id}"
-                    th:text="|${proprietario.nome} (${proprietario.codiceFiscale})|">
-            </option>
-        </select>
+<!-- Contenitore principale -->
+<div class="container mt-4">
+    <div id="titolo" class="text-center w-100">
+        <h1 class="mb-4">Aggiungi un nuovo proprietario e il suo animale</h1>
     </div>
 
+    <form th:action="@{/registrazioneAnimale/aggiungi}" method="post" th:object="${animale}">
+        <h3>Dati Proprietario</h3>
 
-    <div class="mb-3">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" class="form-control" th:field="*{proprietario.nome}" required>
+        <h4>Seleziona proprietario esistente o aggiungine uno nuovo</h4>
+
+        <div class="mb-3">
+           <label for="proprietarioEsistente">Proprietario Esistente</label>
+            <select id="proprietarioEsistente" name="proprietario.id" class="form-control">
+                <option value="">-- Seleziona Proprietario --</option>
+                <option th:each="proprietario : ${proprietari}"
+                        th:value="${proprietario.id}"
+                        th:text="|${proprietario.nome} (${proprietario.codiceFiscale})|">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" class="form-control" th:field="*{proprietario.nome}" required>
         <div class="text-danger" th:if="${#fields.hasErrors('proprietario.nome')}" th:errors="*{proprietario.nome}"></div>
-    </div>
 
- <!--   <div class="mb-3">
-        <label for="cognome">Cognome</label>
-        <input type="text" id="cognome" class="form-control" th:field="*{cognome}" required>
-        <div class="text-danger" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></div>
-    </div>-->
-
-    <div class="mb-3">
-        <label for="codiceFiscale">Codice Fiscale</label>
-        <input type="text" id="codiceFiscale" class="form-control" th:field="*{proprietario.codiceFiscale}" required>
+            <div class="mb-3">
+            <label for="codiceFiscale">Codice Fiscale</label>
+            <input type="text" id="codiceFiscale" class="form-control" th:field="*{proprietario.codiceFiscale}" required>
         <div class="text-danger" th:if="${#fields.hasErrors('proprietario.codiceFiscale')}" th:errors="*{proprietario.codiceFiscale}"></div>
-    </div>
 
-    <div class="mb-3">
+                <div class="mb-3">
         <label for="telefono">Telefono</label>
         <input type="text" id="telefono" class="form-control" th:field="*{proprietario.telefono}" required>
         <div class="text-danger" th:if="${#fields.hasErrors('proprietario.telefono')}" th:errors="*{proprietario.telefono}"></div>
@@ -201,7 +131,10 @@ button[type="submit"] {
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">Aggiungi</button>
+            </div>
+        </div>
 </form>
 
+</div>
 </body>
 </html>
