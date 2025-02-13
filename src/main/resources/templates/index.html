@@ -119,7 +119,7 @@
             width: 100%; /* L'immagine occupa tutta la larghezza del contenitore */
             max-width: 500px; /* Larghezza massima dell'immagine */
             height: auto;
-            border-radius: 10px;
+            border-radius: 36px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra sottile */
             margin-top: 20px; /* Spazio sopra l'immagine */
         }
@@ -134,16 +134,31 @@
             font-size: 10px;
         }
 
+        .navbar-collapse {
+                display: flex;
+                justify-content: space-between; /* Distribuisce lo spazio tra gli elementi */
+                align-items: center; /* Allinea verticalmente gli elementi */
+            }
+
+            .navbar-nav {
+                margin-left: auto; /* Spinge la lista a destra */
+            }
+
         /* Responsive adjustments */
         @media (min-width: 768px) {
             .home-container {
                 text-align: left; /* Allinea il testo a sinistra su schermi più grandi */
             }
+
             .home-image {
                 text-align: right; /* Allinea l'immagine a destra su schermi più grandi */
             }
 
+
+
         }
+
+
     </style>
 </head>
 <body>
@@ -158,17 +173,18 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/accedi}">LOG IN</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/registrati}">SIGN IN</a>
                 </li>
             </ul>
         </div>
+
     </div>
 </nav>
 
