@@ -42,9 +42,11 @@ Apri il browser e inserisci nella barra di ricerca: localhost:8080
 | Background | ![#F8F8F8](https://placehold.co/15x15/F8F8F8/F8F8F8.png) #F8F8F8 |
 
 Logo:
+
 ![logo_vet.png](src/main/resources/static/immagini/logo_vet.png)
 
 Scritta:
+
 ![scritta_logo_sfondo.png](src/main/resources/static/immagini/scritta_logo_sfondo.png)
 
 ## Authors
