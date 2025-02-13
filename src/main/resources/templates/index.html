@@ -117,11 +117,14 @@
         /* Image Styles */
         .home-image img {
             width: 100%; /* L'immagine occupa tutta la larghezza del contenitore */
+
             max-width: 500px; /* Larghezza massima dell'immagine */
             height: auto;
             border-radius: 36px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra sottile */
             margin-top: 20px; /* Spazio sopra l'immagine */
+            object-fit: contain; /* immagine si adatta al contenitore */
+            object-position: center; /* immagine si adatta al contenitore */
         }
 
         /* Footer Styles */
@@ -152,6 +155,7 @@
 
             .home-image {
                 text-align: right; /* Allinea l'immagine a destra su schermi più grandi */
+
             }
 
 
