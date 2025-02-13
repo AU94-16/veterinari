@@ -74,14 +74,15 @@ public class ProfiloAnimaleController {
                               @RequestParam String razza,
                               @RequestParam char sesso,
                               @RequestParam String peso,
-                              @RequestParam(required = false) MultipartFile fotografia,
+                              @RequestParam(required = false) MultipartFile foto,
                               @RequestParam Year annoDiNascita,
                               @RequestParam(required = false) String colore,
                               @RequestParam char sterilizzato,
                               @RequestParam(required = false) String allergie,
                               Model model) {
+        System.out.println(foto);
         Animale animale = animaleService.datiAnimale(id);
-        animaleService.modificaAnimale(animale, nome, specie, razza, sesso, peso, fotografia, annoDiNascita, colore, sterilizzato, allergie);
+        animaleService.modificaAnimale(animale, nome, specie, razza, sesso, peso, foto, annoDiNascita, colore, sterilizzato, allergie);
         return "redirect:/profilo_animale?id=" + id;
     }
 
