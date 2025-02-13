@@ -25,7 +25,7 @@ Configura il database (modifica il file application.properties con i dettagli de
 
 Avvia l'applicazione
 
-Apri il browser e vai su localhost:8080
+Apri il browser e inserisci nella barra di ricerca: localhost:8080
 
 ## Features
 
