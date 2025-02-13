@@ -53,7 +53,7 @@
 <div class="container">
     <div class="mr-6 profile-container ">
 
-        <img src="immagini/user_animale.jpg" alt="Immagine Profilo" class="profile-img">
+        <img src="@{${animale.fotografia == null ? 'immagini/user_animale.jpg' : animale.fotografia}}"  alt="Immagine Profilo" class="profile-img">
 
         <form th:object="${animale}" method="post">
 
@@ -116,6 +116,12 @@
                     <div class="info-group">
                         <label for="allergie">Allergie </label>
                         <input type="text" th:field="*{allergie}" class="form-control" id="allergie">
+                    </div>
+                </div>
+                <div class="mb-3 info-row">
+                    <div class="info-group">
+                        <label for="fotografia">Foto Profilo Animale</label>
+                        <input type="file" name="fotografia" class="form-control" id="fotografia">
                     </div>
                 </div>
                 <div class="mb-4 info-row" id="bottoniContainer">

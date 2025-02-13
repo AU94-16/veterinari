@@ -118,8 +118,7 @@
 
 <div class="profile-container">
     <!-- Caricamento immagine profilo -->
-    <img th:src="${veterinario.fotoProfilo != null ? veterinario.fotoProfilo : 'immagini/user.jpg'}"
-         alt="Immagine Profilo" class="profile-img">
+    <img th:src="@{${veterinario.fotoProfilo == null ? 'immagini/user.jpg' : veterinario.fotoProfilo}}" alt="Immagine Profilo" class="profile-img">
     <form th:action="@{/profilo_vet/modifica}" method="post" enctype="multipart/form-data">
         <div class="mb-3 profile-info">
             <h2> IL TUO PROFILO </h2>
