@@ -5,13 +5,13 @@ VetCare Hub è una web app progettata per veterinari, che consente di gestire gl
 
 ## Tech
 
-Backend: Spring Framework
+Backend: Spring
 
 Frontend: HTML, CSS, JavaScript
 
 IDE: IntelliJ IDEA
 
-Database: Gestione delle informazioni di animali, proprietari, veterinari e storico degli interventi
+Database: XAMPP
 
 ## Installation
 
