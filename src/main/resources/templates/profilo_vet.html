@@ -131,8 +131,7 @@
                 </div>
                 <div class="info-group">
                     <label for="numeroAlbo">Numero iscrizione all’albo</label>
-                    <input type="text" th:value="${veterinario.numeroIscrizioneAlbo}" class="form-control"
-                           id="numeroAlbo" readonly>
+                    <input type="text" th:value="${veterinario.numeroIscrizioneAlbo}" class="form-control" id="numeroAlbo" readonly>
                 </div>
             </div>
 
@@ -140,8 +139,7 @@
                 <div class="info-group">
                     <label for="sesso">Sesso</label>
                     <input type="text"
-                           th:value="${veterinario.sesso == 'M' ? 'Maschio' : veterinario.sesso=='F' ? 'Femmina' : 'Altro'}"
-                           class="form-control" id="sesso" readonly>
+                           th:value="${veterinario.sesso == 'M' ? 'Maschio' : veterinario.sesso=='F' ? 'Femmina' : 'Altro'}" class="form-control" id="sesso" readonly>
                 </div>
                 <div class="mb-3 info-group">
                     <label for="email">Email</label>
@@ -156,8 +154,7 @@
                 </div>
                 <div class="info-group">
                     <label for="telefono">Telefono</label>
-                    <input type="text" name="telefono" th:value="${veterinario.telefono}" class="form-control"
-                           id="telefono">
+                    <input type="text" name="telefono" th:value="${veterinario.telefono}" class="form-control" id="telefono">
 
                 </div>
             </div>
