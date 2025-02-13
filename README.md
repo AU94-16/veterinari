@@ -40,14 +40,14 @@ Apri il browser e vai su http://localhost:8080
 
 ## Color Reference
 
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Example Color | ![#2D3F4E](https://via.placeholder.com/10/0a192f?text=+) #2D3F4E |
-| Example Color | ![#C98040](https://via.placeholder.com/10/f8f8f8?text=+) #C98040 |
-| Example Color | ![#F8F8F8](https://via.placeholder.com/10/00b48a?text=+) #F8F8F8 |
+| Color      | Hex                                                                |
+|------------| ------------------------------------------------------------------ |
+| Navbar     | ![#2D3F4E](https://placehold.co/15x15/2D3F4E/2D3F4E.png) #2D3F4E |
+| Details    | ![#C98040](https://placehold.co/15x15/C98040/C98040.png) #C98040 |
+| Background | ![#F8F8F8](https://placehold.co/15x15/F8F8F8/F8F8F8.png) #F8F8F8 |
 
 
-![Logo](https://github.com/AU94-16/veterinari/tree/main/src/main/resources/static/immagini/logo_vet.png "Logo Title Text 1")
+![alt text](https://github.com/AU94-16/veterinari/tree/main/src/main/resources/static/immagini/logo_vet.png "Logo Title Text 1")
 
 
 ## Authors
