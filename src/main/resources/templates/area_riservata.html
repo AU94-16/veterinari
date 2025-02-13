@@ -9,7 +9,7 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link href="css/style.css" rel="stylesheet"/>
+    <link href="../static/css/area_riservata.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
@@ -24,10 +24,10 @@
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <div class="container-fluid">
+    
         <!-- Logo a sinistra -->
         <a class="navbar-brand" href="index.html">
-            <img src="immagini/scritta_logo.png" alt="vet_clinic">
+            <img src="../static/immagini/scritta_logo.png" alt="vet_clinic">
         </a>
 
         <!-- Bottone per il menu mobile-->
@@ -44,45 +44,60 @@
                 </li>
             </ul>
         </div>
-    </div>
+    
 </nav>
 
 <!--Pagina demo con barra di ricerca e card-->
 
-<div class="container mt-4">
+<div class="container-fluid mt-4">
     <div id="benvenuto"><h1 class="text-center" th:text="|Salve ${veterinario.nome} !|">Benvenuto!</h1></div>
 
-    <!-- Barra di ricerca per gli animali -->
-    <div class="mb-4">
-        <form action="/area_riservata" method="get">
-            <select id="campo" name="campo">
-                <option value="">Tutti</option>
-                <option value="nome">Nome Animale</option>
-                <option value="specie">Specie</option>
-                <option value="proprietario">Nome Proprietario</option>
-            </select>
-            <input type="text" id="valore" name="valore" class="form-control mt-2" placeholder="Inserisci valore...">
-            <button class="btn btn-primary mt-2">Cerca</button>
-        </form>
-    </div>
+  <!-- Contenitore della barra di ricerca -->
+<div class="mb-4 d-flex justify-content-center">
+    <form action="/area_riservata" method="get" class="d-flex flex-wrap align-items-center gap-2">
+        <!-- Select per i filtri -->
+        <select id="campo" name="campo" class="form-select form-select-lg shadow-sm">
+            <option value="">Tutti</option>
+            <option value="nome">Nome Animale</option>
+            <option value="specie">Specie</option>
+            <option value="proprietario">Nome Proprietario</option>
+        </select>
+        <!-- Input di ricerca -->
+        <input type="text" id="valore" name="valore" class="form-control form-control-lg shadow-sm"
+            placeholder="Inserisci valore...">
+        <!-- Pulsante di ricerca -->
+        <button class="btn btn-primary btn-lg px-4">Cerca</button>
+    </form>
+</div>
 
     <!-- Messaggio se non ci sono animali -->
     <div th:if="${animali.isEmpty()}" class="alert alert-warning text-center">
         Nessun animale trovato in cura.
     </div>
 
-    <!-- Lista degli animali in cura -->
+<!-- Lista degli animali in cura -->
+<div class="container">
     <div class="row" id="animalCards">
-        <div th:each="animale : ${animali}" class="col-md-4">
-            <div class="card mb-3">
-                <img src="immagini/user_animale.jpg" class="card-img-top" th:alt="'Foto di ' + ${animale.nome}">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${animale.nome}"></h5>
-                    <p class="card-text">Specie: <span th:text="${animale.specie}"></span></p>
-                    <p class="card-text">Proprietario:
-                        <span th:text="${animale.proprietario.nome} + ' ' + ${animale.proprietario.cognome}"></span>
-                    </p>
-                    <a th:href="@{profilo_animale(id=${animale.id})}" class="btn btn-info">Dettagli</a>
+        <div th:each="animale : ${animali}" class="col-12 col-sm-6 col-md-3">
+            <div class="card h-100 shadow-lg">
+                <div class="row g-0 d-flex align-items-center">
+                    <!-- Colonna per l'immagine (1/3) -->
+                    <div class="col-4">
+                        <img src="../static/immagini/user_animale.jpg" 
+                             class="img-fluid rounded-start animal-img"
+                             th:alt="'Foto di ' + ${animale.nome}">
+                    </div>
+                    <!-- Colonna per le informazioni (2/3) -->
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${animale.nome}"></h5>
+                            <p class="card-text">Specie: <span th:text="${animale.specie}"></span></p>
+                            <p class="card-text">Proprietario:
+                                <span th:text="${animale.proprietario.nome} + ' ' + ${animale.proprietario.cognome}"></span>
+                            </p>
+                            <a th:href="@{profilo_animale(id=${animale.id})}" class="btn btn-info w-100">Dettagli</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
