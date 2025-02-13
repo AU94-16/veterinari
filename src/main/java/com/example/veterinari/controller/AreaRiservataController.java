@@ -66,34 +66,11 @@ public class AreaRiservataController {
     }
 
 
-    /*//Registrazione animale
-    @PostMapping("/registrazioneAnimale")
-    public String formManager(@RequestParam String nome,
-                              @RequestParam String specie,
-                              @RequestParam String razza,
-                              @RequestParam char sesso,
-                              @RequestParam MultipartFile fotografia,
-                              @RequestParam Year annoDiNascita,
-                              @RequestParam String colore,
-                              @RequestParam char sterilizzato,
-                              @RequestParam String allergie,
-                              @RequestParam int idProprietario) {
-        Animale animale = new Animale();
-        animaleService.registrazioneAnimale(animale, nome, specie, razza, sesso, fotografia, annoDiNascita, colore, sterilizzato, allergie, idProprietario);
-        return "redirect:/";
-    }*/
-
     @PostMapping("/registrazioneProprietario")
     public  String formManager(@ModelAttribute Proprietario proprietario) {
         proprietarioService.inserisciProprietario(proprietario);
         return "redirect:/";
     }
 
-    //Ricerca
-    /*@GetMapping("/ricerca")
-    public List<Animale> ricercaAnimale(@RequestParam String campo,
-                                        @RequestParam String valore){
-        return animaleService.ricercaAnimale(campo, valore);
-    }*/
 
 }
