@@ -14,16 +14,17 @@
     <style>
         body {
             font-family: "Codec Pro", serif;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .profile-container {
             display: flex;
             min-height: 500px;
-            min-width: 1000px;
-            max-width: 1200px;
+            max-height: 700px;
+            min-width: 1400px;
+            max-width: 1600px;
             border-radius: 36px;
-            margin: 30px auto;
+            margin: 30px auto 0 auto;
             background-color: #e2dfdf;
 
         }
@@ -48,11 +49,16 @@
             width: 50px;
         }
 
-        form{
+        form {
+            margin: 40px 20px 0 20px;
             width: 100%;
-            padding: 8px;
             font-size: 16px;
             align-items: center;
+
+        }
+
+        form h2 {
+            margin-bottom: 20px;
         }
 
         .form-control {
@@ -63,9 +69,10 @@
         }
 
         @media (max-width: 768px) {
-            body{
+            body {
                 margin-top: 250px;
             }
+
             .profile-img {
                 flex-wrap: wrap;
                 margin-top: 20px;
@@ -74,6 +81,7 @@
                 border-radius: 36px;
                 object-fit: cover;
             }
+
             .profile-container {
                 flex-direction: column;
                 align-items: center;
@@ -94,7 +102,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="area_riservata.html">
             <img src="immagini/scritta_logo.png" alt="vet_clinic">
         </a>
 
@@ -112,7 +120,7 @@
     <!-- Caricamento immagine profilo -->
     <img th:src="${veterinario.fotoProfilo != null ? veterinario.fotoProfilo : 'immagini/user.jpg'}"
          alt="Immagine Profilo" class="profile-img">
-    <form th:action="@{/profilo_vet/modifica}" method="post" enctype="multipart/form-data" >
+    <form th:action="@{/profilo_vet/modifica}" method="post" enctype="multipart/form-data">
         <div class="mb-3 profile-info">
             <h2> IL TUO PROFILO </h2>
 
@@ -124,14 +132,17 @@
                 </div>
                 <div class="info-group">
                     <label for="numeroAlbo">Numero iscrizione all’albo</label>
-                    <input type="text" th:value="${veterinario.numeroIscrizioneAlbo}" class="form-control" id="numeroAlbo" readonly>
+                    <input type="text" th:value="${veterinario.numeroIscrizioneAlbo}" class="form-control"
+                           id="numeroAlbo" readonly>
                 </div>
             </div>
 
             <div class="mb-3 info-row">
                 <div class="info-group">
                     <label for="sesso">Sesso</label>
-                    <input type="text" th:value="${veterinario.sesso == 'M' ? 'Maschio' : veterinario.sesso=='F' ? 'Femmina' : 'Altro'}" class="form-control" id="sesso" readonly>
+                    <input type="text"
+                           th:value="${veterinario.sesso == 'M' ? 'Maschio' : veterinario.sesso=='F' ? 'Femmina' : 'Altro'}"
+                           class="form-control" id="sesso" readonly>
                 </div>
                 <div class="mb-3 info-group">
                     <label for="email">Email</label>
@@ -139,23 +150,24 @@
                 </div>
             </div>
 
-            <div class="info-row">
+            <div class="mb-3 info-row">
                 <div class="info-group">
                     <label for="citta">Città</label>
                     <input type="text" name="citta" th:value="${veterinario.citta}" class="form-control" id="citta">
                 </div>
                 <div class="info-group">
                     <label for="telefono">Telefono</label>
-                    <input type="text" name="telefono" th:value="${veterinario.telefono}" class="form-control" id="telefono">
+                    <input type="text" name="telefono" th:value="${veterinario.telefono}" class="form-control"
+                           id="telefono">
 
                 </div>
             </div>
-
-            <div class="info-group">
-                <label for="fotoProfilo">Foto Profilo</label>
-                <input type="file" name="fotoProfilo" class="form-control" id="fotoProfilo">
+            <div class="mb-3 info-row">
+                <div class="info-group">
+                    <label for="fotoProfilo">Foto Profilo</label>
+                    <input type="file" name="fotoProfilo" class="form-control" id="fotoProfilo">
+                </div>
             </div>
-
             <button type="submit" class="btn btn-primary mt-3">Salva</button>
         </div>
     </form>
