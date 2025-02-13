@@ -20,6 +20,7 @@
         .profile-container {
             display: flex;
             min-height: 500px;
+            min-width: 1000px;
             max-width: 1200px;
             border-radius: 36px;
             margin: 30px auto;
@@ -108,9 +109,8 @@
 
 <div class="profile-container">
     <!-- Caricamento immagine profilo -->
-    <img th:src="${veterinario.fotoProfilo != null ? veterinario.fotoProfilo : '../static/immagini/user.jpg'}"
+    <img th:src="${veterinario.fotoProfilo != null ? veterinario.fotoProfilo : 'static/immagini/user.jpg'}"
          alt="Immagine Profilo" class="profile-img">
-
     <form th:action="@{/profilo_vet/modifica}" method="post" enctype="multipart/form-data" >
         <div class="mb-3 profile-info">
             <h2> IL TUO PROFILO </h2>
