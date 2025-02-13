@@ -86,7 +86,7 @@
                     <h5 class="card-title" th:text="${animale.nome}"></h5>
                     <p class="card-text">Specie: <span th:text="${animale.specie}"></span></p>
                     <p class="card-text">Proprietario:
-                        <span th:text="${animale.proprietario.nome} + ' ' + ${animale.proprietario.cognome}"></span>
+                        <span th:text="${animale.proprietario.nome}"></span>
                     </p>
                     <a th:href="@{profilo_animale(id=${animale.id})}" class="btn btn-info">Dettagli</a>
                 </div>

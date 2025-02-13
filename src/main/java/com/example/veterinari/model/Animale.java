@@ -30,31 +30,29 @@ public class Animale {
     @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Razza non valida")
     private String razza;
 
-    // Sesso: solo 'M' o 'F'
+    // Sesso: solo 'M' o 'F' - gestione: select
     @Column
-    //@Pattern(regexp = "^[MF]$", message = "Sesso non valido")
     private char sesso;
 
-    // Fotografia: non deve essere vuoto
     @Column
     private String fotografia;
 
     // Peso: solo numeri positivi
     @Column
-    //@Pattern(regexp = "^\\d+(,\\d+)?$", message = "Peso non valido")
+    @Pattern(regexp = "^\\d+(\\.\\d+)?$", message = "Peso non valido")
     private Float peso;
 
-    // Colore: solo lettere e spazi
+    // Colore: solo lettere e spazi - permette stringhe vuote
     @Column
-    @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Colore non valido")
+    @Pattern(regexp = "^([A-Za-zÀ-ÿ ]+)?$", message = "Colore non valido")
     private String colore;
 
+    //Anno di Nascita: gestione:.html
     @Column(name="anno_di_nascita")
     private Year annoDiNascita;
 
-    // Sterilizzato: solo 'S' o 'N'
+    // Sterilizzato: solo 'S' o 'N'- gestione: select
     @Column
-    //@Pattern(regexp = "^[SN]$", message = "Sterilizzazione non valida")
     private char sterilizzato;
 
     @Column

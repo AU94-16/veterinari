@@ -20,7 +20,7 @@ public class Storico {
 
     // Tipo: solo lettere e spazi
     @Column
-    //@Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Tipo non valido")
+    @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Tipo non valido")
     private String tipo;
 
     // Nome: solo lettere e spazi

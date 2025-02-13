@@ -19,11 +19,6 @@ public class Proprietario {
     @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Nome non valido")
     private String nome;
 
-    // Cognome: solo lettere e spazi
-    @Column
-    @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Cognome non valido")
-    private String cognome;
-
     @Column
     private String indirizzo;
 
@@ -80,14 +75,6 @@ public class Proprietario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
     }
 
     public String getIndirizzo() {

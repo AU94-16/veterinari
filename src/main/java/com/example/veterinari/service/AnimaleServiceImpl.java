@@ -97,10 +97,12 @@ public class AnimaleServiceImpl implements AnimaleService {
 
             default: //case "proprietario"
                 // Dividiamo il valore in nome e cognome (separati da spazio)
-                String[] nomeCognome = valore.split(" ");
+
+                /*String[] nomeCognome = valore.split(" ");
                 String nome = nomeCognome[0];
-                String cognome = nomeCognome.length > 1 ? nomeCognome[1] : "";
-                return animaleDao.findByProprietarioAndVeterinarioId(nome, cognome, idVeterinario);
+                String cognome = nomeCognome.length > 1 ? nomeCognome[1] : "";*/
+
+                return animaleDao.findByProprietarioAndVeterinarioId(valore, idVeterinario);
         }
 
     }
