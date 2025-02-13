@@ -46,10 +46,11 @@ Apri il browser e vai su http://localhost:8080
 | Details    | ![#C98040](https://placehold.co/15x15/C98040/C98040.png) #C98040 |
 | Background | ![#F8F8F8](https://placehold.co/15x15/F8F8F8/F8F8F8.png) #F8F8F8 |
 
+Logo:
+![logo_vet.png](src/main/resources/static/immagini/logo_vet.png)
 
-![alt text](https://github.com/AU94-16/veterinari/tree/main/src/main/resources/static/immagini/logo_vet.png "Logo Title Text 1")
-
-
+Scritta:
+![scritta_logo_sfondo.png](src/main/resources/static/immagini/scritta_logo_sfondo.png)
 ## Authors
 
 - [@steph-05](https://github.com/steph-05)
