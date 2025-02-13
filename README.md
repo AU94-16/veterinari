@@ -2,6 +2,7 @@
 # VetCare Hub
 
 VetCare Hub è una web app progettata per veterinari, che consente di gestire gli animali a loro carico, tenendo traccia delle informazioni personali di ciascun animale e registrando uno storico degli interventi effettuati (vaccini o terapie).
+
 ## Tech
 
 Backend: Spring Framework
@@ -24,19 +25,13 @@ Configura il database (modifica il file application.properties con i dettagli de
 
 Avvia l'applicazione
 
-mvn spring-boot:run
-
-Accedi alla web app
 Apri il browser e vai su http://localhost:8080
+
 ## Features
 
 - Gestione degli animali: creazione e aggiornamento delle informazioni personali di ogni animale.
 - Storico interventi: Registrazione delle date e del tipo di intervento (vaccino o terapia).
 - Gestione utenti: I veterinari possono acquistare un account per accedere alla piattaforma e gestire i propri pazienti.
-
-
-
-
 
 ## Color Reference
 
@@ -51,6 +46,7 @@ Logo:
 
 Scritta:
 ![scritta_logo_sfondo.png](src/main/resources/static/immagini/scritta_logo_sfondo.png)
+
 ## Authors
 
 - [@steph-05](https://github.com/steph-05)
@@ -58,6 +54,7 @@ Scritta:
 - [@Luana-Giordano](https://github.com/Luana-Giordano)
 - [@n-emme](https://github.com/n-emme)
 - [@AU94-16](https://github.com/AU94-16)
+
 ## Contributing
 
 Se vuoi contribuire a VetCare Hub, sentiti libero di aprire una issue o una pull request su GitHub.
