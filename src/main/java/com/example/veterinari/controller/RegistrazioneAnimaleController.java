@@ -63,10 +63,6 @@ public class RegistrazioneAnimaleController {
 
         Veterinario veterinarioSession = (Veterinario) session.getAttribute("veterinario");
 
-     /*   if (animaleResult.hasErrors()) {
-            model.addAttribute("proprietari", proprietarioService.elencoProprietario());
-            return "registrazione_animale";
-        }*/
 
         System.out.println("dati animale: " + animale);
         System.out.println("ID Proprietario esistente: " + id);
