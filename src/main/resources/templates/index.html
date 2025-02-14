@@ -80,6 +80,7 @@
         }
 
         .home-container h1 {
+            text-align: center;
             max-width: 90%;
             font-size: 35px; /* Dimensione del titolo */
             color: #343a40; /* Nero */
@@ -89,6 +90,7 @@
         }
 
         .home-container p {
+            text-align: center;
             font-family: "Lora", serif;
             font-optical-sizing:auto;
             font-weight: 400;
@@ -96,6 +98,7 @@
             font-size: 22px; /* Dimensione del paragrafo */
             color: #6c757d; /* Grigio medio */
             margin-bottom: 30px;
+            margin-right: 10px;
             line-height: 1.6; /* migliora leggibilità */
         }
 
@@ -105,11 +108,12 @@
             border-color: #2d3f4e;
             color: #fff;
             padding: 12px 60px;
-            margin: auto;
+            text-align: center;
             font-size: 1.2rem;
             border-radius: 5px;
             transition: background-color 0.3s ease;
             width: auto; /* Adatta la larghezza al contenuto */
+            margin-right: 30px;
         }
 
         .btn-primary:hover {
@@ -153,7 +157,11 @@
         /* Responsive */
         @media (min-width: 768px) {
             .home-container {
-                text-align: left; /* Allinea il testo a sinistra su schermi più grandi */
+                text-align: center; /* Allinea il testo a sinistra su schermi più grandi */
+            }
+
+            .btn-primary {
+            margin-left: 20px
             }
 
             .home-image {
@@ -196,7 +204,7 @@
 </nav>
 
 <!-- Hero Section -->
-<div class="container home-container" style="text-align: center;">
+<div class="container home-container">
     <div class="row align-items-center">
         <div class="col-md-6">
             <h1>GESTISCI LE CURE CON PRECISIONE E SEMPLICITA'</h1>
