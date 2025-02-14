@@ -43,7 +43,7 @@
                     |
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="accedi.html">LOG OUT</a>
+                    <a class="nav-link" th:href="@{/area_riservata/logout}">LOG OUT</a>
                 </li>
             </ul>
         </div>
@@ -54,7 +54,9 @@
 <div class="container-fluid mt-4">
     <!-- Titolo -->
     <div id="benvenuto" class="text-center w-100">
-        <h1 class="text-center" th:text="|Salve ${veterinario.nome} !|">Benvenuto!</h1>
+        <h1 class="text-center">Area Riservata:
+            <span th:text="${veterinario.sesso == 'M' ? 'Dott. ' : (veterinario.sesso == 'F' ? 'Dott.ssa ' : 'Dott.') } + ${veterinario.nome} + ' ' + ${veterinario.cognome}"></span>
+        </h1>
     </div>
 
     <!-- Barra di ricerca -->

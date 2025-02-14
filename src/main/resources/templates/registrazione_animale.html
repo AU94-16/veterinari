@@ -13,9 +13,21 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous">
     </script>
-
+    <!--funzione per mostra del pulsante-->
+    <script>
+        function mostra() {
+            let nuovoProprietarioDiv = document.getElementById("nuovoProprietario");
+            let proprietarioEsistente = document.getElementById("proprietarioEsistente").value;
+            if (proprietarioEsistente) {
+                nuovoProprietarioDiv.style.display = "none";
+            } else {
+                nuovoProprietarioDiv.style.display = "block";
+            }
+        }
+    </script>
 </head>
 <body>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
@@ -50,91 +62,113 @@
         <h1 class="mb-4">Aggiungi proprietario e il suo animale</h1>
     </div>
 
-    <form th:action="@{/registrazioneAnimale/aggiungi}" method="post" th:object="${animale}">
-        <h3>Dati Proprietario</h3>
-
-        <h4>Seleziona proprietario esistente o aggiungine uno nuovo</h4>
-
-        <div class="mb-3">
-           <label for="proprietarioEsistente">Proprietario Esistente</label>
-            <select id="proprietarioEsistente" name="proprietario.id" class="form-control">
-                <option value="">-- Seleziona Proprietario --</option>
-                <option th:each="proprietario : ${proprietari}"
-                        th:value="${proprietario.id}"
-                        th:text="|${proprietario.nome} (${proprietario.codiceFiscale})|">
-                </option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" class="form-control" th:field="*{proprietario.nome}" required>
-        <div class="text-danger" th:if="${#fields.hasErrors('proprietario.nome')}" th:errors="*{proprietario.nome}"></div>
-
-            <div class="mb-3">
-            <label for="codiceFiscale">Codice Fiscale</label>
-            <input type="text" id="codiceFiscale" class="form-control" th:field="*{proprietario.codiceFiscale}" required>
-        <div class="text-danger" th:if="${#fields.hasErrors('proprietario.codiceFiscale')}" th:errors="*{proprietario.codiceFiscale}"></div>
-
-                <div class="mb-3">
-        <label for="telefono">Telefono</label>
-        <input type="text" id="telefono" class="form-control" th:field="*{proprietario.telefono}" required>
-        <div class="text-danger" th:if="${#fields.hasErrors('proprietario.telefono')}" th:errors="*{proprietario.telefono}"></div>
-    </div>
-
-    <h3 class="mt-4">Dati Animale</h3>
-
-    <div class="mb-3">
-        <label for="nomeAnimale">Nome</label>
-        <input type="text" id="nomeAnimale" class="form-control" th:field="*{nome}" required>
-        <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
-    </div>
-
-    <div class="mb-3">
-        <label for="specie">Specie</label>
-        <input type="text" id="specie" class="form-control" th:field="*{specie}" required>
-        <div class="text-danger" th:if="${#fields.hasErrors('specie')}" th:errors="*{specie}"></div>
-    </div>
-
-    <div class="mb-3">
-        <label for="razza">Razza</label>
-        <input type="text" id="razza" class="form-control" th:field="*{razza}" required>
-        <div class="text-danger" th:if="${#fields.hasErrors('razza')}" th:errors="*{razza}"></div>
-    </div>
-
-    <div class="mb-3">
-        <label for="sesso">Sesso</label>
-        <select id="sesso" class="form-control" th:field="*{sesso}" required>
-            <option value="M">Maschio</option>
-            <option value="F">Femmina</option>
+    <form method="post" th:object="${animale}" enctype="multipart/form-data">
+        <h3>Proprietario</h3>
+        <label for="proprietarioEsistente">Seleziona un Proprietario Esistente</label>
+        <select id="proprietarioEsistente" name="proprietario.id" class="form-control" onchange="mostra()">
+            <option value="">-- Seleziona un Proprietario --</option>
+            <option th:each="proprietario : ${proprietari}" th:value="${proprietario.id}"
+                    th:text="|${proprietario.nome} (${proprietario.codiceFiscale})|">
+            </option>
         </select>
-        <div class="text-danger" th:if="${#fields.hasErrors('sesso')}" th:errors="*{sesso}"></div>
-    </div>
 
-    <div class="mb-3">
-        <label for="annoDiNascita">Anno di Nascita</label>
-        <input type="number" id="annoDiNascita" class="form-control" th:field="*{annoDiNascita}" step="1" required>
-        <div class="text-danger" th:if="${#fields.hasErrors('annoDiNascita')}" th:errors="*{annoDiNascita}"></div>
-    </div>
+        <button type="button" class="btn btn-secondary mt-3" onclick="mostra()">Aggiungi Nuovo Proprietario</button>
 
-    <div class="mb-3">
-        <label for="colore">Colore</label>
-        <input type="text" id="colore" class="form-control" th:field="*{colore}" required>
-        <div class="text-danger" th:if="${#fields.hasErrors('colore')}" th:errors="*{colore}"></div>
-    </div>
-
-    <div class="mb-3">
-        <label for="peso">Peso (Kg)</label>                                 <!--th:value gestisce l'errore null di float-->
-        <input type="number"  min="0" id="peso" class="form-control" th:field="*{peso}" required>
-
-        <div class="text-danger" th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}"></div>
-    </div>
-
-    <button type="submit" class="btn btn-primary mt-3">Aggiungi</button>
+        <div id="nuovoProprietario" style="display:none; margin-top: 20px;">
+            <h4>Nuovo Proprietario</h4>
+            <div class="mb-3">
+                <label for="nome">Nome</label>
+                <input type="text" name="proprietario.nome" class="form-control" th:field="*{proprietario.nome}">
+            </div>
+            <!-- <div class="mb-3">
+                 <label for="cognome">Cognome</label>
+                 <input type="text" id="cognome" class="form-control" th:field="*{proprietario.cognome}">
+             </div>-->
+            <div class="mb-3">
+                <label for="indirizzo">Indirizzo</label>
+                <input type="text" name="proprietario.indirizzo" class="form-control"
+                       th:field="*{proprietario.indirizzo}">
+            </div>
+            <div class="mb-3">
+                <label for="citta">Città</label>
+                <input type="text" name="proprietario.citta" class="form-control" th:field="*{proprietario.citta}">
+            </div>
+            <div class="mb-3">
+                <label for="CAP">CAP</label>
+                <input type="text" name="proprietario.CAP" class="form-control" th:field="*{proprietario.CAP}">
+            </div>
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" name="proprietario.email" class="form-control" th:field="*{proprietario.email}">
+            </div>
+            <div class="mb-3">
+                <label for="telefono">Telefono</label>
+                <input type="text" name="proprietario.telefono" class="form-control"
+                       th:field="*{proprietario.telefono}">
             </div>
         </div>
-</form>
 
+
+        <h3 class="mt-4">Dati Animale</h3>
+
+        <div class="mb-3">
+            <label for="nomeAnimale">Nome</label>
+            <input type="text" id="nomeAnimale" class="form-control" th:field="*{nome}" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="specie">Specie</label>
+            <input type="text" id="specie" class="form-control" th:field="*{specie}" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('specie')}" th:errors="*{specie}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="razza">Razza</label>
+            <input type="text" id="razza" class="form-control" th:field="*{razza}" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('razza')}" th:errors="*{razza}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="sesso">Sesso</label>
+            <select id="sesso" class="form-control" th:field="*{sesso}" required>
+                <option value="M">Maschio</option>
+                <option value="F">Femmina</option>
+            </select>
+            <div class="text-danger" th:if="${#fields.hasErrors('sesso')}" th:errors="*{sesso}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="annoDiNascita">Anno di Nascita</label>
+            <input type="number" id="annoDiNascita" class="form-control" th:field="*{annoDiNascita}" step="1" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('annoDiNascita')}" th:errors="*{annoDiNascita}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="colore">Colore</label>
+            <input type="text" id="colore" class="form-control" th:field="*{colore}" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('colore')}" th:errors="*{colore}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="peso">Peso (Kg)</label>
+            <input type="number" min="0" id="peso" class="form-control" th:field="*{peso}" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}"></div>
+        </div>
+
+        <div class="mb-3 info-row">
+            <div class="info-group">
+                <label for="fotografia">Foto Profilo Animale</label>
+                <input type="file" name="foto" class="form-control" id="fotografia">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Aggiungi</button>
+
+    </form>
 </div>
+
+
+
 </body>
 </html>

@@ -81,9 +81,11 @@
 
         .home-container h1 {
             max-width: 90%;
-            font-size: 40px; /* Dimensione del titolo */
+            font-size: 35px; /* Dimensione del titolo */
             color: #343a40; /* Nero */
             margin-bottom: 20px;
+            margin-left: 20px;
+
         }
 
         .home-container p {
@@ -97,12 +99,13 @@
             line-height: 1.6; /* migliora leggibilità */
         }
 
-        /* Button Styles */
+        /* Button Styles registrati */
         .btn-primary {
             background-color: #2d3f4e; /* Blu principale */
             border-color: #2d3f4e;
             color: #fff;
-            padding: 12px 30px;
+            padding: 12px 60px;
+            margin: auto;
             font-size: 1.2rem;
             border-radius: 5px;
             transition: background-color 0.3s ease;
@@ -117,11 +120,14 @@
         /* Image Styles */
         .home-image img {
             width: 100%; /* L'immagine occupa tutta la larghezza del contenitore */
+
             max-width: 500px; /* Larghezza massima dell'immagine */
             height: auto;
             border-radius: 36px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra sottile */
             margin-top: 20px; /* Spazio sopra l'immagine */
+            object-fit: contain; /* immagine si adatta al contenitore */
+            object-position: center; /* immagine si adatta al contenitore */
         }
 
         /* Footer Styles */
@@ -144,7 +150,7 @@
                 margin-left: auto; /* Spinge la lista a destra */
             }
 
-        /* Responsive adjustments */
+        /* Responsive */
         @media (min-width: 768px) {
             .home-container {
                 text-align: left; /* Allinea il testo a sinistra su schermi più grandi */
@@ -152,6 +158,7 @@
 
             .home-image {
                 text-align: right; /* Allinea l'immagine a destra su schermi più grandi */
+
             }
 
 
@@ -189,7 +196,7 @@
 </nav>
 
 <!-- Hero Section -->
-<div class="container home-container">
+<div class="container home-container" style="text-align: center;">
     <div class="row align-items-center">
         <div class="col-md-6">
             <h1>GESTISCI LE CURE CON PRECISIONE E SEMPLICITA'</h1>
