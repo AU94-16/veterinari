@@ -28,8 +28,8 @@ public class Proprietario {
     private String citta;
 
     // Codice Fiscale: regex per il formato corretto
-    @Column
-    @Pattern(regexp = "^[A-Z]{6}[0-9]{8}[A-Z0-9]{2}[A-Z]{1}$", message = "Codice Fiscale non valido")
+    @Column(name = "codice_fiscale")
+    @Pattern(regexp = "[A-Z]{6}[0-9]{2}[A-Z0-9]{7}[A-Z]{1}$", message = "Codice Fiscale non valido")
     private String codiceFiscale;
 
     // CAP: solo 5 numeri
@@ -49,7 +49,6 @@ public class Proprietario {
 
     // Sesso: solo 'M' o 'F'
     @Column
-    @Pattern(regexp = "^[MF]$", message = "Sesso non valido")
     private char sesso;
 
     @OneToMany

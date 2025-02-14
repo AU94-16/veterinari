@@ -17,7 +17,7 @@ public interface AnimaleService {
     Animale datiAnimale(int id);
 
     // metodo di registrazione
-    void registrazioneAnimale(Animale animale);
+    void registrazioneAnimale(Animale animale, MultipartFile fotografia);
 
     // metodo per la modifica di un animale a cui passiamo i dati recuperati tramite il form di registrazione dell'animale, metodo usato anche per la modifica dei campo
     void modificaAnimale(Animale animale, String nome, String specie, String razza, char sesso, String peso, MultipartFile fotografia, Year annoDiNascita, String colore, char sterilizzato, String allergie);
