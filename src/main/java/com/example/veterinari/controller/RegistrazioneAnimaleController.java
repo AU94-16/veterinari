@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/registrazione_animale")
@@ -32,7 +33,7 @@ public class RegistrazioneAnimaleController {
 
             // Controllo login
             if (veterinario == null) {
-                return "redirect:/accedi"; // Reindirizza se non loggato
+                return "redirect:/accedi";
             }
 
             // Aggiunge al modello un nuovo animale e un nuovo proprietario
@@ -45,47 +46,61 @@ public class RegistrazioneAnimaleController {
         }
 
 
-        @PostMapping
-        public String formManager(@Valid @ModelAttribute Animale animale,
-                                  BindingResult animaleResult,
-                                  @RequestParam(value = "proprietarioEsistente", required = false) Integer idProprietario,
-                                  @Valid @ModelAttribute Proprietario proprietario,
-                                  BindingResult proprietarioResult,
-                                  HttpSession session, Model model) {
+    @PostMapping
+    public String formManager(
+            @Valid @ModelAttribute("animale") Animale animale,
+            BindingResult animaleResult,
+            @RequestParam MultipartFile fotografia,
+            @RequestParam(value = "idProprietario", required = false) Integer id,
+            @RequestParam(value = "nome") String nomeProprietario,
+            @RequestParam String indirizzo,
+            @RequestParam String citta,
+            @RequestParam(value = "CAP") String cap,
+            @RequestParam String codiceFiscale,
+            @RequestParam String email,
+            @RequestParam String telefono,
+            HttpSession session, Model model) {
 
-            // Recupera il veterinario dalla sessione
-            Veterinario veterinario = (Veterinario) session.getAttribute("veterinario");
-            if (veterinario == null) {
-                return "redirect:/accedi";
-            }
-
-            // Se ci sono errori di validazione, torna al form con i messaggi di errore + riprende elenco proprietari
-            if (animaleResult.hasErrors() || (idProprietario == null && proprietarioResult.hasErrors())) {
-                model.addAttribute("proprietari", proprietarioService.elencoProprietario());
-                return "registrazione_animale";
-            }
-
-            // Imposta valore di default per peso se non è presente
-            if (animale.getPeso() == null || animale.getPeso() <= 0) {
-                animale.setPeso(0.0f);  // Imposta un valore predefinito di 0 (o altro valore valido)
-            }
-
-            // Se è stato selezionato un proprietario esistente - associa proprietario e salva
-            if (idProprietario != null && idProprietario > 0) {
-                Proprietario proprietarioEsistente = proprietarioService.datiProprietario(idProprietario);
-                animale.setProprietario(proprietarioEsistente);
-            } else {
-                // Se viene inserito un nuovo proprietario - associa proprietario e salva
-                proprietarioService.inserisciProprietario(proprietario);
-                animale.setProprietario(proprietario);
-            }
+        Veterinario veterinarioSession = (Veterinario) session.getAttribute("veterinario");
 
 
-            // Associa il veterinario e salva
-            animale.setVeterinario(veterinario);
-            animaleService.registrazioneAnimale(animale);
-            return "redirect:/area_riservata";
+        System.out.println("dati animale: " + animale);
+        System.out.println("ID Proprietario esistente: " + id);
+
+
+                //Gestione proprietario
+        Proprietario proprietario;
+
+        if (id != null && id > 0) {
+            // Proprietario esistente
+            System.out.println("prop esistente");
+            proprietario = proprietarioService.datiProprietario(id);
+            animale.setProprietario(proprietario);
+
+        } else if (nomeProprietario != null && !nomeProprietario.isEmpty()) {
+            // Nuovo proprietario
+            System.out.println("prop nuovo");
+            proprietario = new Proprietario();
+            proprietario.setNome(nomeProprietario);
+            proprietario.setIndirizzo(indirizzo);
+            proprietario.setCitta(citta);
+            proprietario.setCAP(cap);
+            proprietario.setCodiceFiscale(codiceFiscale);
+            proprietario.setEmail(email);
+            proprietario.setTelefono(telefono);
+
+            proprietarioService.inserisciProprietario(proprietario);
+            animale.setProprietario(proprietario);
+        } else {
+            model.addAttribute("proprietari", proprietarioService.elencoProprietario());
+            return "registrazione_animale";
         }
+
+        animale.setVeterinario(veterinarioSession);
+        animaleService.registrazioneAnimale(animale, fotografia);
+        return "redirect:/area_riservata";
     }
+}
+
 
 

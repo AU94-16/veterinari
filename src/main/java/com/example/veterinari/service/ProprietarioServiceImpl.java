@@ -15,8 +15,9 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 
     @Override
     public void inserisciProprietario(Proprietario proprietario) {
-
+        System.out.println("Proprietario prima del salvataggio: " + proprietario); // Log
         proprietarioDao.save(proprietario);
+        System.out.println("Proprietario salvato correttamente: " + proprietario); // Log
     }
 
     @Override
