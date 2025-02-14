@@ -52,10 +52,19 @@
 
 <!-- Pagina demo con barra di ricerca e card -->
 <div class="container-fluid mt-4">
+
+    <!--div di alert a comparsa se i campi del profilo veterinario incompleti / #string.isEmpty() per gestire anche i null-->
+    <div class="d-flex justify-content-end">
+        <div th:if="${#strings.isEmpty(veterinario.fotoProfilo) or #strings.isEmpty(veterinario.citta) or #strings.isEmpty(veterinario.telefono)}"
+             id="alertProfile" class="alert alert-warning alert-dismissible fade show mt-3" role="alert" style="max-width: 380px;">
+            Ricorda di completare il tuo <a th:href="@{/profilo_vet}" style="color: #a88064;">Profilo</a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
     <!-- Titolo -->
     <div id="benvenuto" class="text-center w-100" th:switch="${veterinario.sesso}">
         <h1 class="text-center">Area Riservata:
-            <span ></span>
             <span th:case="${'M'}" >Dott. </span>
             <span th:case="${'F'}" >Dott.ssa </span>
             <span th:case="${'A'}" >Dott.* </span>
