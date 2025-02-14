@@ -14,110 +14,179 @@
             crossorigin="anonymous"></script>
     <style>
         body {
-
-        }
-
-        .form-control {
-            font-family: Playfair Display, serif;
-        }
-
-        .btn {
-            color: #eeeeee;
-            font-size: 17px;
-            height: 60px;
-            width: 568px;
-            background-color: #2d3f4e;
-        }
-
-        .form.genere {
+            background-color: #f8f9fa; /* Grigio chiaro */
             display: flex;
-            width: 86%;
-            height: fit-content;
-            font-size: 17px;
-            margin: -70px 10px -60px 0;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 0;
+            padding-left: 0;
+            padding-right: 0;
         }
 
-        .form.genere label:first-of-type {
-            margin-right: 20px;
-            cursor: pointer;
+        .container {
+            padding-bottom: 60px;
+            /* da qui in poi modifiche per responsività */
+            width:100;
+            max-width: 1200px; /* Larghezza massima */
+            margin: 0 auto; /* Centrare il contenuto */
+            padding-left: 15px; /* Aggiungere un po' di spaziatura laterale */
+            padding-right: 15px;
         }
 
-        #sologenere {
-        padding: 20px;
-        }
+         .form-control {
+             font-family: Playfair Display, serif;
+         }
 
-        .form-check-input, .form-check-label {
-            cursor: pointer;
-        }
+         .btn {
+             color: #eeeeee;
+             font-size: 17px;
+             height: 60px;
+             width: 568px;
+             background-color: #2d3f4e;
+             max-width: 568px; /* per responsività */
+         }
 
-        .form-check-input {
-            margin-right: 5px;
-        }
+         .form.genere {
+             display: flex;
+             width: 100%;
+             height: fit-content;
+             font-size: 17px;
+             margin: -70px 10px -60px 0;
 
-        .form-check-label {
-            flex-grow: 1;
-        }
+         }
 
-        .form-check {
-            margin: 0 0 0 0;
-        }
+         .form.genere label:first-of-type {
+             margin-right: 20px;
+             cursor: pointer;
+         }
 
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            margin: auto;
-            width: 500px;
-            height: 500px;
+         #sologenere {
+         padding: 20px;
+         }
+
+         .form-check-input, .form-check-label {
+             cursor: pointer;
+         }
+
+         .form-check-input {
+             margin-right: 5px;
+         }
+
+         .form-check-label {
+             flex-grow: 1;
+         }
+
+         .form-check {
+             margin: 0 0 0 0;
+         }
+
+         .popup {
+             display: none;
+             position: fixed;
+             top: 0;
+             left: 0;
+             margin: auto;
+             width: 500px;
+             height: 500px;
+             text-align: center;
+
+             justify-content: center;
+             align-items: center;
+         }
+
+         .contenutoPopup {
+             background: white;
+             padding: 20px;
+             border-radius: 8px;
+             text-align: center;
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+         }
+
+
+         #chiudiPopup {
+             cursor: pointer;
+             float: right;
+             font-size: 30px;
+             font-weight: bold;
+             color: red;
+         }
+
+         /* stile per l'indicatore di caricamento */
+         .loading-indicator {
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             transform: translate(-50%, -50%);
+             display: none;
+             z-index: 1000;
+         }
+
+         .loading-indicator img {
+             width: 50px;
+             height: 50px;
+         }
+
+         .paypal {
+             position: absolute;
+             left: 10px;
+             top: 15%;
+             transform: translateY(-50%);
+             width: 100px; /* Regola la dimensione */
+             height: auto;
+         }
+
+         /* Footer Styles */
+
+        footer {
+            background-color: #2d3f4e;
+            color: white;
             text-align: center;
-
-            justify-content: center;
-            align-items: center;
+            padding: 10px 0;
+            margin-top: auto; /* Spinge il footer in fondo */
+            font-size: 10px;
+            width: 100%;
         }
 
-        .contenutoPopup {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
+        /* stili per il logo responsive */
+        .logo {
             text-align: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
         }
 
-
-        #chiudiPopup {
-            cursor: pointer;
-            float: right;
-            font-size: 30px;
-            font-weight: bold;
-            color: red;
-        }
-
-        /* stile per l'indicatore di caricamento */
-        .loading-indicator {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-            z-index: 1000;
-        }
-
-        .loading-indicator img {
-            width: 50px;
-            height: 50px;
-        }
-
-        .paypal {
-            position: absolute;
-            left: 10px;
-            top: 15%;
-            transform: translateY(-50%);
-            width: 100px; /* Regola la dimensione */
+        .logo img {
+            max-width: 100px; /* Larghezza massima del logo */
             height: auto;
+        }
+
+
+        /* Stili per il form responsivo */
+        .form {
+            margin-top: 20px;
+        }
+
+        .name-container {
+            display: flex;
+            flex-direction: column; /* Impila gli input su schermi piccoli */
+        }
+
+        .name-container input {
+            margin-bottom: 10px; /* Aggiunge spazio tra gli input impilati */
+        }
+
+
+        /* Media query per schermi più piccoli */
+        @media (min-width: 768px) {
+            .name-container {
+                flex-direction: row; /* Rimane in orizzontale su schermi medi e grandi */
+                justify-content: space-between; /* Distribuisce lo spazio tra gli input */
+            }
+
+            .name-container input {
+                width: 48%; /* Imposta la larghezza per affiancare gli input */
+            }
         }
 
 
@@ -201,6 +270,10 @@
     </div>
 </div>
 
+<!-- Footer -->
+<footer>
+    <p>© 2025 Vet Clinic. All rights reserved.</p>
+</footer>
 
 
 
@@ -313,6 +386,7 @@
 });
 
 </script>
+
 
 
 </body>
