@@ -10,7 +10,6 @@
     background-color: #2d3f4e;
 }
 
-
 #navbarNav {
     margin-right: 35px;
 }
@@ -71,6 +70,7 @@
     .card-body {
         padding: 15px;
     }
+
 
     /* Responsive */
     @media (max-width: 768px) {
