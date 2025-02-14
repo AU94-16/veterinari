@@ -1,0 +1,200 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    min-height: 80px; /* Altezza minima */
+    background-color: #2d3f4e;
+}
+
+
+#navbarNav {
+    margin-right: 35px;
+}
+
+#navbarNav a {
+    font-size: 20px;
+    color: #eeeeee;
+}
+
+.navbar-brand img{
+    width: 50%;
+    height: auto;
+}
+
+/*
+.logo {
+    position: absolute;
+    top: 49px;
+    right: 195px;
+}
+
+.logo img {
+    width: 130px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+} */
+
+/* Generale */
+body {
+    font-family: "Codec Pro", serif;
+    background-color: #f8f9fa;
+    padding-top: 90px;
+}
+
+/* --- FORM E CONTENITORE --- */
+.container {
+    max-width: 1200px;
+     margin: auto;
+        padding: 20px;
+}
+
+/* Stile form */
+form {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* Stile titolo */
+h1 {
+    width: 100%;
+    text-align: center;
+}
+
+/* Pulsanti */
+.btn {
+    color: #eeeeee;
+    font-size: 17px;
+    height: 60px;
+    width: 100%;
+    background-color: #2d3f4e;
+    border: none;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #1e2b36;
+}
+
+/* --- LAYOUT RESPONSIVE --- */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .separator {
+        display: none; /* Nasconde la barra "|" su mobile */
+    }
+
+    .container {
+        padding: 10px; /* Meno spazio su tablet */
+    }
+
+    .form-control {
+        font-size: 15px; /* Riduce font input */
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .navbar-brand img.logo {
+        width: 100px; /* Ridimensiona il logo su mobile */
+    }
+
+    .navbar-toggler {
+        border: none;
+    }
+
+    .container {
+        padding: 5px;
+    }
+
+    h1, h3 {
+        font-size: 22px; /* Rimpicciolisce titoli */
+        text-align: center;
+    }
+
+    .btn {
+        font-size: 16px;
+        height: 50px;
+    }
+
+    .form-control {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* Smartphone piccoli */
+@media (max-width: 480px) {
+    .navbar-brand img.logo {
+        width: 80px; /* Logo più piccolo */
+    }
+
+    .container {
+        padding: 5px;
+    }
+
+    h1, h3 {
+        font-size: 20px;
+    }
+
+    .btn {
+        font-size: 15px;
+        height: 45px;
+    }
+
+    .form-control {
+        font-size: 13px;
+        padding: 6px;
+    }
+}
+/*
+    .form-genere {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 17px;
+    }
+
+    .form-genere label {
+        cursor: pointer;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 500px;
+        max-width: 1200px;
+        border-radius: 36px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #e2dfdf;
+    }
+
+*/
+
+
+
+    button[type="submit"] {
+        margin-top: 20px;
+    }
+
