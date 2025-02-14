@@ -135,11 +135,12 @@
                 </div>
             </div>
 
-            <div class="mb-3 info-row">
+            <div class="mb-3 info-row" th:switch="${veterinario.sesso}">
                 <div class="info-group">
                     <label for="sesso">Sesso</label>
-                    <input type="text"
-                           th:value="${veterinario.sesso == 'M' ? 'Maschio' : veterinario.sesso=='F' ? 'Femmina' : 'Altro'}" class="form-control" id="sesso" readonly>
+                    <input type="text" class="form-control" name="sesso" readonly th:case="'M'" value="Maschio" />
+                    <input type="text" class="form-control" name="sesso" readonly th:case="'F'" value="Femmina" />
+                    <input type="text" class="form-control" name="sesso" readonly th:case="*" value="Altro" />
                 </div>
                 <div class="mb-3 info-group">
                     <label for="email">Email</label>

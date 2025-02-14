@@ -52,7 +52,7 @@ public class RegistrazioneAnimaleController {
             BindingResult animaleResult,
             @RequestParam MultipartFile fotografia,
             @RequestParam(value = "idProprietario", required = false) Integer id,
-            @RequestParam(value = "nome") String nomeProprietario,
+            @RequestParam String nomeProprietario,
             @RequestParam String indirizzo,
             @RequestParam String citta,
             @RequestParam(value = "CAP") String cap,
@@ -63,6 +63,9 @@ public class RegistrazioneAnimaleController {
 
         Veterinario veterinarioSession = (Veterinario) session.getAttribute("veterinario");
 
+      /*  if (animaleResult.hasErrors()) {
+            return "registrazione_animale";
+        }*/
 
         System.out.println("dati animale: " + animale);
         System.out.println("ID Proprietario esistente: " + id);

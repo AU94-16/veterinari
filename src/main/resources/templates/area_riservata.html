@@ -53,9 +53,13 @@
 <!-- Pagina demo con barra di ricerca e card -->
 <div class="container-fluid mt-4">
     <!-- Titolo -->
-    <div id="benvenuto" class="text-center w-100">
+    <div id="benvenuto" class="text-center w-100" th:switch="${veterinario.sesso}">
         <h1 class="text-center">Area Riservata:
-            <span th:text="${veterinario.sesso == 'M' ? 'Dott. ' : (veterinario.sesso == 'F' ? 'Dott.ssa ' : 'Dott.') } + ${veterinario.nome} + ' ' + ${veterinario.cognome}"></span>
+            <span ></span>
+            <span th:case="${'M'}" >Dott. </span>
+            <span th:case="${'F'}" >Dott.ssa </span>
+            <span th:case="${'A'}" >Dott.* </span>
+            <span th:text="${veterinario.nome} +' '+${veterinario.cognome} "></span>
         </h1>
     </div>
 

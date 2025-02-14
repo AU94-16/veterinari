@@ -39,7 +39,7 @@ public class RegistratiController {
             return "registrati";
         }
         veterinarioService.registrazioneVeterinario(veterinario);
-        return "redirect:/accedi";
+        return "redirect:/area_riservata";
     }
 
 }
