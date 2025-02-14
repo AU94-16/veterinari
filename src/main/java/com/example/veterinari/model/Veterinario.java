@@ -37,17 +37,16 @@ public class Veterinario {
 
     // Sesso: solo 'M' o 'F'
     @Column
-    //@Pattern(regexp = "^[MFA]$", message = "Sesso non valido")
     private char sesso;
 
     // Telefono: numeri telefonici italiani con prefisso opzionale
     @Column
-    @Pattern(regexp = "^(?:\\+39)?\\d{10}$", message = "Numero di telefono non valido")
+    @Pattern(regexp = "^(?:\\+39)?\\d{10}$|^$", message = "Numero di telefono non valido")
     private String telefono;
 
     // Città: solo lettere e spazi
     @Column
-    @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Città non valida")
+    @Pattern(regexp = "^[A-Za-zÀ-ÿ ]*$", message = "Città non valida")
     private String citta;
 
     // Numero di Iscrizione Albo: solo alfanumerico
