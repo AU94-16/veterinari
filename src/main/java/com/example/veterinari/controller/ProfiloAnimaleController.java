@@ -80,7 +80,6 @@ public class ProfiloAnimaleController {
                               @RequestParam char sterilizzato,
                               @RequestParam(required = false) String allergie,
                               Model model) {
-        System.out.println(foto);
         Animale animale = animaleService.datiAnimale(id);
         animaleService.modificaAnimale(animale, nome, specie, razza, sesso, peso, foto, annoDiNascita, colore, sterilizzato, allergie);
         return "redirect:/profilo_animale?id=" + id;

@@ -62,10 +62,10 @@
         <h1 class="mb-4">Aggiungi un nuovo proprietario e il suo animale</h1>
     </div>
 
-    <form method="post" th:object="${animale}" enctype="multipart/form-data">
+    <form method="post" th:object="${animale}"  enctype="multipart/form-data">
         <h3>Proprietario</h3>
         <label for="proprietarioEsistente">Seleziona un Proprietario Esistente</label>
-        <select id="proprietarioEsistente" name="proprietario.id" class="form-control" onchange="mostra()">
+        <select id="proprietarioEsistente" name="idProprietario" class="form-control" onchange="mostra()">
             <option value="">-- Seleziona un Proprietario --</option>
             <option th:each="proprietario : ${proprietari}" th:value="${proprietario.id}"
                     th:text="|${proprietario.nome} (${proprietario.codiceFiscale})|">
@@ -77,34 +77,32 @@
         <div id="nuovoProprietario" style="display:none; margin-top: 20px;">
             <h4>Nuovo Proprietario</h4>
             <div class="mb-3">
-                <label for="nome">Nome</label>
-                <input type="text" name="proprietario.nome" class="form-control" th:field="*{proprietario.nome}">
+                <label for="nomeProprietario">Nome</label>
+                <input type="text" name="nomeProprietario" class="form-control">
             </div>
-            <!-- <div class="mb-3">
-                 <label for="cognome">Cognome</label>
-                 <input type="text" id="cognome" class="form-control" th:field="*{proprietario.cognome}">
-             </div>-->
             <div class="mb-3">
                 <label for="indirizzo">Indirizzo</label>
-                <input type="text" name="proprietario.indirizzo" class="form-control"
-                       th:field="*{proprietario.indirizzo}">
+                <input type="text" name="indirizzo" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="citta">Città</label>
-                <input type="text" name="proprietario.citta" class="form-control" th:field="*{proprietario.citta}">
+                <input type="text" name="citta" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="CAP">CAP</label>
-                <input type="text" name="proprietario.CAP" class="form-control" th:field="*{proprietario.CAP}">
+                <input type="text" name="CAP" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="codiceFiscale">Codice Fiscale</label>
+                <input type="text" name="codiceFiscale" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="email">Email</label>
-                <input type="email" name="proprietario.email" class="form-control" th:field="*{proprietario.email}">
+                <input type="email" name="email" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="telefono">Telefono</label>
-                <input type="text" name="proprietario.telefono" class="form-control"
-                       th:field="*{proprietario.telefono}">
+                <input type="text" name="telefono" class="form-control">
             </div>
         </div>
 
@@ -112,8 +110,8 @@
         <h3 class="mt-4">Dati Animale</h3>
 
         <div class="mb-3">
-            <label for="nomeAnimale">Nome</label>
-            <input type="text" id="nomeAnimale" class="form-control" th:field="*{nome}" required>
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" class="form-control" th:field="*{nome}" required>
             <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
         </div>
 
@@ -140,7 +138,7 @@
 
         <div class="mb-3">
             <label for="annoDiNascita">Anno di Nascita</label>
-            <input type="number" id="annoDiNascita" class="form-control" th:field="*{annoDiNascita}" step="1" required>
+            <input type="number" id="annoDiNascita" class="form-control" th:field="*{annoDiNascita}" min="1990" step="1" required>
             <div class="text-danger" th:if="${#fields.hasErrors('annoDiNascita')}" th:errors="*{annoDiNascita}"></div>
         </div>
 
@@ -152,20 +150,21 @@
 
         <div class="mb-3">
             <label for="peso">Peso (Kg)</label>
-            <input type="number" min="0" id="peso" class="form-control" th:field="*{peso}" required>
+            <input type="number" name="peso" class="form-control" th:field="*{peso}" min="0.1" step="0.01" required>
             <div class="text-danger" th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}"></div>
         </div>
 
         <div class="mb-3 info-row">
             <div class="info-group">
                 <label for="fotografia">Foto Profilo Animale</label>
-                <input type="file" name="foto" class="form-control" id="fotografia">
+                <input type="file" name="fotografia" class="form-control" id="fotografia">
             </div>
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Aggiungi</button>
 
     </form>
+
 </div>
 
 

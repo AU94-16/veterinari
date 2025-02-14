@@ -43,9 +43,20 @@ public class AnimaleServiceImpl implements AnimaleService {
     }
 
     @Override
-    public void registrazioneAnimale(Animale animale) {
-
+    public void registrazioneAnimale(Animale animale, MultipartFile fotografia) {
+        // per la fotografia dell'animale
+        if(fotografia != null && !fotografia.isEmpty()) {
+            try {
+                String formato = fotografia.getContentType();
+                String fotografiaCodificata = "data:" + formato + ";base64," + Base64.getEncoder().encodeToString(fotografia.getBytes());
+                animale.setFotografia(fotografiaCodificata);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println("Animale prima del salvataggio: " + animale); // Log
         animaleDao.save(animale);
+        System.out.println("Animale salvato correttamente: " + animale); // Log
     }
 
     @Override

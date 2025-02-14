@@ -49,7 +49,6 @@ public class Proprietario {
 
     // Sesso: solo 'M' o 'F'
     @Column
-    @Pattern(regexp = "^[MF]$", message = "Sesso non valido")
     private char sesso;
 
     @OneToMany
