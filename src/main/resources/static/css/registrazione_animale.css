@@ -1,9 +1,17 @@
+/* General */
+body {
+     padding-top: 90px;
+     font-family: "Codec Pro", serif;
+    background-color: #f8f9fa; /* Leggero sfondo grigio */
+   ;
+}
+
 .navbar {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    min-height: 80px; /* Altezza minima */
+    min-height: 80px;
     background-color: #2d3f4e;
 }
 
@@ -22,179 +30,102 @@
     height: auto;
 }
 
-/*
-.logo {
-    position: absolute;
-    top: 49px;
-    right: 195px;
-}
 
-.logo img {
-    width: 130px;
-    height: auto;
-    border-radius: 50%;
-    object-fit: cover;
-} */
-
-/* Generale */
-body {
-    font-family: "Codec Pro", serif;
-    background-color: #f8f9fa;
-    padding-top: 90px;
-}
-
-/* --- FORM E CONTENITORE --- */
+/* Contenitore Principale */
 .container {
-    max-width: 1200px;
-     margin: auto;
-        padding: 20px;
-}
-
-/* Stile form */
-form {
-    width: 100%;
-    padding: 16px;
-    font-size: 16px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
+    max-width: 800px;
+    margin: 80px auto 20px; /* Centr0 il contenuto e aggiungo margini (80px top) per evitare sovrapposizione */
+    padding: 20px;
+    background-color: #fff;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* Ombra molto sottile */
 }
 
-/* Stile titolo */
-h1 {
-    width: 100%;
+#titolo h1 {
+    font-size: 25px:
+    color: #343a40;
+    margin-bottom: 1rem;
     text-align: center;
 }
 
-/* Pulsanti */
-.btn {
-    color: #eeeeee;
-    font-size: 17px;
-    height: 60px;
-    width: 100%;
-    background-color: #2d3f4e;
-    border: none;
-    border-radius: 12px;
-    transition: 0.3s;
+/* Form */
+form {
+    padding: 20px;
+    border: 1px solid #dee2e6; /* Bordo leggero */
+    border-radius: 5px;
+    background-color: #fff;
 }
 
-.btn:hover {
-    background-color: #1e2b36;
+h3 {
+    margin-top: 1.5rem; /* Aument0 lo spazio sopra gli h3 */
+    color: #343a40;
+    text-align: center;
 }
 
-/* --- LAYOUT RESPONSIVE --- */
+h4 {
+    margin-bottom: 1rem; /* Aumento lo spazio sotto gli h4 */
+    color: #6c757d;
+    font-size: 1.1rem; /* Aumento leggermente la dimensione del font degli h4 */
+    font-weight: normal; /* Rendo l'h4 meno in grassetto */
+    text-align: center;
+}
 
-/* Tablet */
-@media (max-width: 992px) {
-    .navbar-nav {
-        text-align: center;
+.form-control {
+    margin-bottom: 1rem; /* Aumento lo spazio sotto gli input */
+    border-radius: 4px;
+    border-color: #86b7fe; /* Colore del bordo */
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.text-danger {
+    font-size: 0.8rem;
+    color: #dc3545;
+}
+
+/* Button */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transizione fluida */
+    display: block; /* Forzo il bottone a occupare tutta la larghezza */
+    width: 100%; /* Bottone della stessa larghezza dell'input */
+    padding: 0.75rem; /* Aggiungo padding per l'altezza */
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-brand img {
+        height: 35px;
+    }
+
+    #titolo h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 15px;
+        margin-top: 70px; /* Regolo il margine top per evitare sovrapposizione */
     }
 
     .separator {
-        display: none; /* Nasconde la barra "|" su mobile */
+        display: none; /* Nascondo il separatore sui dispositivi mobili */
     }
 
-    .container {
-        padding: 10px; /* Meno spazio su tablet */
-    }
-
-    .form-control {
-        font-size: 15px; /* Riduce font input */
+    .navbar-nav {
+        text-align: center; /* Centro i link della navbar su dispositivi mobili */
     }
 }
-
-/* Mobile */
-@media (max-width: 768px) {
-    .navbar-brand img.logo {
-        width: 100px; /* Ridimensiona il logo su mobile */
-    }
-
-    .navbar-toggler {
-        border: none;
-    }
-
-    .container {
-        padding: 5px;
-    }
-
-    h1, h3 {
-        font-size: 22px; /* Rimpicciolisce titoli */
-        text-align: center;
-    }
-
-    .btn {
-        font-size: 16px;
-        height: 50px;
-    }
-
-    .form-control {
-        font-size: 14px;
-        padding: 8px;
-    }
-}
-
-/* Smartphone piccoli */
-@media (max-width: 480px) {
-    .navbar-brand img.logo {
-        width: 80px; /* Logo più piccolo */
-    }
-
-    .container {
-        padding: 5px;
-    }
-
-    h1, h3 {
-        font-size: 20px;
-    }
-
-    .btn {
-        font-size: 15px;
-        height: 45px;
-    }
-
-    .form-control {
-        font-size: 13px;
-        padding: 6px;
-    }
-}
-/*
-    .form-genere {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        font-size: 17px;
-    }
-
-    .form-genere label {
-        cursor: pointer;
-    }
-
-    .form-label {
-        font-weight: bold;
-    }
-
-    .profile-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 500px;
-        max-width: 1200px;
-        border-radius: 36px;
-        margin: 30px auto;
-        padding: 20px;
-        background-color: #e2dfdf;
-    }
-
-*/
-
-
-
-    button[type="submit"] {
-        margin-top: 20px;
-    }
-
