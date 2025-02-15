@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione</title>
+    <title> Registrati </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800&display=swap" rel="stylesheet">
@@ -35,6 +35,7 @@
             padding-right: 15px;
         }
 
+        /* immagini */
         .container-fluid img {
             margin-left: 35px;
             height: 53px;
@@ -53,6 +54,7 @@
             object-fit: cover;
         }
 
+        /* form */
         .form {
             flex: 1;
             padding: 80px;
@@ -63,6 +65,12 @@
         .form h2 {
             margin-bottom: 5px;
             font-size: 37px;
+        }
+
+        .form p {
+            margin-top: 0;
+            margin-bottom: 80px;
+            font-size: 15px;
         }
 
         .form-control {
@@ -83,6 +91,12 @@
             width: 100%;
             max-width: 568px;
             background-color: #2d3f4e;
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Blu più scuro al passaggio del mouse */
+            border-color: #0056b3;
+            color: #eeeeee;
         }
 
         .form.genere {
@@ -115,25 +129,25 @@
         }
 
         .form-check {
+            font-size: 15px;
             margin: 0 0 0 0;
         }
 
         .password-container {
             display: flex;
             align-items: center;
-
-
         }
 
+        /* occhietto password */
         .toggle-password {
             position: relative;
             right: 40px;
             cursor: pointer;
             font-size: 20px;
             color: #666;
-
         }
 
+        /* pop-up PAYPAL */
         .popup {
             display: none;
             position: fixed;
@@ -194,6 +208,7 @@
             height: auto;
         }
 
+        /* footer */
        footer {
             background-color: #2d3f4e;
             color: white;
@@ -202,16 +217,15 @@
             margin-top: auto;
             font-size: 10px;
             width: 100%;
-        }
+       }
 
-        /* Stili per il logo responsive */
-        .logo {
+        /* stili per il logo responsive */
+       .logo {
             position: absolute;
             top: 30px;
             right: 30px;
             z-index: 2;
-
-        }
+       }
 
         .logo img {
             max-width: 100px;
@@ -221,7 +235,7 @@
             object-fit: cover;
         }
 
-        /* Spazio tra form e immagine */
+        /* spazio tra form e immagine in responsive */
         @media (min-width: 992px) { /* Schermi medi e grandi */
             .container {
                 justify-content: space-between; /* Distribuisce lo spazio tra immagine e form */
@@ -248,8 +262,6 @@
         }
 
         @media (min-width: 768px) { /* shcermi più piccoli */
-
-
             .name-container {
                 flex-direction: row;
                 justify-content: space-between;
@@ -276,7 +288,7 @@
                 display: none;
             }
 
-            /* Centra l'immagine PayPal */
+            /* Centra il logo PayPal in popup responsive */
             .paypal {
                 position: static; /* Rimuove il posizionamento assoluto */
                 margin: 0 auto 10px; /* Margini automatici per centrare orizzontalmente */
@@ -308,12 +320,11 @@
     </div>
     <div class="form">
         <h2>Crea un account</h2>
-        <p>Sei già registrato? <a th:href="@{/accedi}">Accedi</a></p>
+        <p> Hai già un account? <a th:href="@{/accedi}">Accedi</a></p>
         <form th:object="${veterinario}" method="post">
             <div class="mb-3 name-container">
                 <input type="text" class="form-control" name="nome" placeholder="Nome" th:field="*{nome}" required>
                 <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
-
                 <input type="text" class="form-control" name="cognome" placeholder="Cognome" th:field="*{cognome}"
                        required>
                 <p th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></p>

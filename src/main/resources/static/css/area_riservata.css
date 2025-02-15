@@ -20,15 +20,53 @@
 }
 
 .navbar-brand img{
-    width: 50%;
-    height: auto;
+    max-height: 40px;
+
 }
+
+/* animazioni di login e signin */
+        .navbar-nav .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: #ffffff;
+            margin-left: 15px;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            left: 50%;
+            bottom: -3px;
+            transition: all 0.3s ease-out;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* toogler hamburger */
+        .navbar-toggler {
+            background-color: transparent;
+            border-color: trasparent;
+        }
+
+        .navbar-toggler:focus {
+            outline: none;
+            box-shadow: none; /* Eventualmente rimuove anche l'ombra */
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
 
 
     /* Generale */
     body {
         padding-top: 90px;
-        font-family: "Codec Pro", serif;
     }
 
     .container {

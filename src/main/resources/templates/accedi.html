@@ -3,34 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accesso</title>
+    <title> Accedi </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/style.css">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <style>
         body {
-            font-family: Playfair Display, serif;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 0;
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: 20px;
         }
 
+        .container {
+            padding-bottom: 60px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        /* immagini */
+        .container-fluid img {
+            margin-left: 35px;
+            height: 53px;
+        }
+
+        .image {
+            flex: 1;
+            height: 100%;
+        }
+
+        .image img {
+            display: none;
+            width: 100%;
+            height: 800px;
+            border-radius: 36px;
+            object-fit: cover;
+        }
+
+        /* form */
+         .form {
+            flex: 1;
+            padding: 80px;
+            width: auto;
+            margin-top: 20px;
+
+         }
+
+         .form h2 {
+            margin-bottom: 5px;
+            font-size: 37px;
+         }
+
+         .form p {
+            margin-top: 0;
+            margin-bottom: 80px;
+            font-size: 15px;
+        }
+
+        .form-control {
+            font-family: Playfair Display, serif;
+            height: 60px;
+            width: 100%;
+            max-width: 568px;
+            border-radius: 20px;
+            padding: 10px 15px;
+            background-color: #eeeeee;
+            font-size: 17px;
+        }
+
+
+
+        /* bottone accedi */
         .btn {
             color: #eeeeee;
             font-size: 17px;
             height: 60px;
-            width: 568px;
+            width: 100%;
+            max-width: 568px;
             background-color: #2d3f4e;
         }
+
+        .btn:hover {
+            background-color: #0056b3; /* Blu più scuro al passaggio del mouse */
+            border-color: #0056b3;
+            color: #eeeeee;
+        }
+
+        .password-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-password {
+            position: relative;
+            right: 40px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #666;
+        }
+
+        /* footer */
+       footer {
+            background-color: #2d3f4e;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+            font-size: 10px;
+            width: 100%;
+       }
+
+        /* stili per il logo responsive */
+       .logo {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 2;
+       }
+
+        .logo img {
+            max-width: 100px;
+            height: auto;
+            width: 100%;
+            border-radius: 50%; /* Rende il logo un cerchio */
+            object-fit: cover;
+        }
+
+        /* spazio tra form e immagine in responsive */
+        @media (min-width: 992px) { /* Schermi medi e grandi */
+            .container {
+                justify-content: space-between; /* Distribuisce lo spazio tra immagine e form */
+            }
+
+            .image {
+                margin-right: 30px; /* Aggiunge margine a destra dell'immagine */
+            }
+
+            .form {
+                margin-left: 30px; /* aggiunge margine a sinistra del form */
+            }
+        }
+
+        .fomr-control {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-control input {
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 568px;
+        }
+
+        @media (min-width: 768px) { /* shcermi più piccoli */
+            .form-control {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .form-control input {
+                width: 48%;
+                max-width: none;
+            }
+        }
+
+
+
+
+
     </style>
 </head>
 <body>
-<div class="container container">
+<div class="container">
     <div class="logo">
         <a th:href="@{/}"><img src="immagini/logo_vet.png" alt="Logo"></a>
-
     </div>
     <div class="image">
         <img src="immagini/log1.jpg" class="slide" alt="Slide 1">
@@ -47,10 +207,10 @@
     <div class="form">
         <div class="primo">
             <h2>Accedi</h2>
-            <p> Non sei registrato? <a th:href="@{/registrati}">Registrati</a></p>
+            <p> Non hai un account? <a th:href="@{/registrati}">Registrati</a></p>
         </div>
         <p th:if="${errore != null}">Accesso Negato! Credenziali errate</p> <!--Mex di errore-->
-        <form action="/accedi" method="post">
+        <form action="/accedi" method="post" >
             <div class="mb-3 ">
                 <input type="email" class="form-control" placeholder="Email" name="email" required>
             </div>
@@ -65,6 +225,13 @@
         </form>
     </div>
 </div>
+
+<!-- Footer -->
+<footer>
+    <p>© 2025 Vet Clinic. All rights reserved.</p>
+</footer>
+
+
 <script>
     document.getElementById("togglePassword").addEventListener("click", function () {
         const passwordField = document.getElementById("password");
