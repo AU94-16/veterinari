@@ -19,40 +19,37 @@
 
     <style>
 
+        .clearfix {
+            clear: both;
+        }
+
         body {
             background-color: #f8f9fa; /* Grigio chiaro */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            padding-top: 90px;
         }
 
-.clearfix {
-    clear: both;
-}
-.navbar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    min-height: 80px; /* Altezza minima */
-    background-color: #2d3f4e;
-}
+        /* stile navbar */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            min-height: 80px; /* Altezza minima */
+            background-color: #2d3f4e;
+        }
 
-#navbarNav {
-    margin-right: 35px;
-}
+        #navbarNav {
+            margin-right: 35px;
+        }
 
-#navbarNav a {
-    font-size: 20px;
-    color: #eeeeee;
-}
+        .navbar-brand img{
+            max-height: 40px;
+        }
 
-.navbar-brand img{
-    max-height: 40px;
-
-}
-
-/* animazioni di login e signin */
+        /* animazioni di login e signin */
         .navbar-nav .nav-link {
             position: relative;
             text-decoration: none;
@@ -91,65 +88,92 @@
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
-
-    /* Generale */
-    body {
-        padding-top: 90px;
-    }
-
-    .container {
-        max-width: 1200px;
-    }
-
-    /* Stile titolo */
-    h1 {
-        width: 100%;
-        text-align: center;
-    }
-
-    /* Form di ricerca */
-    form .form-control, form .form-select {
-        border-radius: 10px;
-        min-width: 200px;
-    }
-
-    form button {
-        border-radius: 10px;
-        font-weight: bold;
-    }
-
-    form .form-control:focus, form .form-select:focus {
-        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-    }
-
-    /* Card */
-    .card {
-        border-radius: 15px;
-        overflow: hidden;
-        transition: transform 0.2s ease-in-out;
-    }
-
-    .card:hover {
-        transform: scale(1.03);
-    }
-
-    .card-body {
-        padding: 15px;
-    }
-
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        form {
-            width: 90%;
+        .container {
+            max-width: 1200px;
+            margin-bottom: 40px;
         }
-    }
 
-    @media (max-width: 576px) {
-        .navbar {
-            padding: 10px;
+        /* Stile titolo */
+        #benvenuto {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30 px;
         }
-    }
+
+        .dott {
+            font-family: "Lora", serif;
+            font-optical-sizing:auto;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 30px;
+            color: #6c757d; /* Grigio medio */
+            line-height: 1.6; /* migliora leggibilità */
+        }
+
+        /* Form di ricerca */
+        form .form-control, form .form-select {
+            border-radius: 10px;
+            min-width: 200px;
+        }
+
+        form button {
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        form .form-control:focus, form .form-select:focus {
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Card */
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2d3f4e;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto; /* Spinge il footer in fondo */
+            font-size: 10px;
+        }
+
+        /* navbar dettagli */
+        .navbar-collapse {
+                display: flex;
+                justify-content: space-between; /* Distribuisce lo spazio tra gli elementi */
+                align-items: center; /* Allinea verticalmente gli elementi */
+            }
+
+            .navbar-nav {
+                margin-left: auto; /* Spinge la lista a destra */
+            }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            form {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 10px;
+            }
+        }
 
     </style>
 
@@ -191,21 +215,23 @@
     <!--div di alert a comparsa se i campi del profilo veterinario incompleti / #string.isEmpty() per gestire anche i null-->
     <div class="d-flex justify-content-end">
         <div th:if="${#strings.isEmpty(veterinario.fotoProfilo) or #strings.isEmpty(veterinario.citta) or #strings.isEmpty(veterinario.telefono)}"
-             id="alertProfile" class="alert alert-warning alert-dismissible fade show mt-3" role="alert" style="max-width: 380px;">
+             id="alertProfile" class="alert alert-warning alert-dismissible fade show mt-3" role="alert" style="max-width: 280px; font-size: 15px;">
             Ricorda di completare il tuo <a th:href="@{/profilo_vet}" style="color: #a88064;">Profilo</a>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
 
     <!-- Titolo -->
-    <div id="benvenuto" class="text-center w-100" th:switch="${veterinario.sesso}">
-        <h1 class="text-center">Area Riservata:
-            <span th:case="${'M'}" >Dott. </span>
-            <span th:case="${'F'}" >Dott.ssa </span>
-            <span th:case="${'A'}" >Dott.* </span>
-            <span th:text="${veterinario.nome} +' '+${veterinario.cognome} "></span>
-        </h1>
+    <div id="benvenuto" class="text-center w-100" th:switch="${veterinario.sesso}" >
+        <h3 class="text-center">Area Riservata:
+            <span th:case="${'M'}" class="dott">Dott. </span>
+            <span th:case="${'F'}" class="dott">Dott.ssa </span>
+            <span th:case="${'A'}" class="dott">Dott.* </span>
+            <span th:text="${veterinario.nome} +' '+${veterinario.cognome} " class="dott"></span>
+        </h3>
     </div>
+    <br>
+    <br>
 
     <!-- Barra di ricerca -->
     <div class="mb-4 w-100 d-flex flex-column align-items-center">
@@ -219,9 +245,9 @@
                 </select>
                 <input type="text" id="valore" name="valore" class="form-control shadow-sm"
                        placeholder="Inserisci valore...">
-                <button class="btn btn-primary">Cerca</button>
+                <button class="btn btn-primary" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">Cerca</button>
                 <!-- Bottone per inserire un nuovo animale -->
-                <a th:href="@{/registrazione_animale}" class="btn btn-success">Inserisci Animale</a>
+                <a th:href="@{/registrazione_animale}" class="btn btn-success" style="background-color: #83b86e; color: #ffffff; border-color: #83b86e;">Inserisci Animale</a>
             </div>
         </form>
     </div>
@@ -230,6 +256,9 @@
     <div th:if="${animali.isEmpty()}" class="alert alert-warning text-center">
         Nessun animale trovato in cura.
     </div>
+
+    <br>
+    <br>
 
     <!-- Lista degli animali in cura -->
     <div class="container">
@@ -246,11 +275,11 @@
                         <div class="col-8">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${animale.nome}"></h5>
-                                <p class="card-text">Specie: <span th:text="${animale.specie}"></span></p>
+                                <p class="card-text" >Specie: <span th:text="${animale.specie}" class="italicSchede"></span></p>
                                 <p class="card-text">Proprietario:
-                                    <span th:text="${animale.proprietario.nome}"></span>
+                                    <span th:text="${animale.proprietario.nome}" class="italicSchede"></span>
                                 </p>
-                                <a th:href="@{profilo_animale(id=${animale.id})}" class="btn btn-info btn-sm w-100">Dettagli</a>
+                                <a th:href="@{profilo_animale(id=${animale.id})}" class="btn btn-info btn-sm w-100" style="background-color: #2d3f4e; color: #ffffff; border-color: #2d3f4e;">Dettagli</a>
                             </div>
                         </div>
                     </div>
@@ -260,5 +289,11 @@
     </div>
 
 </div>
+
+<!-- Footer -->
+<footer>
+    <p>© 2025 Vet Clinic. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
