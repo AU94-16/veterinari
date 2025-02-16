@@ -135,12 +135,13 @@
 
         /* Form profilo */
         .profile-form {
-        flex: 2;
+            flex: 2;
             width: 100%;
             max-width: 100%;
             margin-right: 20px;
             overflow: hidden;
             margin-right: 20px; /* Spazio tra form e bordo destro */
+
         }
 
         /* Titolo input */
@@ -174,8 +175,9 @@
             font-size: 16px;
         }
 
-        h3{
+        h4{
             text-align: center;
+            padding-top: 10px;
         }
 
         /* Footer */
@@ -243,13 +245,14 @@
             }
         }
 
-/* Media Query per schermi molto piccoli */
-@media (max-width: 400px) {
-    .profile-img {
-        width: 80%;
-        margin-right: 0;
-    }
-}
+        /* Media Query per schermi molto piccoli */
+        @media (max-width: 400px) {
+            .profile-img {
+                width: 80%;
+                margin-right: 0;
+            }
+        }
+
     </style>
 
 </head>
@@ -292,7 +295,7 @@
 
             <div class=" mb-3 profile-info">
 
-                <h3>PROFILO ANIMALE</h3>
+                <h4>PROFILO ANIMALE</h4>
 
                 <div class=" mb-3 info-row">
                     <div class="info-group">
@@ -361,7 +364,7 @@
                     <div class="info-group">
                         <input type="hidden" th:field="*{proprietario.id}">
                         <button type="submit" class="btn btn-primary form-control w-100"
-                                id="modifica">Modifica
+                                id="modifica" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">Modifica
                         </button>
                     </div>
                     <div class="info-group">
@@ -390,7 +393,7 @@
                                 </button>
                                 <!-- Bottone per aprire il secondo modal -->
                                 <button type="button" class="btn btn-primary" id="btn-conferma"
-                                        data-bs-toggle="modal" data-bs-target="#confermaModal">SI, sono sicuro
+                                        data-bs-toggle="modal" data-bs-target="#confermaModal" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">SI, sono sicuro
                                 </button>
                             </div>
                         </div>
@@ -426,7 +429,7 @@
         <br>
 
         <div class="table-container">
-            <h3>DATI PROPRIETARIO</h3>
+            <h4>DATI PROPRIETARIO</h4>
 
             <table class="table">
                 <thead>
@@ -443,21 +446,21 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td th:text="${proprietario.nomeProprietario}"></td>
-                    <td th:text="${proprietario.indirizzo}"></td>
-                    <td th:text="${proprietario.citta}"></td>
-                    <td th:text="${proprietario.codiceFiscale}"></td>
-                    <td th:text="${proprietario.CAP}"></td>
-                    <td th:text="${proprietario.telefono}"></td>
-                    <td th:text="${proprietario.email}"></td>
-                    <td th:text="${proprietario.sessoProprietario}"></td>
+                    <td style="font-size: 15px;" th:text="${proprietario.nome}"></td>
+                    <td style="font-size: 15px;" th:text="${proprietario.indirizzo}"></td>
+                    <td style="font-size: 15px;" th:text="${proprietario.citta}"></td>
+                    <td style="font-size: 15px;" th:text="${proprietario.codiceFiscale}"></td>
+                    <td style="font-size: 15px;" th:text="${proprietario.CAP}"></td>
+                    <td style="font-size: 15px;" th:text="${proprietario.telefono}"></td>
+                    <td style="font-size: 15px;" th:text="${proprietario.email}"></td>
+                    <td style="font-size: 15px;" th:text="${proprietario.sesso}"></td>
                 </tr>
                 </tbody>
             </table>
 
             <br>
 
-            <h3>STORICO VISITE</h3>
+            <h4>STORICO VISITE</h4>
 
             <table class="table table-striped">
                 <thead>
@@ -474,12 +477,12 @@
 
                 <tbody>
                 <tr th:each="storico : ${storicoLista}">
-                    <td th:text="${storico.tipo}"></td>
-                    <td th:text="${storico.nome}"></td>
-                    <td th:text="${storico.dosaggioDettaglio}"></td>
-                    <td th:text="${storico.dataOraPrestazione}"></td>
-                    <td th:text="${storico.dataOraRichiamo}"></td>
-                    <td th:text="${storico.note}"></td>
+                    <td style="font-size: 15px;" th:text="${storico.tipo}" ></td>
+                    <td style="font-size: 15px;" th:text="${storico.nome}"></td>
+                    <td style="font-size: 15px;" th:text="${storico.dosaggioDettaglio}"></td>
+                    <td style="font-size: 15px;" th:text="${storico.dataOraPrestazione}"></td>
+                    <td style="font-size: 15px;" th:text="${storico.dataOraRichiamo}"></td>
+                    <td style="font-size: 15px;" th:text="${storico.note}"></td>
                     <td>
                         <a th:href="@{/profilo_animale/eliminaStorico(storicoId=${storico.id}, animaleId=${animale.id})}">
                         <button type="button" class="btn btn-danger">
@@ -495,7 +498,7 @@
             </table>
         </div>
         <!-- Bottone per aprire il modale -->
-        <button type="button" class="btn btn-primary" onclick="mostra()">
+        <button type="button" class="btn btn-primary" onclick="mostra()" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">
             Aggiungi Storico
         </button>
         <div id="inserimentoStorico" style="display: none">
@@ -530,8 +533,8 @@
                     </tbody>
                 </table>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="mostra()">Annulla</button>
-                    <button type="submit" class="btn btn-primary">Salva</button>
+                    <button type="button" class="btn btn-secondary" onclick="mostra()" Style="margin-right: 20px;">Annulla</button>
+                    <button type="submit" class="btn btn-primary" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">Salva</button>
                 </div>
             </form>
         </div>
