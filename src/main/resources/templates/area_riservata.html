@@ -41,9 +41,6 @@
             background-color: #2d3f4e;
         }
 
-        #navbarNav {
-            margin-right: 35px;
-        }
 
         .navbar-brand img{
             max-height: 40px;
@@ -139,6 +136,7 @@
         .card-body {
             padding: 15px;
         }
+
 
         /* Footer */
         footer {
@@ -275,10 +273,10 @@
                         <div class="col-8">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${animale.nome}"></h5>
-                                <p class="card-text" >Specie: <span th:text="${animale.specie}" class="italicSchede"></span></p>
-                                <p class="card-text">Proprietario:
-                                    <span th:text="${animale.proprietario.nome}" class="italicSchede"></span>
-                                </p>
+                                <p class="card-text" style="margin-bottom: 5px;">SPECIE: </p>
+                                <p style="margin-bottom: 5px;"><span th:text="${animale.specie}" style="font-family: 'Lora', serif; font-optical-sizing:auto; font-style: italic; color: #6c757d; margin-bottom: 5px;"></span></p>
+                                <p class="card-text" style="margin-bottom: 5px;">PROPRIETARIO: </p>
+                                <p style="margin-bottom: 5px;"><span th:text="${animale.proprietario.nome}" style="font-family: 'Lora', serif; font-optical-sizing:auto; font-style: italic; color: #6c757d; margin-bottom: 5px;"></span> </p>
                                 <a th:href="@{profilo_animale(id=${animale.id})}" class="btn btn-info btn-sm w-100" style="background-color: #2d3f4e; color: #ffffff; border-color: #2d3f4e;">Dettagli</a>
                             </div>
                         </div>
