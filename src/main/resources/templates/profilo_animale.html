@@ -392,9 +392,11 @@
                                         id="btn-annulla" data-bs-toggle="modal" data-bs-target="#annullaModal">NO
                                 </button>
                                 <!-- Bottone per aprire il secondo modal -->
-                                <button type="button" class="btn btn-primary" id="btn-conferma"
+                                <a th:href="@{/profilo_animale/eliminaAnimale(id=${animale.id})}">
+                                    <button type="button" class="btn btn-primary" id="btn-conferma"
                                         data-bs-toggle="modal" data-bs-target="#confermaModal" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">SI, sono sicuro
-                                </button>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
