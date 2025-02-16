@@ -37,7 +37,7 @@ public class Animale {
     @Column
     private String fotografia;
 
-    // Peso: solo numeri positivi - con o senza . - nullo
+    // Peso: solo numeri positivi - gestione: input
     @Column
     private Float peso;
 
@@ -46,7 +46,7 @@ public class Animale {
     @Pattern(regexp = "^([A-Za-zÀ-ÿ ]+)?$", message = "Colore non valido")
     private String colore;
 
-    //Anno di Nascita: gestione:.html
+    //Anno di Nascita: gestione: input
     @Column(name="anno_di_nascita")
     private Year annoDiNascita;
 
