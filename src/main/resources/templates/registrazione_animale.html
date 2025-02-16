@@ -68,7 +68,7 @@
         <select id="proprietarioEsistente" name="idProprietario" class="form-control" onchange="mostra()">
             <option value="">-- Seleziona un Proprietario --</option>
             <option th:each="proprietario : ${proprietari}" th:value="${proprietario.id}"
-                    th:text="|${proprietario.nome} (${proprietario.codiceFiscale})|">
+                    th:text="|${proprietario.nomeProprietario} (${proprietario.codiceFiscale})|">
             </option>
         </select>
 
@@ -76,33 +76,57 @@
 
         <div id="nuovoProprietario" style="display:none; margin-top: 20px;">
             <h4>Nuovo Proprietario</h4>
-            <div class="mb-3">
-                <label for="nomeProprietario">Nome</label>
-                <input type="text" name="nomeProprietario" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="indirizzo">Indirizzo</label>
-                <input type="text" name="indirizzo" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="citta">Città</label>
-                <input type="text" name="citta" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="CAP">CAP</label>
-                <input type="text" name="CAP" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="codiceFiscale">Codice Fiscale</label>
-                <input type="text" name="codiceFiscale" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="email">Email</label>
-                <input type="email" name="email" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="telefono">Telefono</label>
-                <input type="text" name="telefono" class="form-control">
+            <div th:object="${proprietario}">
+
+                <div class="mb-3">
+                    <label for="nomeProprietario">Nome e Cognome</label>
+                    <input type="text" id="nomeProprietario" class="form-control" th:field="*{nomeProprietario}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('nomeProprietario')}" th:errors="*{nomeProprietario}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="sessoProprietario">Sesso </label>
+                    <select th:field="*{sessoProprietario}" class="form-control" id="sessoProprietario">
+                        <option value="M">Maschio</option>
+                        <option value="F">Femmina</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="indirizzo">Indirizzo</label>
+                    <input type="text" id="indirizzo" class="form-control" th:field="*{indirizzo}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('indirizzo')}" th:errors="*{indirizzo}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="citta">Città</label>
+                    <input type="text" id="citta" class="form-control" th:field="*{citta}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('citta')}" th:errors="*{citta}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="CAP">CAP</label>
+                    <input type="text" id="CAP" class="form-control" th:field="*{CAP}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('CAP')}" th:errors="*{CAP}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="codiceFiscale">Codice Fiscale</label>
+                    <input type="text" id="codiceFiscale" class="form-control" th:field="*{codiceFiscale}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('codiceFiscale')}" th:errors="*{codiceFiscale}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" th:field="*{email}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" id="telefono" class="form-control" th:field="*{telefono}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
+                </div>
             </div>
         </div>
 
@@ -133,12 +157,11 @@
                 <option value="M">Maschio</option>
                 <option value="F">Femmina</option>
             </select>
-            <div class="text-danger" th:if="${#fields.hasErrors('sesso')}" th:errors="*{sesso}"></div>
         </div>
 
         <div class="mb-3">
             <label for="annoDiNascita">Anno di Nascita</label>
-            <input type="number" id="annoDiNascita" class="form-control" th:field="*{annoDiNascita}" min="1990" step="1" required>
+            <input type="number" id="annoDiNascita" class="form-control" th:field="*{annoDiNascita}" min="1990" max="2025" step="1" required>
             <div class="text-danger" th:if="${#fields.hasErrors('annoDiNascita')}" th:errors="*{annoDiNascita}"></div>
         </div>
 
@@ -154,13 +177,13 @@
             <div class="text-danger" th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}"></div>
         </div>
 
-        <div class="mb-3 info-row">
+     <!--   <div class="mb-3 info-row">
             <div class="info-group">
                 <label for="fotografia">Foto Profilo Animale</label>
-                <input type="file" name="fotografia" class="form-control" id="fotografia">
+                <input type="file" name="fotografia" class="form-control" id="fotografia" th:field="*{fotografia}">
             </div>
         </div>
-
+-->
         <button type="submit" class="btn btn-primary mt-3">Aggiungi</button>
 
     </form>

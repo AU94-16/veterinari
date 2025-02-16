@@ -43,9 +43,9 @@ public class AnimaleServiceImpl implements AnimaleService {
     }
 
     @Override
-    public void registrazioneAnimale(Animale animale, MultipartFile fotografia) {
+    public void registrazioneAnimale(Animale animale) {
         // per la fotografia dell'animale
-        if(fotografia != null && !fotografia.isEmpty()) {
+       /* if(fotografia != null && !fotografia.isEmpty()) {
             try {
                 String formato = fotografia.getContentType();
                 String fotografiaCodificata = "data:" + formato + ";base64," + Base64.getEncoder().encodeToString(fotografia.getBytes());
@@ -53,10 +53,10 @@ public class AnimaleServiceImpl implements AnimaleService {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        }
-        System.out.println("Animale prima del salvataggio: " + animale); // Log
+        }*/
+        System.out.println("Animale prima del salvataggio: " + animale);
         animaleDao.save(animale);
-        System.out.println("Animale salvato correttamente: " + animale); // Log
+        System.out.println("Animale salvato correttamente: " + animale);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class AnimaleServiceImpl implements AnimaleService {
                 String nome = nomeCognome[0];
                 String cognome = nomeCognome.length > 1 ? nomeCognome[1] : "";*/
 
-                return animaleDao.findByProprietarioAndVeterinarioId(valore, idVeterinario);
+                return animaleDao.findByNomeProprietarioAndVeterinarioId(valore, idVeterinario);
         }
 
     }

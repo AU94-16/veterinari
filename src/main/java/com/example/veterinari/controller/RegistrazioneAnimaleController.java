@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Base64;
+
 @Controller
 @RequestMapping("/registrazione_animale")
 public class RegistrazioneAnimaleController {
@@ -50,60 +52,46 @@ public class RegistrazioneAnimaleController {
     public String formManager(
             @Valid @ModelAttribute("animale") Animale animale,
             BindingResult animaleResult,
-            @RequestParam MultipartFile fotografia,
+            @Valid @ModelAttribute("proprietario") Proprietario proprietarioNuovo,
+            BindingResult proprietarioResult,
+          /*  @RequestParam MultipartFile fotografia,*/
             @RequestParam(value = "idProprietario", required = false) Integer id,
-            @RequestParam(value = "nomeProprietario") String nomeProprietario,
-            @RequestParam String indirizzo,
-            @RequestParam String citta,
-            @RequestParam(value = "CAP") String cap,
-            @RequestParam String codiceFiscale,
-            @RequestParam String email,
-            @RequestParam String telefono,
             HttpSession session, Model model) {
 
         Veterinario veterinarioSession = (Veterinario) session.getAttribute("veterinario");
 
-     /*   if (animaleResult.hasErrors()) {
-            model.addAttribute("proprietari", proprietarioService.elencoProprietario());
+       /* animaleResult.rejectValue("fotografia", "null", "Foto non obbligatorio");*/
+
+        // Controllo errori validazione
+       if (animaleResult.hasErrors() && (proprietarioResult.hasErrors() || proprietarioNuovo.getNomeProprietario() != null )) {
+           System.out.println("mex errore");
+           System.out.println(animaleResult.toString());
+           System.out.println(proprietarioResult.toString());
+           model.addAttribute("proprietari", proprietarioService.elencoProprietario());
             return "registrazione_animale";
-        }*/
+        }
 
-        System.out.println("dati animale: " + animale);
-        System.out.println("ID Proprietario esistente: " + id);
+       Proprietario proprietario;
 
-
-                //Gestione proprietario
-        Proprietario proprietario;
-
+        // Se esiste un proprietario, lo recuperiamo, altrimenti usiamo quello nuovo
         if (id != null && id > 0) {
             // Proprietario esistente
             System.out.println("prop esistente");
             proprietario = proprietarioService.datiProprietario(id);
-            animale.setProprietario(proprietario);
-
-        } else if (nomeProprietario != null && !nomeProprietario.isEmpty()) {
+        } else {
             // Nuovo proprietario
             System.out.println("prop nuovo");
-            proprietario = new Proprietario();
-            proprietario.setNome(nomeProprietario);
-            proprietario.setIndirizzo(indirizzo);
-            proprietario.setCitta(citta);
-            proprietario.setCAP(cap);
-            proprietario.setCodiceFiscale(codiceFiscale);
-            proprietario.setEmail(email);
-            proprietario.setTelefono(telefono);
-
+            proprietario = proprietarioNuovo;
             proprietarioService.inserisciProprietario(proprietario);
-            animale.setProprietario(proprietario);
-        } else {
-            model.addAttribute("proprietari", proprietarioService.elencoProprietario());
-            return "registrazione_animale";
         }
 
+        animale.setProprietario(proprietario);
         animale.setVeterinario(veterinarioSession);
-        animaleService.registrazioneAnimale(animale, fotografia);
+        animaleService.registrazioneAnimale(animale);
+
         return "redirect:/area_riservata";
     }
+
 }
 
 

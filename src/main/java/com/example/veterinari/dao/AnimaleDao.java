@@ -22,9 +22,6 @@ public interface AnimaleDao extends CrudRepository<Animale, Integer> {
     List<Animale> findBySpecieAndVeterinarioId(@Param("specie") String nome, @Param("veterinarioId") int veterinarioId);
 
     //ricerca animali in base al nome e cognome del proprietario
-    /*@Query("SELECT * FROM Animale a JOIN proprietario p ON a.id_proprietario = p.id " +
-            "WHERE LOWER(p.nome) LIKE LOWER(CONCAT('%', :nome, '%')) " +
-            "OR LOWER(p.cognome) LIKE LOWER(CONCAT('%', :cognome, '%'))")*/
-    @Query("SELECT a FROM Animale a WHERE a.proprietario.nome LIKE %:nome% AND a.veterinario.id = :veterinarioId")
-    List<Animale> findByProprietarioAndVeterinarioId(@Param("nome") String nome, @Param("veterinarioId") int veterinarioId);
+    @Query("SELECT a FROM Animale a WHERE a.proprietario.nomeProprietario LIKE %:nomeProprietario% AND a.veterinario.id = :veterinarioId")
+    List<Animale> findByNomeProprietarioAndVeterinarioId(@Param("nomeProprietario") String nomeProprietario, @Param("veterinarioId") int veterinarioId);
 }

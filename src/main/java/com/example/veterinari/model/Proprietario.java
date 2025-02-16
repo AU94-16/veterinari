@@ -17,7 +17,7 @@ public class Proprietario {
     // Nome: solo lettere e spazi
     @Column
     @Pattern(regexp = "^[A-Za-zÀ-ÿ ]+$", message = "Nome non valido")
-    private String nome;
+    private String nomeProprietario;
 
     @Column
     private String indirizzo;
@@ -49,7 +49,7 @@ public class Proprietario {
 
     // Sesso: solo 'M' o 'F'
     @Column
-    private char sesso;
+    private char sessoProprietario;
 
     @OneToMany
             (
@@ -68,13 +68,7 @@ public class Proprietario {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getIndirizzo() {
         return indirizzo;
@@ -124,12 +118,20 @@ public class Proprietario {
         this.email = email;
     }
 
-    public char getSesso() {
-        return sesso;
+    public String getNomeProprietario() {
+        return nomeProprietario;
     }
 
-    public void setSesso(char sesso) {
-        this.sesso = sesso;
+    public void setNomeProprietario(String nomeProprietario) {
+        this.nomeProprietario = nomeProprietario;
+    }
+
+    public char getSessoProprietario() {
+        return sessoProprietario;
+    }
+
+    public void setSessoProprietario(char sessoProprietario) {
+        this.sessoProprietario = sessoProprietario;
     }
 
     public List<Animale> getAnimali() {

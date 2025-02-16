@@ -39,7 +39,6 @@ public class Animale {
 
     // Peso: solo numeri positivi - con o senza . - nullo
     @Column
-    //@Pattern(regexp = "^(\\d+(\\.\\d+)?)?$", message = "Peso non valido")
     private Float peso;
 
     // Colore: solo lettere e spazi - permette stringhe vuote
