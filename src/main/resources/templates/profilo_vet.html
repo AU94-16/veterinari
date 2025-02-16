@@ -88,10 +88,10 @@
         /* Profile Container */
         .profile-container {
             display: flex;
-            
+
             min-width: 80%;  /* Use percentages or max-width for responsiveness */
             max-width: 1200px; /* Adjust as needed */
-            margin: 20px auto; /* Center the container */
+            margin: 90px auto; /* Center the container, 50 in alto e in basso */
             border-radius: 36px;
             background-color: #e2dfdf;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: for a subtle shadow */
@@ -125,11 +125,14 @@
         }
 
         .form-control {
+            font-family: Playfair Display, serif;
+            height: 60px;
             width: 100%;
             padding: 8px;
             font-size: 16px;
-            border-radius: 4px;
+            border-radius: 20px;
             border: 1px solid #ced4da;
+            font-size: 17px;
         }
 
         .btn-primary {
@@ -219,10 +222,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/area_riservata/logout}">LOG OUT</a>
+                    <a class="nav-link" th:href="@{/area_riservata}">AREA RISERVATA</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/area_riservata}">AREA RISERVATA</a>
+                    <a class="nav-link" th:href="@{/area_riservata/logout}">LOG OUT</a>
                 </li>
             </ul>
         </div>
@@ -278,7 +281,7 @@
                     <input type="file" name="fotoProfilo" class="form-control" id="fotoProfilo">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Salva</button>
+            <button type="submit" class="btn btn-primary mt-3" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;" >Salva</button>
         </div>
     </form>
 </div>
