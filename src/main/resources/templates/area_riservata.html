@@ -222,9 +222,9 @@
     <!-- Titolo -->
     <div id="benvenuto" class="text-center w-100" th:switch="${veterinario.sesso}" >
         <h3 class="text-center">Area Riservata:
-            <span th:case="${'M'}" class="dott">Dott. </span>
-            <span th:case="${'F'}" class="dott">Dott.ssa </span>
-            <span th:case="${'A'}" class="dott">Dott.* </span>
+            <span th:case="${'Maschio'}" class="dott">Dott. </span>
+            <span th:case="${'Femmina'}" class="dott">Dott.ssa </span>
+            <span th:case="${'Altro'}" class="dott">Dott.* </span>
             <span th:text="${veterinario.nome} +' '+${veterinario.cognome} " class="dott"></span>
         </h3>
     </div>

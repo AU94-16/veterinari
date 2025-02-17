@@ -4,6 +4,7 @@ package com.example.veterinari.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +36,9 @@ public class Veterinario {
     @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,50}", message = "Password debole")
     private String password;
 
-    // Sesso: solo 'M' o 'F'
+    // Sesso: gestito da select
     @Column
-    private char sesso;
+    private String sesso;
 
     // Telefono: numeri telefonici italiani con prefisso opzionale
     @Column
@@ -56,6 +57,9 @@ public class Veterinario {
 
     @Column
     private String fotoProfilo;
+
+    @Column
+    private LocalDate dataRegistrazione;
 
     @OneToMany
             (
@@ -106,11 +110,11 @@ public class Veterinario {
         this.password = password;
     }
 
-    public char getSesso() {
+    public String getSesso() {
         return sesso;
     }
 
-    public void setSesso(char sesso) {
+    public void setSesso(String sesso) {
         this.sesso = sesso;
     }
 
@@ -152,5 +156,13 @@ public class Veterinario {
 
     public void setAnimali(List<Animale> animali) {
         this.animali = animali;
+    }
+
+    public LocalDate getDataRegistrazione() {
+        return dataRegistrazione;
+    }
+
+    public void setDataRegistrazione(LocalDate dataRegistrazione) {
+        this.dataRegistrazione = dataRegistrazione;
     }
 }

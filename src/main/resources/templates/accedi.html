@@ -209,7 +209,7 @@
             <h2>Accedi</h2>
             <p> Non hai un account? <a th:href="@{/registrati}">Registrati</a></p>
         </div>
-        <p th:if="${errore != null}">Accesso Negato! Credenziali errate</p> <!--Mex di errore-->
+        <p th:if="${errore != null}" style="color: darkred">Accesso Negato! Credenziali errate</p> <!--Mex di errore-->
         <form action="/accedi" method="post" >
             <div class="mb-3 ">
                 <input type="email" class="form-control" placeholder="Email" name="email" required>

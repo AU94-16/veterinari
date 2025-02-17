@@ -324,47 +324,50 @@
         <form th:object="${veterinario}" method="post">
             <div class="mb-3 name-container">
                 <input type="text" class="form-control" name="nome" placeholder="Nome" th:field="*{nome}" required>
-                <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
-                <input type="text" class="form-control" name="cognome" placeholder="Cognome" th:field="*{cognome}"
-                       required>
-                <p th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></p>
+                <div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+                <input type="text" class="form-control" name="cognome" placeholder="Cognome" th:field="*{cognome}" required>
+                <div class="text-danger" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></div>
             </div>
             <div class="mb-3">
                 <input type="email" class="form-control" name="email" placeholder="Email" th:field="*{email}" required>
-                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-                <p th:if="${duplicato != null}" th:text="${duplicato}"></p>
+                <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                <div class="text-danger" th:if="${duplicato != null}" th:text="${duplicato}"></div>
             </div>
             <div class="mb-3 password-container">
-                <input type="password" class="form-control" name="password" placeholder="Password"
-                       th:field="*{password}" required>
-                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                <input type="password" class="form-control" name="password" placeholder="Password" th:field="*{password}" required>
+                <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                 <i class="bi bi-eye toggle-password" id="togglePassword"></i>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" name="numeroIscrizioneAlbo" placeholder="N° iscrizione Albo"
-                       th:field="*{numeroIscrizioneAlbo}" required>
-                <p th:if="${#fields.hasErrors('numeroIscrizioneAlbo')}" th:errors="*{numeroIscrizioneAlbo}"></p>
+                <input type="text" class="form-control" name="numeroIscrizioneAlbo" placeholder="N° iscrizione Albo" th:field="*{numeroIscrizioneAlbo}" required>
+                <div class="text-danger" th:if="${#fields.hasErrors('numeroIscrizioneAlbo')}" th:errors="*{numeroIscrizioneAlbo}"></div>
             </div>
             <br>
             <br>
             <div class="form genere" id="sologenere">
 
                 <label for="genere">Genere:</label>
-                <input type="radio" class="form-check-input" id="maschio" name="genere" value="M" th:field="*{sesso}">
+                <input type="radio" class="form-check-input" id="maschio" name="genere" value="Maschio" th:field="*{sesso}">
                 <label class="form-check-label" for="maschio">Maschio</label>
 
-                <input type="radio" class="form-check-input" id="femmina" name="genere" value="F" th:field="*{sesso}">
+                <input type="radio" class="form-check-input" id="femmina" name="genere" value="Femmina" th:field="*{sesso}">
                 <label class="form-check-label" for="femmina">Femmina</label>
 
-                <input type="radio" class="form-check-input" id="altro" name="genere" value="A" th:field="*{sesso}" checked>
+                <input type="radio" class="form-check-input" id="altro" name="genere" value="Altro" th:field="*{sesso}" checked>
                 <label class="form-check-label" for="altro">Altro</label>
             </div>
+
+            <!-- Campo hidden per la data di registrazione -->
+            <input type="hidden" name="dataRegistrazione" th:value="${#dates.format(today, 'yyyy-MM-dd')}" />
+
             <br>
             <br>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="terms" required>
                 <label class="form-check-label" for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
             </div>
+
+
 
             <!-- div per la checkbox del pagamento -->
             <div class="mb-3 form-check">

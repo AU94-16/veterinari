@@ -91,7 +91,7 @@
 
             min-width: 80%;  /* Use percentages or max-width for responsiveness */
             max-width: 1200px; /* Adjust as needed */
-            margin: 90px auto; /* Center the container, 50 in alto e in basso */
+            margin: 50px auto; /* Center the container, 50 in alto e in basso */
             border-radius: 36px;
             background-color: #e2dfdf;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: for a subtle shadow */
@@ -159,6 +159,11 @@
             width: 100%;
             position: relative; /* Ensures it stays at the bottom */
         }
+        /* Icone Data */
+         .dataIcon {
+             width: 30px;
+             margin: 10px;
+         }
 
 
         /* Responsive adjustments */
@@ -233,8 +238,10 @@
 </nav>
 
 <div class="profile-container">
+
     <!-- Caricamento immagine profilo -->
     <img th:src="@{${veterinario.fotoProfilo == null ? 'immagini/user.jpg' : veterinario.fotoProfilo}}" alt="Immagine Profilo" class="profile-img">
+
     <form th:action="@{/profilo_vet/modifica}" method="post" enctype="multipart/form-data">
         <div class="mb-3 profile-info">
             <h3> IL TUO PROFILO </h3>
@@ -254,9 +261,9 @@
             <div class="mb-3 info-row" th:switch="${veterinario.sesso}">
                 <div class="info-group">
                     <label for="sesso">Sesso</label>
-                    <input type="text" class="form-control" name="sesso" readonly th:case="'M'" value="Maschio" />
-                    <input type="text" class="form-control" name="sesso" readonly th:case="'F'" value="Femmina" />
-                    <input type="text" class="form-control" name="sesso" readonly th:case="*" value="Altro" />
+                    <input type="text" class="form-control" name="sesso" readonly th:case="'Maschio'" value="Maschio"/>
+                    <input type="text" class="form-control" name="sesso" readonly th:case="'Femmina'" value="Femmina" />
+                    <input type="text" class="form-control" name="sesso" readonly th:case="Altro" value="Altro" />
                 </div>
                 <div class="mb-3 info-group">
                     <label for="email">Email</label>
@@ -268,13 +275,15 @@
                 <div class="info-group">
                     <label for="citta">Città</label>
                     <input type="text" name="citta" th:value="${veterinario.citta}" class="form-control" id="citta">
+                   <!-- <span class="text-danger" th:if="${#fields.hasErrors('veterinario.citta')}" th:errors="*{veterinario.citta}"></span>-->
                 </div>
                 <div class="info-group">
                     <label for="telefono">Telefono</label>
                     <input type="text" name="telefono" th:value="${veterinario.telefono}" class="form-control" id="telefono">
-
+                   <!--<span class="text-danger" th:if="${#fields.hasErrors('veterinario.telefono')}" th:errors="*{veterinario.telefono}"></span>-->
                 </div>
             </div>
+
             <div class="mb-3 info-row">
                 <div class="info-group">
                     <label for="fotoProfilo">Foto Profilo</label>
@@ -285,7 +294,10 @@
         </div>
     </form>
 </div>
-
+<div class="mb-3" style="font-size: 20px; background-color:#e2dfdf; text-align:center">
+    <div><img th:src="@{/immagini/icon1.jpg}" class="dataIcon"><span th:text="|Inizio Abbonamento: ${#temporals.format(veterinario.dataRegistrazione, 'dd/MM/yyyy')}|" style="color:#2b354e"></span></div>
+    <div><img th:src="@{/immagini/icon2.png}" class="dataIcon"><span th:text="|Fine Abbonamento: ${#temporals.format(veterinario.dataRegistrazione.plusYears(1),'dd/MM/yyyy')}|" style="color:#2b354e"></span></div>
+</div>
 <!-- Footer -->
 <footer>
     <p>© 2025 Vet Clinic. All rights reserved.</p>

@@ -47,6 +47,13 @@ public class ProfiloVetController {
                               @RequestParam(required = false) String citta,
                               HttpSession session) {
 
+        /*commentata con prof - incogruenza tipo variabile fotoprofilo*/
+    /*    if (result.hasErrors()) {
+            System.out.println("result");
+            System.out.println(result.toString());
+            return "profilo_vet";
+        }*/
+
         // Recupera il veterinario dalla sessione
         Veterinario veterinarioSession = (Veterinario) session.getAttribute("veterinario");
         veterinarioService.modificaDatiVeterinario(veterinarioSession.getId(), telefono, citta, fotoProfilo, session);

@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 // localhost:8080/registrati
 @Controller
 @RequestMapping("/registrati")
@@ -33,6 +35,10 @@ public class RegistratiController {
             Model model) {
         if(result.hasErrors())
             return"registrati";
+
+        // Aggiungere la data di registrazione (data odierna)
+        veterinario.setDataRegistrazione(LocalDate.now());
+
         //Controllo Email per duplicati
         if(!veterinarioService.controlloEmail(veterinario.getEmail())) {
             model.addAttribute("duplicato", "Email occupata");
