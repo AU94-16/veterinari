@@ -482,8 +482,8 @@
                     <td style="font-size: 15px;" th:text="${storico.tipo}" ></td>
                     <td style="font-size: 15px;" th:text="${storico.nome}"></td>
                     <td style="font-size: 15px;" th:text="${storico.dosaggioDettaglio}"></td>
-                    <td style="font-size: 15px;" th:text="${storico.dataOraPrestazione}"></td>
-                    <td style="font-size: 15px;" th:text="${storico.dataOraRichiamo}"></td>
+                    <td style="font-size: 15px;" th:text="${#temporals.format(storico.dataOraPrestazione, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td style="font-size: 15px;" th:text="${#temporals.format(storico.dataOraRichiamo, 'dd/MM/yyyy HH:mm')}"></td>
                     <td style="font-size: 15px;" th:text="${storico.note}"></td>
                     <td>
                         <a th:href="@{/profilo_animale/eliminaStorico(storicoId=${storico.id}, animaleId=${animale.id})}">
