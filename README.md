@@ -21,7 +21,9 @@ git clone https://github.com/AU94-16/veterinari
 
 Importa il progetto in IntelliJ IDEA
 
-Importa database
+Crea sul tuo PHPmyAdmin un nuovo database 'vet_clinic'
+
+Importa database  - ! Il DB è assente di immagini causa sovradimensionamento per l'import ! -
 
 Avvia l'applicazione
 
