@@ -25,7 +25,7 @@
             font-family: 'Karla', sans-serif;
         }
 
-        /* Navbar Styles */
+        /* stile della navbar */
         .navbar {
             position: fixed;
             width: 100%;
@@ -51,7 +51,7 @@
             margin-left: 15px;
             font-weight: 500;
             position: relative;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease; /* l'easing è una funzione per un'accelerazione graduale */
         }
 
         .navbar-nav .nav-link::after {
@@ -120,7 +120,7 @@
             line-height: 1.6;
         }
 
-        /* Search Form Styles */
+        /* form di ricerca */
         form .form-control,
         form .form-select {
             border-radius: 8px;
@@ -139,13 +139,13 @@
             transform: translateY(-2px);
         }
 
-        /* Card Styles */
+        /* stile delle card */
         .card {
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out; /* ease-in-out funzione per la transizione */
             overflow: hidden;
-            height: 400px; /* Fixed height */
+            height: 400px;
             display: flex;
             flex-direction: row;
             align-items: stretch;
@@ -157,7 +157,7 @@
         }
 
         .card-img-left {
-            width: 40%; /* Fixed width for image */
+            width: 40%;
             object-fit: cover;
             object-position: center;
             height: 100%;
@@ -175,7 +175,7 @@
         }
 
         .card-title {
-            font-size: 1.4rem;
+            font-size: 1.4rem; /* altra unità di misura per il font-size */
             font-weight: 700;
             color: #495057;
         }
@@ -199,7 +199,7 @@
             color: #ffffff;
         }
 
-        /* Footer Styles */
+        /* footer */
         footer {
             background-color: #2d3f4e;
             color: white;
@@ -209,7 +209,7 @@
             font-size: 12px;
         }
 
-        /* Responsive adjustments */
+        /* Responsive */
         @media (max-width: 768px) {
             .card {
                 flex-direction: column;
