@@ -22,35 +22,51 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            font-family: 'Karla', sans-serif; /* Font di base */
         }
 
-        /* stile navbar */
+        /* Navbar Styles */
         .navbar {
-            background-color: #2d3f4e; /* blu scelto per il progetto */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra sottile */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            min-height: 80px;
+            background-color: #2d3f4e;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
 
         .navbar-brand img {
-            max-height: 40px; /* Altezza massima del logo */
+            max-height: 50px;
+            transition: transform 0.3s ease-in-out;
         }
 
-        /* animazioni di login e signin */
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+
         .navbar-nav .nav-link {
-            position: relative;
-            text-decoration: none;
             color: #ffffff;
             margin-left: 15px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
         }
 
         .navbar-nav .nav-link::after {
-            content: "";
+            content: '';
             position: absolute;
+            bottom: 0;
+            left: 0;
             width: 0;
             height: 2px;
-            background: #ffffff;
-            left: 50%;
-            bottom: -3px;
-            transition: all 0.3s ease-out;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffffff;
         }
 
         .navbar-nav .nav-link:hover::after {
@@ -58,26 +74,35 @@
             left: 0;
         }
 
-        /* toogler hamburger */
         .navbar-toggler {
-            background-color: transparent;
-            border-color: trasparent;
+            border: none;
+
         }
 
         .navbar-toggler:focus {
             outline: none;
-            box-shadow: none; /* Eventualmente rimuove anche l'ombra */
+            box-shadow: none;
         }
 
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
+        .navbar-collapse {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
         /* Hero Section Styles */
         .home-container {
             padding: 50px 20px; /* Ridotto il padding laterale per schermi più piccoli */
             text-align: center;
-            margin-top: 50px; /* Spazio dalla navbar */
+            margin-top: 90px; /* Spazio dalla navbar */
         }
 
         .home-container h1 {
@@ -121,6 +146,7 @@
         .btn-primary:hover {
             background-color: #0056b3; /* Blu più acceso al passaggio del mouse */
             border-color: #0056b3;
+            color: #fff;
         }
 
         /* stile immagine */
@@ -140,9 +166,9 @@
             background-color: #2d3f4e;
             color: white;
             text-align: center;
-            padding: 10px 0;
+            padding: 15px 0;
             margin-top: auto; /* Spinge il footer in fondo */
-            font-size: 10px;
+            font-size: 12px;
         }
 
         /* navbar dettagli */
@@ -182,8 +208,8 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <img src="immagini/scritta_logo.png" alt="vet_clinic">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{immagini/scritta_logo.png}" alt="vet_clinic">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -213,7 +239,7 @@
             <a class="btn btn-primary" th:href="@{/registrati}">REGISTRATI</a>
         </div>
         <div class="col-md-6 home-image">
-            <img src="immagini/index_img.jpeg" alt="Clinica veterinaria">
+            <img th:src="@{immagini/index_img.jpeg}" alt="Clinica veterinaria">
         </div>
     </div>
 </div>

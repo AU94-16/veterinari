@@ -22,6 +22,7 @@
             padding-left: 0;
             padding-right: 0;
             padding-top: 20px;
+            font-family: 'Karla', sans-serif; /* Aggiunto font di base */
         }
 
         .container {
@@ -33,6 +34,10 @@
             margin: 0 auto;
             padding-left: 15px;
             padding-right: 15px;
+
+            padding-top: 60px;
+
+
         }
 
         /* immagini */
@@ -44,6 +49,9 @@
         .image {
             flex: 1;
             height: 100%;
+            display: flex;            /* Aggiunto: Trasforma in contenitore flex */
+            align-items: center;     /* Aggiunto: Allinea verticalmente */
+            justify-content: center; /* Aggiunto: Allinea orizzontalmente */
         }
 
         .image img {
@@ -52,6 +60,7 @@
             height: 800px;
             border-radius: 36px;
             object-fit: cover;
+
         }
 
         /* form */
@@ -60,41 +69,52 @@
             padding: 80px;
             width: auto;
             margin-top: 20px;
-
+             /*background-color: #fff; Rimosso: Sfondo bianco per il form */
          }
 
          .form h2 {
             margin-bottom: 5px;
             font-size: 37px;
+             color: #343a40; /* Colore del testo */
          }
 
          .form p {
             margin-top: 0;
             margin-bottom: 80px;
             font-size: 15px;
+            color: #6c757d; /* Colore del testo secondario */
         }
 
         .form-control {
             font-family: Playfair Display, serif;
-            height: 60px;
+            height: 50px; /*Ridotto l'altezza dei campi*/
             width: 100%;
             max-width: 568px;
-            border-radius: 20px;
+            border-radius: 15px; /*Bordi arrotondati dei campi*/
             padding: 10px 15px;
-            background-color: #eeeeee;
-            font-size: 17px;
+            background-color: #f8f9fa; /*Grigio chiaro*/
+            border: 1px solid #ced4da; /*Bordo sottile*/
+            font-size: 16px;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Transizione fluida */
+
         }
 
-
+         .form-control:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+         }
 
         /* bottone accedi */
         .btn {
             color: #eeeeee;
             font-size: 17px;
-            height: 60px;
+            height: 50px;
             width: 100%;
             max-width: 568px;
             background-color: #2d3f4e;
+            border-radius: 15px;
+            transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; /*Transizione fluida*/
         }
 
         .btn:hover {
@@ -125,6 +145,7 @@
             margin-top: auto;
             font-size: 10px;
             width: 100%;
+
        }
 
         /* stili per il logo responsive */
@@ -141,6 +162,7 @@
             width: 100%;
             border-radius: 50%; /* Rende il logo un cerchio */
             object-fit: cover;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leggera ombra sul logo */
         }
 
         /* spazio tra form e immagine in responsive */
@@ -155,6 +177,7 @@
 
             .form {
                 margin-left: 30px; /* aggiunge margine a sinistra del form */
+                padding: 60px; /*Ridotto il padding per schermi grandi*/
             }
         }
 
@@ -180,10 +203,6 @@
                 max-width: none;
             }
         }
-
-
-
-
 
     </style>
 </head>
@@ -253,6 +272,7 @@
         // Nasconde tutte le immagini
         images.forEach(img => img.style.display = 'none');
 
+
         // Seleziona un indice random tra 0 e la lunghezza dell'array immagini
         let newIndex;
 
@@ -263,6 +283,8 @@
 
         // Mostra l'immagine random
         images[newIndex].style.display = 'block';
+
+
 
         // Aggiorna previousIndex con il nuovo indice
         previousIndex = newIndex;

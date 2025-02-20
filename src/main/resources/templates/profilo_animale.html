@@ -15,50 +15,66 @@
             crossorigin="anonymous"></script>
 
     <style>
-        .clearfix {
-            clear: both;
-        }
-
         body {
             background-color: #f8f9fa;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* viewport */
-            padding-top: 80px; /* per l'altezza della navbar */
+            min-height: 100vh;
+            padding-top: 80px;
+            font-family: 'Karla', sans-serif;
         }
 
-        /* navbar */
+        .container-fluid {
+            margin-top: 20px;
+        }
+
+        .container {
+            margin-top: 20px;
+            max-width: 1200px;
+        }
+
+        /* Navbar Styles (Copied from the other file) */
         .navbar {
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
-            min-height: 80px; /* Altezza minima */
+            min-height: 80px;
             background-color: #2d3f4e;
-            z-index: 1000; /* sopra tutti gli altri elementi  */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
 
-        .navbar-brand img{
-            max-height: 40px;
+        .navbar-brand img {
+            max-height: 50px;
+            transition: transform 0.3s ease-in-out;
         }
 
-        /* animazioni dei link */
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+
         .navbar-nav .nav-link {
             color: #ffffff;
             margin-left: 15px;
+            font-weight: 500;
             position: relative;
-            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .navbar-nav .nav-link::after {
-            content: "";
+            content: '';
             position: absolute;
+            bottom: 0;
+            left: 0;
             width: 0;
             height: 2px;
-            background: #ffffff;
-            left: 50%;
-            bottom: -3px;
-            transition: all 0.3s ease-out;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffffff;
         }
 
         .navbar-nav .nav-link:hover::after {
@@ -67,8 +83,7 @@
         }
 
         .navbar-toggler {
-            background-color: transparent;
-            border-color: transparent;
+            border: none;
         }
 
         .navbar-toggler:focus {
@@ -93,45 +108,44 @@
         /* Contenitore principale */
         .profile-container {
             display: flex;
-            flex-wrap: wrap; /* Adatta per schermi piccoli */
+            flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            /* width: 60%;
-            min-height: 500px;
-            max-width: 1200px;*/
-            min-width: 80%;  /* Use percentages or max-width for responsiveness */
-            max-width: 1200px; /* Adjust as needed */
-            margin: 90px auto; /* Center the container, 50 in alto e in basso */
-            border-radius: 36px;
+            max-width: 1200px;
+            margin: 90px auto;
             margin: 30px auto;
-            background-color: #eceaea;
+            background-color: #ffffff;
+            border-radius: 36px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             padding: 20px;
         }
 
         /* Contenitore immagine */
         .profile-image-container {
-            flex:1;
-            min-height: 500px;
-            max-width: 1200px;
-            border-radius: 10px;
-            margin: 50px auto;
-            margin-right: 50px;
-            background-color: #eceaea;
+            flex: 0 0 30%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Immagine profilo */
         .profile-img {
-            width:100%;
-            max-width: 300px;
+            width: 100%;
+            max-width: 250px;
             height: auto;
             border-radius: 10%;
-            object-fit: cover;
+            object-fit: contain;
+            object-position: center;
             margin-bottom: 20px;
-            margin-right: auto; /* aggiunto spazio tra immagine e form */
-            margin-left: auto; /* aggiunto spazio tra immagine e bordo scheda */
-            display: block; /* Assicura il corretto comportamento */
+            transition: transform 0.3s ease;
         }
 
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
 
         /* Form profilo */
         .profile-form {
@@ -140,18 +154,18 @@
             max-width: 100%;
             margin-right: 20px;
             overflow: hidden;
-            margin-right: 20px; /* Spazio tra form e bordo destro */
-
+            margin-right: 20px;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         /* Titolo input */
         .input-title {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: bold;
-            border: none;
-            background: none;
-            width: auto;
-            display: inline-block;
+            color: #495057;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         /* Riga di informazioni */
@@ -159,13 +173,23 @@
             display: flex;
             justify-content: space-between;
             gap: 20px;
-            flex-wrap: wrap; /* Per adattarsi ai piccoli schermi */
+            flex-wrap: wrap;
+            margin-bottom: 15px;
         }
 
         /* Gruppo di informazioni */
         .info-group {
             flex: 1;
             min-width: 200px;
+
+        }
+
+        /* Stile label */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #343a40;
         }
 
         /* Stile input */
@@ -173,11 +197,47 @@
             width: 100%;
             padding: 8px;
             font-size: 16px;
+            border-radius: 20px;
+            border: 1px solid #ced4da;
+            box-shadow: none;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
-        h4{
+        .form-control:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        h4 {
             text-align: center;
-            padding-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Stile bottoni */
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            color: #fff;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid transparent;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 25px;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .btn-primary {
+            background-color: #4e6e88;
+            border-color: #4e6e88;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
         }
 
         /* Footer */
@@ -185,74 +245,63 @@
             background-color: #2d3f4e;
             color: white;
             text-align: center;
-            padding: 10px 0;
+            padding: 15px 0;
             margin-top: auto;
-            font-size: 10px;
+            font-size: 12px;
             width: 100%;
-            position: relative; /* Ensures it stays at the bottom */
+            position: relative;
         }
 
-        /* Rendo le tabelle responsive */
+        /* Tavoli */
         .table-container {
             width: 100%;
-            overflow-x: auto; /* Permette lo scrolling orizzontale se necessario */
+            overflow-x: auto;
         }
 
-        /* Evito che la tabella superi la larghezza del contenitore */
         .table {
             width: 100%;
-            min-width: 600px; /* Imposto una larghezza minima per evitare che le colonne si comprimano troppo */
+            min-width: 600px;
             table-layout: auto;
         }
 
-        /* Media Query per schermi piccoli */
+        /* Responsive */
         @media (max-width: 768px) {
             .profile-container {
                 flex-direction: column;
                 align-items: center;
                 width: 90%;
-                margin-top:110px ;
+                margin-top: 110px;
+            }
+
+            .profile-image-container {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .profile-img {
+                max-width: 200px;
+                margin-bottom: 20px;
+            }
+
+            .profile-form {
+                width: 100%;
+                margin-right: 0;
             }
 
             .info-row {
                 flex-direction: column;
-                align-items: center;
+                align-items: stretch;
             }
 
             .info-group {
                 width: 100%;
             }
 
-            .input-title {
-                text-align: center;
-                width: 100%;
-            }
-
             .btn {
-                color: #eeeeee;
-                background-color: #2d3f4e;
-            }
-
-            /* Evito che la navbar copra il contenuto */
-            body {
-                padding-top: 110px; /* lo addatto in base all'altezza della navbar */
+                width: 100%;
+                margin-bottom: 10px;
             }
         }
-
-        @media (max-width: 480px) {
-        .profile-img {
-            max-width: 150px;
-            }
-        }
-
-        /* Media Query per schermi molto piccoli */
-        @media (max-width: 400px) {
-            .profile-img {
-                width: 80%;
-                margin-right: 0;
-            }
-        }
-
     </style>
 
 </head>
@@ -262,7 +311,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/area_riservata}">
-            <img src="immagini/scritta_logo.png" alt="vet_clinic">
+            <img th:src="@{immagini/scritta_logo.png}" alt="vet_clinic">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -283,154 +332,155 @@
                 </li>
             </ul>
         </div>
-   </div>
+    </div>
 </nav>
 
 <div class="container">
-    <div class="mr-6 profile-container ">
+    <div class="profile-container">
 
-        <img th:src="@{${animale.fotografia == null ? 'immagini/user_animale.jpg' : animale.fotografia}}"  alt="Immagine Profilo" class="profile-img">
+        <div class="profile-image-container">
+            <img th:src="@{${animale.fotografia == null ? 'immagini/icona_animale.jpg' : animale.fotografia}}" alt="Immagine Profilo" class="profile-img">
+        </div>
 
-        <form th:object="${animale}" method="post" enctype="multipart/form-data">
+        <form class="profile-form" th:object="${animale}" method="post" enctype="multipart/form-data">
 
-            <div class=" mb-3 profile-info">
+            <h4 class="input-title">PROFILO ANIMALE</h4>
 
-                <h4>PROFILO ANIMALE</h4>
-
-                <div class=" mb-3 info-row">
-                    <div class="info-group">
-                        <label for="nome">Nome </label>
-                        <input type="text" th:field="*{nome}" class="form-control" id="nome">
-                    </div>
+            <div class="info-row">
+                <div class="info-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome"/>
                 </div>
+            </div>
 
-                <div class=" mb-3 info-row">
-                    <div class="info-group">
-                        <label for="specie">Specie </label>
-                        <input type="text" th:field="*{specie}" class="form-control" id="specie">
-                    </div>
-                    <div class="info-group">
-                        <label for="razza">Razza </label>
-                        <input type="text" th:field="*{razza}" class="form-control" id="razza">
-                    </div>
+            <div class="info-row">
+                <div class="info-group">
+                    <label for="specie">Specie</label>
+                    <input type="text" th:field="*{specie}" class="form-control" id="specie" placeholder="Specie"/>
                 </div>
+                <div class="info-group">
+                    <label for="razza">Razza</label>
+                    <input type="text" th:field="*{razza}" class="form-control" id="razza" placeholder="Razza"/>
+                </div>
+            </div>
 
-                <div class="mb-3 info-row">
-                    <div class="info-group">
-                        <label for="sesso">Sesso</label>
-                        <select th:field="*{sesso}" class="form-control" id="sesso">
-                            <option value="M">Maschio</option>
-                            <option value="F">Femmina</option>
-                        </select>
-                    </div>
-                    <div class="info-group">
-                        <label for="peso">Peso (Kg) </label>
-                        <input type="text" th:field="*{peso}" class="form-control" id="peso" min="0">
-                    </div>
+            <div class="info-row">
+                <div class="info-group">
+                    <label for="sesso">Sesso</label>
+                    <select th:field="*{sesso}" class="form-control" id="sesso">
+                        <option value="M">Maschio</option>
+                        <option value="F">Femmina</option>
+                    </select>
                 </div>
+                <div class="info-group">
+                    <label for="peso">Peso (Kg)</label>
+                    <input type="text" th:field="*{peso}" class="form-control" id="peso" placeholder="Peso (Kg)" min="0"/>
+                </div>
+            </div>
 
-                <div class="mb-3 info-row">
-                    <div class="info-group">
-                        <label for="colore">Colore </label>
-                        <input type="text" th:field="*{colore}" class="form-control" id="colore">
-                    </div>
-                    <div class="info-group">
-                        <label for="anno">Anno di Nascita</label>
-                        <input type="number" min="1990" max="2025" step="1" th:field="*{annoDiNascita}"
-                               class="form-control" id="anno">
-                    </div>
+            <div class="info-row">
+                <div class="info-group">
+                    <label for="colore">Colore</label>
+                    <input type="text" th:field="*{colore}" class="form-control" id="colore" placeholder="Colore"/>
                 </div>
+                <div class="info-group">
+                    <label for="anno">Anno di Nascita</label>
+                    <input type="number" min="1990" max="2025" step="1" th:field="*{annoDiNascita}"
+                           class="form-control" id="anno" placeholder="Anno di Nascita"/>
+                </div>
+            </div>
 
-                <div class="mb-4 info-row">
-                    <div class="info-group">
-                        <label for="sterilizzato">Sterilizzato </label>
-                        <select th:field="*{sterilizzato}" class="form-control" id="sterilizzato">
-                            <option value="S">SI</option>
-                            <option value="N">NO</option>
-                        </select>
-                    </div>
-                    <div class="info-group">
-                        <label for="allergie">Allergie </label>
-                        <input type="text" th:field="*{allergie}" class="form-control" id="allergie">
-                    </div>
+            <div class="info-row">
+                <div class="info-group">
+                    <label for="sterilizzato">Sterilizzato</label>
+                    <select th:field="*{sterilizzato}" class="form-control" id="sterilizzato">
+                        <option value="S">SI</option>
+                        <option value="N">NO</option>
+                    </select>
                 </div>
-                <div class="mb-3 info-row">
-                    <div class="info-group">
-                        <label for="fotografia">Foto Profilo Animale</label>
-                        <input type="file" name="foto" class="form-control" id="fotografia">
-                    </div>
+                <div class="info-group">
+                    <label for="allergie">Allergie</label>
+                    <input type="text" th:field="*{allergie}" class="form-control" id="allergie" placeholder="Allergie"/>
                 </div>
-                <div class="mb-4 info-row" id="bottoniContainer">
-                    <div class="info-group">
-                        <input type="hidden" th:field="*{proprietario.id}">
-                        <button type="submit" class="btn btn-primary form-control w-100"
-                                id="modifica" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">Modifica
-                        </button>
-                    </div>
-                    <div class="info-group">
-                        <input type="hidden" th:field="*{proprietario.id}">
-                        <!-- Bottone per aprire il primo modal -->
-                        <button type="button" class="btn btn-danger form-control w-100" id="elimina"
-                                data-bs-toggle="modal" data-bs-target="#eliminaModal">Elimina
-                        </button>
-                    </div>
-                </div>
+            </div>
 
-                <!-- Modal di conferma eliminazione -->
-                <div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="eliminaModalLabel">Attenzione</h5>
-                            </div>
-                            <div class="modal-body">
-                                Sei sicuro di voler eliminare?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                                        id="btn-annulla" data-bs-toggle="modal" data-bs-target="#annullaModal">NO
+            <div class="info-row">
+                <div class="info-group">
+                    <label for="fotografia">Foto Profilo Animale</label>
+                    <input type="file" name="foto" class="form-control" id="fotografia">
+                </div>
+            </div>
+
+            <div class="info-row" id="bottoniContainer">
+                <div class="info-group">
+                    <input type="hidden" th:field="*{proprietario.id}">
+                    <button type="submit" class="btn btn-primary form-control"
+                            id="modifica">Modifica
+                    </button>
+                </div>
+                <div class="info-group">
+                    <input type="hidden" th:field="*{proprietario.id}">
+                    <!-- Bottone per aprire il primo modal -->
+                    <button type="button" class="btn btn-danger form-control" id="elimina"
+                            data-bs-toggle="modal" data-bs-target="#eliminaModal">Elimina
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal di conferma eliminazione -->
+            <div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eliminaModalLabel">Attenzione</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Sei sicuro di voler eliminare?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    id="btn-annulla">Annulla
+                            </button>
+                            <!-- Bottone per aprire il secondo modal -->
+                            <a th:href="@{/profilo_animale/eliminaAnimale(id=${animale.id})}">
+                                <button type="button" class="btn btn-primary" id="btn-conferma">Conferma
                                 </button>
-                                <!-- Bottone per aprire il secondo modal -->
-                                <a th:href="@{/profilo_animale/eliminaAnimale(id=${animale.id})}">
-                                    <button type="button" class="btn btn-primary" id="btn-conferma"
-                                        data-bs-toggle="modal" data-bs-target="#confermaModal" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">SI, sono sicuro
-                                    </button>
-                                </a>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Modal di eliminazione avvenuta con successo -->
-                <div class="modal fade" id="confermaModal" tabindex="-1" aria-labelledby="confermaModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="confermaModalLabel">Conferma</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="bi bi-check2" viewBox="0 0 16 16">
-                                    <path
-                                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
-                                </svg>
-                                Eliminazione avvenuta con successo!
-                            </div>
+            <!-- Modal di eliminazione avvenuta con successo -->
+            <div class="modal fade" id="confermaModal" tabindex="-1" aria-labelledby="confermaModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confermaModalLabel">Conferma</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-check2" viewBox="0 0 16 16">
+                                <path
+                                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+                            </svg>
+                            Eliminazione avvenuta con successo!
                         </div>
                     </div>
                 </div>
             </div>
         </form>
 
-        <br>
-        <div class="clearfix"></div> <!-- Spezza i float -->
-        <br>
+        <div class="clearfix"></div>
 
         <div class="table-container">
+            <br>
+            <hr>
             <h4>DATI PROPRIETARIO</h4>
 
             <table class="table">
@@ -461,7 +511,8 @@
             </table>
 
             <br>
-
+            <hr>
+            <br>
             <h4>STORICO VISITE</h4>
 
             <table class="table table-striped">
@@ -487,12 +538,12 @@
                     <td style="font-size: 15px;" th:text="${storico.note}"></td>
                     <td>
                         <a th:href="@{/profilo_animale/eliminaStorico(storicoId=${storico.id}, animaleId=${animale.id})}">
-                        <button type="button" class="btn btn-danger">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-x-lg" viewBox="0 0 16 16">
-                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                            </svg>
-                        </button>
+                            <button type="button" class="btn btn-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                </svg>
+                            </button>
                         </a>
                     </td>
                 </tr>
@@ -500,7 +551,7 @@
             </table>
         </div>
         <!-- Bottone per aprire il modale -->
-        <button type="button" class="btn btn-primary" onclick="mostra()" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">
+        <button type="button" class="btn btn-primary" onclick="mostra()">
             Aggiungi Storico
         </button>
         <div id="inserimentoStorico" style="display: none">
@@ -532,13 +583,10 @@
                 </table>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="mostra()" Style="margin-right: 20px;">Annulla</button>
-                    <button type="submit" class="btn btn-primary" style="background-color: #4e6e88; color: #ffffff; border-color: #4e6e88;">Salva</button>
+                    <button type="submit" class="btn btn-primary">Salva</button>
                 </div>
             </form>
         </div>
-
-
-
     </div>
 </div>
 
